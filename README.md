@@ -11,7 +11,7 @@ Este é o FrontEnd da Biblioteca Digital de TCCs desenvolvida para o IFMS
 
 - Rodrigo Silva Duran
 
-> Coorientador: 
+> Coorientador:
 
 - Fabio Duarte Oliveira
 
