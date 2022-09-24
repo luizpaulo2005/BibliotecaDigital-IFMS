@@ -1,10 +1,10 @@
 import Head from "next/head";
 import axios from "axios"
-import TabelaPesquisas from "../../../components/user/pesquisas";
 import HDPagInicial from "../../../components/header/paginicial";
+import { apiurl } from "../../../api/apiurl";
 
 export const getStaticProps = async () => {
-    const response = await axios.get('https://BackEnd-ORM-TCC.undertak3r.repl.co/tcc')
+    const response = await axios.get('https://biblioteca-digital-backend.undertak3r.repl.co/pesquisa')
     const pesquisas = await response.data
     return {
       props: {
@@ -21,7 +21,28 @@ export default function TodasPesquisas({pesquisas}){
             </Head>
             <HDPagInicial/>
             <div className="container border rounded mt-2 p-3">
-                <TabelaPesquisas pesquisas={pesquisas}/>
+            <table className="table">
+        <thead>
+        <tr>
+        <th>Titulo</th>
+        <th>Discentes</th>
+        <th>Orientador(es)</th>
+        <th>Data de Apresentação</th>
+        <th>Monografia</th>
+        </tr>
+        </thead>
+        <tbody>
+        {pesquisas.map(({id, titulo, discente, docente, data_apresentacao, link_download})=> (
+          <tr key={id}>
+          <td>{titulo}</td>
+          <td>{discente}</td>
+          <td>{docente}</td>
+          <td>{data_apresentacao}</td>
+          <td>{link_download}</td>
+          </tr>
+        ))}
+        </tbody>   
+        </table>
             </div>
         </div>
     )
