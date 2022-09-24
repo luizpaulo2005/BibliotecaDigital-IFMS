@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { format, parseISO } from "date-fns"
 
 export default function TabelaPesquisas({pesquisas}){
     return(
@@ -22,7 +23,7 @@ export default function TabelaPesquisas({pesquisas}){
           <td>{docenteId}</td>
           <td>Nova Andradina</td>
           <td>{cursoId}</td>
-          <td>{data_apresentacao}</td>
+          <td>{format(parseISO(data_apresentacao), 'dd/MM/yyyy')}</td>
           </tr>
         ))}
         </tbody>   
