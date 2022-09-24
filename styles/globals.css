@@ -7,7 +7,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: whitesmoke !important;
   text-decoration: none;
 }
 
@@ -15,6 +15,11 @@ a {
   box-sizing: border-box;
 }
 
+.titleheader{
+  font-size: 30px;
+  font-weight:bold;
+  color: whitesmoke;
+}
 .carrossel{
   width: 800px;
 }

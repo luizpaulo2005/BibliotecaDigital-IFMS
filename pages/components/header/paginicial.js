@@ -1,8 +1,8 @@
 export default function HDPagInicial(){
     return(
         <nav className="navbar navbar-expand-lg bg-success">
-        <div className="container-fluid">
-        <a className="navbar-brand" href="#">Biblioteca Digital de Pesquisas - IFMS</a>
+        <div className="container">
+        <a className="navbar-brand" href="#"><span className="titleheader">Biblioteca Digital de Pesquisas - IFMS</span></a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
         </button>
