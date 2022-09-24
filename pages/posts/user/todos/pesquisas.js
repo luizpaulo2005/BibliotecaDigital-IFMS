@@ -2,6 +2,7 @@ import Head from "next/head";
 import axios from "axios"
 import HDPagInicial from "../../../components/header/paginicial";
 import { apiurl } from "../../../api/apiurl";
+import { format, parseISO } from "date-fns";
 
 // export const getStaticProps = async () => {
 //     const response = await axios.get('https://biblioteca-digital-backend.undertak3r.repl.co/pesquisa')
@@ -37,7 +38,7 @@ export default function TodasPesquisas({pesquisas}){
           <td>{titulo}</td>
           <td>{discente}</td>
           <td>{docente}</td>
-          <td>{data_apresentacao}</td>
+          <td>{format(parseISO(data_apresentacao), 'dd/MM/yyyy')}</td>
           <td>{link_download}</td>
           </tr>
         ))} */}
