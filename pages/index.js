@@ -18,7 +18,15 @@ export default function Home() {
     </div>
     <div className={styles.main}>
     <CRSPagInicial/>
-    <Link href="/posts/user/todos/pesquisas"><a>AB</a></Link>
+    <nav class="navbar bg-light">
+  <div class="container-fluid textcenter">
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search" />
+      <Link href="/posts/user/todos/pesquisas"><button class="btn btn-outline-success" type="submit">Search</button></Link>
+    </form>
+  </div>
+</nav>
+ 
     </div>
     </div>
   )

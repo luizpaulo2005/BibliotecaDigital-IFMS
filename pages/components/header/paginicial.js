@@ -13,11 +13,11 @@ export default function HDPagInicial(){
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-        <a className="nav-link active" aria-current="page" href="#">Administração</a>
+        <a className="nav-link active" aria-current="page" href="#"><span className="white">Administração</span></a>
         </li>
         <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        Categorias
+        <span className="white">Categorias</span>
         </a>
         <ul className="dropdown-menu">
         <li><Link href="/posts/user/todos/pesquisas"><a className="dropdown-item">Pesquisas</a></Link></li>
@@ -27,8 +27,8 @@ export default function HDPagInicial(){
         </li>
         </ul>
         <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button className="btn btn-outline-light" type="submit">Search</button>
+        <input className="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search"/>
+        <button className="btn btn-outline-light" type="submit">Pesquisar</button>
         </form>
         </div>
         </div>
