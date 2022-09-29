@@ -20,16 +20,14 @@ export default function HDPagInicial(){
         <span className="white">Categorias</span>
         </a>
         <ul className="dropdown-menu">
+        <li><Link href="/posts/user/todos/discentes"><a className="dropdown-item">Alunos</a></Link></li>
+        <li><Link href="/posts/user/todos/campus"><a className="dropdown-item">Campus</a></Link></li>
+        <li><Link href="/posts/user/todos/cursos"><a className="dropdown-item">Cursos</a></Link></li>
         <li><Link href="/posts/user/todos/pesquisas"><a className="dropdown-item">Pesquisas</a></Link></li>
-        <li><a className="dropdown-item" href="#">Categoria 2</a></li>
-        <li><a className="dropdown-item" href="#">Categoria 3</a></li>
+        <li><Link href="/posts/user/todos/docentes"><a className="dropdown-item">Professores</a></Link></li>
         </ul>
         </li>
         </ul>
-        <form className="d-flex" role="search">
-        <input className="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search"/>
-        <button className="btn btn-outline-light" type="submit">Pesquisar</button>
-        </form>
         </div>
         </div>
         </nav>
