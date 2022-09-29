@@ -4,15 +4,15 @@ import HDPagInicial from "../../../components/header/paginicial";
 import { apiurl } from "../../../api/apiurl";
 import { format, parseISO } from "date-fns";
 
-// export const getStaticProps = async () => {
-//     const response = await axios.get('https://biblioteca-digital-backend.undertak3r.repl.co/pesquisa')
-//     const pesquisas = await response.data
-//     return {
-//       props: {
-//         pesquisas
-//       }
-//     }
-//   }
+export const getStaticProps = async () => {
+    const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/pesquisa')
+    const pesquisas = await response.data
+    return {
+      props: {
+        pesquisas
+      }
+    }
+  }
 
 export default function TodasPesquisas({pesquisas}){
     return(
@@ -33,65 +33,16 @@ export default function TodasPesquisas({pesquisas}){
         </tr>
         </thead>
         <tbody>
-        {/* {pesquisas.map(({id, titulo, discente, docente, data_apresentacao, link_download})=> (
+        {pesquisas.map(({id, titulo, discenteId, docenteId, data_apresentacao, url_download})=> (
           <tr key={id}>
           <td>{titulo}</td>
-          <td>{discente}</td>
-          <td>{docente}</td>
-          <td>{format(parseISO(data_apresentacao), 'dd/MM/yyyy')}</td>
-          <td>{link_download}</td>
+          <td>{discenteId}</td>
+          <td>{docenteId}</td>
+          <td>{/*format(parseISO(*/data_apresentacao/*), 'dd/MM/yyyy')*/}</td>
+          <td>{url_download}</td>
           </tr>
-        ))} */}
-          <tr>
-          <td>Titulo</td>
-          <td>Nome do Discente</td>
-          <td>Nome do Docente</td>
-          <td>01/01/2022</td>
-          <td>Download</td>
-          </tr>
-          <tr>
-          <td>Titulo</td>
-          <td>Nome do Discente</td>
-          <td>Nome do Docente</td>
-          <td>01/01/2022</td>
-          <td>Download</td>
-          </tr>
-          <tr>
-          <td>Titulo</td>
-          <td>Nome do Discente</td>
-          <td>Nome do Docente</td>
-          <td>01/01/2022</td>
-          <td>Download</td>
-          </tr>
-          <tr>
-          <td>Titulo</td>
-          <td>Nome do Discente</td>
-          <td>Nome do Docente</td>
-          <td>01/01/2022</td>
-          <td>Download</td>
-          </tr>
-          <tr>
-          <td>Titulo</td>
-          <td>Nome do Discente</td>
-          <td>Nome do Docente</td>
-          <td>01/01/2022</td>
-          <td>Download</td>
-          </tr>
-          <tr>
-          <td>Titulo</td>
-          <td>Nome do Discente</td>
-          <td>Nome do Docente</td>
-          <td>01/01/2022</td>
-          <td>Download</td>
-          </tr>
-          <tr>
-          <td>Titulo</td>
-          <td>Nome do Discente</td>
-          <td>Nome do Docente</td>
-          <td>01/01/2022</td>
-          <td>Download</td>
-          </tr>
-
+        ))}
+        
         </tbody>   
         </table>
             </div>
