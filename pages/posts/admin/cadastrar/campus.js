@@ -53,21 +53,21 @@ export default function CadastrarCampus(){
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <legend>Cadastro de Campus</legend>
-                        <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Nome</span>
-                        <input id="nome" type="text" class="form-control" onChange={handleInputChange} value={campus.nome} aria-label="Nome" aria-describedby="basic-addon1"/>
+                        <div className="input-group mb-3">
+                        <span className="input-group-text" id="basic-addon1">Nome</span>
+                        <input id="nome" type="text" className="form-control" onChange={handleInputChange} value={campus.nome} aria-label="Nome" aria-describedby="basic-addon1"/>
                         </div>
-                        <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Cidade</span>
-                        <input id="cidade" type="text" class="form-control" onChange={handleInputChange} value={campus.cidade} aria-label="Cidade" aria-describedby="basic-addon1"/>
+                        <div className="input-group mb-3">
+                        <span className="input-group-text" id="basic-addon1">Cidade</span>
+                        <input id="cidade" type="text" className="form-control" onChange={handleInputChange} value={campus.cidade} aria-label="Cidade" aria-describedby="basic-addon1"/>
                         </div>
-                        <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Estado</span>
-                        <input id="estado" type="text" class="form-control" onChange={handleInputChange} value={campus.estado} aria-label="Estado" aria-describedby="basic-addon1"/>
+                        <div className="input-group mb-3">
+                        <span className="input-group-text" id="basic-addon1">Estado</span>
+                        <input id="estado" type="text" className="form-control" onChange={handleInputChange} value={campus.estado} aria-label="Estado" aria-describedby="basic-addon1"/>
                         </div>
-                        <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">E-mail</span>
-                        <input id="email" type="text" class="form-control" onChange={handleInputChange} value={campus.email} aria-label="E-mail" aria-describedby="basic-addon1"/>
+                        <div className="input-group mb-3">
+                        <span className="input-group-text" id="basic-addon1">E-mail</span>
+                        <input id="email" type="text" className="form-control" onChange={handleInputChange} value={campus.email} aria-label="E-mail" aria-describedby="basic-addon1"/>
                         </div>
                         <button type="submit" className="btn btn-success">Cadastrar</button>
                     </fieldset>
