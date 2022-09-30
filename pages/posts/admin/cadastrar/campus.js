@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import HDPagInicial from "../../../components/header/paginicial";
 
 export default function CadastrarCampus(){
@@ -67,7 +66,7 @@ export default function CadastrarCampus(){
                         </div>
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">E-mail</span>
-                        <input id="email" type="text" className="form-control" onChange={handleInputChange} value={campus.email} aria-label="E-mail" aria-describedby="basic-addon1"/>
+                        <input id="email" type="email" className="form-control" onChange={handleInputChange} value={campus.email} aria-label="E-mail" aria-describedby="basic-addon1"/>
                         </div>
                         <button type="submit" className="btn btn-success">Cadastrar</button>
                     </fieldset>

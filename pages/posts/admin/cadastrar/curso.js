@@ -1,5 +1,4 @@
 import Head from "next/head";
-import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from "react-toastify";
 import HDPagInicial from "../../../components/header/paginicial";
 import { useState } from "react";
