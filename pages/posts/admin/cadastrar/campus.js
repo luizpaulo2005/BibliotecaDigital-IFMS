@@ -62,8 +62,39 @@ export default function CadastrarCampus(){
                         </div>
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Estado</span>
-                        <input id="estado" type="text" className="form-control" onChange={handleInputChange} value={campus.estado} aria-label="Estado" aria-describedby="basic-addon1"/>
+                        <input id="estado" list="estados" type="text" className="form-control" onChange={handleInputChange} value={campus.estado} aria-label="Estado" aria-describedby="basic-addon1"/>
                         </div>
+
+                        <datalist id="estados">
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                        </datalist>
+
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">E-mail</span>
                         <input id="email" type="email" className="form-control" onChange={handleInputChange} value={campus.email} aria-label="E-mail" aria-describedby="basic-addon1"/>

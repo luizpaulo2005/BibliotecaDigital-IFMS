@@ -72,12 +72,22 @@ export default function CadastrarMatricula({attributes}){
                     </div>
                     <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">Curso</span>
-                    <select id="cursoId" className="form-control" onChange={handleInputChange} value={matricula.cursoId}>
+
+                    {/* <select id="cursoId" className="form-control" onChange={handleInputChange} value={matricula.cursoId}>
                     <option selected disabled>Selecione o curso da matrícula</option>
                     {attributes.map(({id, nome})=> (
                         <option key={id} value={id}>{nome}</option>
                     ))}
-                    </select>
+                    </select> */}
+                    
+                    <input list="cursos" type="number" id="cursoId" className="form-control" onChange={handleInputChange} value={matricula.cursoId}/>
+                    
+                    <datalist id="cursos">
+                    {attributes.map(({id, nome})=> (
+                        <option key={id} value={id}>{nome}</option>
+                    ))}
+                    </datalist>
+                    
                     </div>
                     <button className="btn btn-success">Cadastrar</button>
                     </fieldset>

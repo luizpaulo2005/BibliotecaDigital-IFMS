@@ -79,12 +79,28 @@ export default function CadastrarCurso({attributes}){
                         </div>
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Campus</span>
+
+                        {/* 
+                        
+                        Cadastro Por Select
+
                         <select id="campusId" className="form-control" onChange={handleInputChange} value={curso.campusId}>
                         <option selected disabled>Selecione o campus do curso</option>
                         {attributes.map(({id, nome}) => (
                             <option key={id} value={id}>{nome}</option>
                         ))}
                         </select>
+                        
+                        */}
+
+                        {/* Cadastro por input com datalist */}
+
+                        <input id="campusId" type="text" list="campus" className="form-control" onChange={handleInputChange} value={curso.campusId}/>
+                        <datalist id="campus">
+                        {attributes.map(({id, nome}) => (
+                            <option key={id} value={id}>{nome}</option>
+                        ))}
+                        </datalist>
                         </div>
                     <button type="submit" className="btn btn-success">Cadastrar</button>
                 </form>
