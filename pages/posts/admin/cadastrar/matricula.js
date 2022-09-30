@@ -62,13 +62,13 @@ export default function CadastrarMatricula({attributes}){
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <legend>Cadastro de Matricula</legend>
-                        <div class="input-group mb-3">
-                        <span class="input-group-text" id="basic-addon1">Número da Matricula</span>
-                        <input id="id" type="text" class="form-control" onChange={handleInputChange} value={matricula.id} aria-label="Username" aria-describedby="basic-addon1"/>
+                        <div className="input-group mb-3">
+                        <span className="input-group-text" id="basic-addon1">Número da Matricula</span>
+                        <input id="id" type="text" className="form-control" onChange={handleInputChange} value={matricula.id} aria-label="Username" aria-describedby="basic-addon1"/>
                         </div>
-                        <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Data de Início</span>
-                    <input id="data_inicio" type="date" class="form-control" onChange={handleInputChange} value={matricula.data_inicio} aria-label="Username" aria-describedby="basic-addon1"/>
+                        <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">Data de Início</span>
+                    <input id="data_inicio" type="date" className="form-control" onChange={handleInputChange} value={matricula.data_inicio} aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
                     <div className="input-group mb-3">
                     <span className="input-group-text" id="basic-addon1">Curso</span>
