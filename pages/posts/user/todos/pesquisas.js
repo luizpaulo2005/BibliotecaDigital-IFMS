@@ -20,8 +20,8 @@ const [consulta, setConsulta] = useState("")
 
 const keys = ["titulo"]
 
-const filtro = (pesquisasfiltradas) => {
-  return pesquisasfiltradas.filter((pesquisasfiltradas) => keys.some(key=>pesquisasfiltradas[key].toLowerCase().includes(consultaGeral)))
+const filtro = (item) => {
+  return item.filter((item) => keys.some(key=>item[key].toLowerCase().includes(consultaGeral)))
 }
 
 
