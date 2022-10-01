@@ -17,6 +17,8 @@ export const getStaticProps = async () => {
 
 export default function TodasPesquisas({pesquisas}){
 const [consulta, setConsulta] = useState("")
+const [itensporPagina, setItensporPagina] = useState(10)
+const [paginasRecorrentes, setPaginasRecorrentes] = useState(0)
 
 const keys = ["titulo"]
 
@@ -25,8 +27,15 @@ const filtro = (item) => {
 }
 
 
-const pesquisasfiltradas = pesquisas
 const consultaGeral = consulta.toLowerCase()
+const paginas = Math.ceil(filtro(pesquisas).length / itensporPagina)
+const startIndex = paginasRecorrentes * itensporPagina
+const endIndex = startIndex + itensporPagina
+const pesquisasfiltradas = filtro(pesquisas).slice(startIndex, endIndex)
+
+
+
+useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
 
     return(
         <div className="container-fluid g-0">
@@ -52,7 +61,7 @@ const consultaGeral = consulta.toLowerCase()
         </tr>
         </thead>
         <tbody>
-        {filtro(pesquisas).map(({id, titulo, discenteId, docenteId, data_apresentacao, url_download})=> (
+        {pesquisasfiltradas.map(({id, titulo, discenteId, docenteId, data_apresentacao, url_download})=> (
           <tr key={id}>
           <td>{titulo}</td>
           <td>{discenteId}</td>
@@ -64,6 +73,28 @@ const consultaGeral = consulta.toLowerCase()
         
         </tbody>   
         </table>
+        
+
+        <center>
+
+        <div>{Array.from(Array(paginas), (pesquisasfiltradas, index) =>{
+        return <button type="button" className="btn btn-outline-dark" value={index} onClick={(e) =>setPaginasRecorrentes
+        (Number(e.target.value))}>{index + 1}</button>})}
+        </div>
+        </center>
+        <center>
+        <form>
+            <span>Trabalhos por página: </span>       
+            
+          <select onChange={(e) => setItensporPagina(Number(e.target.value))}>
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </select>
+        </form>
+        </center>
+
             </div>
         </div>
     )
