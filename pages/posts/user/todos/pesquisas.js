@@ -3,6 +3,7 @@ import axios from "axios"
 import HDPagInicial from "../../../components/header/paginicial";
 import { apiurl } from "../../../api/apiurl";
 import { format, parseISO } from "date-fns";
+import { useState,useEffect } from "react";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/pesquisa')
@@ -15,12 +16,30 @@ export const getStaticProps = async () => {
   }
 
 export default function TodasPesquisas({pesquisas}){
+const [consulta, setConsulta] = useState("")
+
+const keys = ["titulo"]
+
+const filtro = (pesquisasfiltradas) => {
+  return pesquisasfiltradas.filter((pesquisasfiltradas) => keys.some(key=>pesquisasfiltradas[key].toLowerCase().includes(consultaGeral)))
+}
+
+
+const pesquisasfiltradas = pesquisas
+const consultaGeral = consulta.toLowerCase()
+
     return(
         <div className="container-fluid g-0">
             <Head>
                 <title>Pesquisas</title>
             </Head>
             <HDPagInicial/>
+           
+             <div class="container mt-2">
+              <form class="d-flex" role="search">
+               <input class="form-control filtro" type="search" placeholder="Pesquisar" aria-label="Search"  onChange={(e) => setConsulta(e.target.value)} />
+             </form>
+            </div>
             <div className="container border rounded mt-2 p-3">
             <table className="table">
         <thead>
@@ -33,7 +52,7 @@ export default function TodasPesquisas({pesquisas}){
         </tr>
         </thead>
         <tbody>
-        {pesquisas.map(({id, titulo, discenteId, docenteId, data_apresentacao, url_download})=> (
+        {filtro(pesquisas).map(({id, titulo, discenteId, docenteId, data_apresentacao, url_download})=> (
           <tr key={id}>
           <td>{titulo}</td>
           <td>{discenteId}</td>

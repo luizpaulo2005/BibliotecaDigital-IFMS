@@ -11,6 +11,11 @@ body {
   text-decoration: none;
 }
 
+.filtro{
+  width: 700px !important;
+  margin-left: 20% !important;
+}
+
 .error{
   color: red;
 }
