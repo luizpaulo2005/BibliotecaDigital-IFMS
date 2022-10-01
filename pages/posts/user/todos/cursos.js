@@ -29,9 +29,9 @@ export default function TodosCursos({curso}){
                 <title>Lista de Cursos</title>
             </Head>
             <HDPagInicial/>
-            <div class="container mt-2">
-              <form class="d-flex" role="search">
-               <input class="form-control filtro" type="search" placeholder="Pesquisar" aria-label="Search"  onChange={(e) => setConsulta(e.target.value)} />
+            <div className="container mt-2">
+              <form className="d-flex" role="search">
+               <input className="form-control filtro" type="search" placeholder="Pesquisar" aria-label="Search"  onChange={(e) => setConsulta(e.target.value)} />
              </form>
             </div>
             <div className="container border rounded mt-2 p-3">

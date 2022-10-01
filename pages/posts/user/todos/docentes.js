@@ -34,9 +34,9 @@ const consultaGeral = consulta.toLowerCase()
                 <title>Lista de Docentes</title>
             </Head>
             <HDPagInicial/>
-            <div class="container mt-2">
-              <form class="d-flex" role="search">
-               <input class="form-control filtro" type="search" placeholder="Pesquisar" aria-label="Search"  onChange={(e) => setConsulta(e.target.value)} />
+            <div className="container mt-2">
+              <form className="d-flex" role="search">
+               <input className="form-control filtro" type="search" placeholder="Pesquisar" aria-label="Search"  onChange={(e) => setConsulta(e.target.value)} />
              </form>
             </div>
             <div className="container border rounded p-3 mt-2">
