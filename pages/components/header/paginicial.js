@@ -28,6 +28,8 @@ export default function HDPagInicial(){
         </ul>
         </li>
         </ul>
+        <Link href="/posts/admin/login/login"><button className="btn btn-outline-success" type="submit"><div className="white">Entrar</div></button></Link>
+       
         </div>
         </div>
         </nav>
