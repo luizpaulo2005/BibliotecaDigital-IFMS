@@ -2,8 +2,10 @@ import react from "react"
 import HDPagInicial from "../../../components/header/paginicial"
 import { useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase";
 import { useRouter } from "next/router";
+import { initializeApp } from "firebase/app";
+
+
 
 
 export default function Login(){
@@ -13,6 +15,19 @@ export default function Login(){
     
     let router = useRouter();
     
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyCdFNaUPOEGlEeKl6KCDxjAj4VXApFo47k",
+        authDomain: "adminifms.firebaseapp.com",
+        projectId: "adminifms",
+        storageBucket: "adminifms.appspot.com",
+        messagingSenderId: "319895162614",
+        appId: "1:319895162614:web:2da4b5076c5d20f277a6d7"
+      };
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth() 
+
+
     const handleLogin = (e) => {
       e.preventDefault();
       const auth = getAuth();
