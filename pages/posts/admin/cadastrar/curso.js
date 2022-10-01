@@ -38,7 +38,7 @@ export default function CadastrarCurso({attributes}){
         }
 
         const response = await axios.post('https://databasebibliotecadigital.undertak3r.repl.co/curso', data);
-
+        console.log(response)
         if(!response.statusText === "OK"){
             toast.error("Erro ao cadastrar o curso")
         }else{

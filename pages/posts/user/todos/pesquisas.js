@@ -75,7 +75,7 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
         </table>
         
 
-        <center>
+        {/* <center>
 
         <div>{Array.from(Array(paginas), (pesquisasfiltradas, index) =>{
         return <button type="button" className="btn btn-outline-dark" value={index} onClick={(e) =>setPaginasRecorrentes
@@ -93,7 +93,7 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
             <option value={50}>50</option>
           </select>
         </form>
-        </center>
+        </center> */}
 
             </div>
         </div>
