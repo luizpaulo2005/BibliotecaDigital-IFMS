@@ -11,6 +11,10 @@ body {
   text-decoration: none;
 }
 
+.error{
+  color: red;
+}
+
 .white{color: whitesmoke;}
 .verde {color: green;}
 * {
