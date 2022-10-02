@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import HDPagInicial from "../../../components/header/paginicial";
 import { format, parseISO } from "date-fns";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/discente')
@@ -17,6 +17,8 @@ export const getStaticProps = async () => {
 
 export default function TodosDiscentes({discentes}){
 const [consulta, setConsulta] = useState("")
+const [itensporPagina, setItensporPagina] = useState(10)
+const [paginasRecorrentes, setPaginasRecorrentes] = useState(0)
 
 const keys = ["nome"]
 
@@ -25,8 +27,16 @@ const filtro = (item) => {
 }
 
 
-const discentesfiltrados = discentes
+
 const consultaGeral = consulta.toLowerCase()
+const paginas = Math.ceil(filtro(discentes).length / itensporPagina)
+const startIndex = paginasRecorrentes * itensporPagina
+const endIndex = startIndex + itensporPagina
+const discentesfiltrados = filtro(discentes).slice(startIndex, endIndex)
+
+
+
+useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
     return(
         <div className="container-fluid g-0">
             <Head>
@@ -48,7 +58,7 @@ const consultaGeral = consulta.toLowerCase()
             </tr>
         </thead>
         <tbody>
-        {filtro(discentes).map(({id, nome, email, data_nascimento})=>(
+        {discentesfiltrados.map(({id, nome, email, data_nascimento})=>(
         <tr key={id}>
             <td><Link href={`/posts/solo/discente/${id}`}><a>{nome}</a></Link></td>
             <td>{email}</td>
@@ -57,6 +67,28 @@ const consultaGeral = consulta.toLowerCase()
         ))}
         </tbody>
         </table>
+
+        <center>
+
+<div>{Array.from(Array(paginas), (discentesfiltrados, index) =>{
+return <button type="button" className="btn btn-outline-dark" key={index} value={index} onClick={(e) =>setPaginasRecorrentes
+(Number(e.target.value))}>{index + 1}</button>})}
+</div>
+</center>
+<center>
+<form>
+    <span>Alunos por página: </span>       
+    
+  <select onChange={(e) => setItensporPagina(Number(e.target.value))}>
+    <option value={5}>5</option>
+    <option value={10}>10</option>
+    <option value={20}>20</option>
+    <option value={50}>50</option>
+  </select>
+</form>
+</center>
+
+
             </div>
         </div>
     )
