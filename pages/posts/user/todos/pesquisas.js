@@ -75,25 +75,26 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
         </table>
         
 
-        {/* <center>
-
-        <div>{Array.from(Array(paginas), (pesquisasfiltradas, index) =>{
-        return <button type="button" className="btn btn-outline-dark" value={index} onClick={(e) =>setPaginasRecorrentes
-        (Number(e.target.value))}>{index + 1}</button>})}
-        </div>
-        </center>
         <center>
-        <form>
-            <span>Trabalhos por página: </span>       
-            
-          <select onChange={(e) => setItensporPagina(Number(e.target.value))}>
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-            <option value={50}>50</option>
-          </select>
-        </form>
-        </center> */}
+
+<div>{Array.from(Array(paginas), (pesquisasfiltradas, index) =>{
+return <button type="button" className="btn btn-outline-dark" key={index} value={index} onClick={(e) =>setPaginasRecorrentes
+(Number(e.target.value))}>{index + 1}</button>})}
+</div>
+</center>
+<center>
+<form>
+    <span>Trabalhos por página: </span>       
+    
+  <select onChange={(e) => setItensporPagina(Number(e.target.value))}>
+    <option value={5}>5</option>
+    <option value={10}>10</option>
+    <option value={20}>20</option>
+    <option value={50}>50</option>
+  </select>
+</form>
+</center>
+
 
             </div>
         </div>
