@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import HDPagInicial from "../../../components/header/paginicial";
+import HDPagAdmin from './../../../components/header/pagadmin';
 
 export const getStaticProps = async () =>{
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/matricula')
@@ -60,7 +60,7 @@ export default function CadastrarDiscente({attributes}){
             <Head>
                 <title></title>
             </Head>
-            <HDPagInicial/>
+            <HDPagAdmin/>
             <ToastContainer/>
             <div className="container border rounded mt-2 p-3">
                 <form onSubmit={handleSubmit}>

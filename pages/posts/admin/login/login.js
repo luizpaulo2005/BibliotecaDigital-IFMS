@@ -35,7 +35,7 @@ export default function Login(){
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user)
-        router.push('/posts/admin/cadastrar/pesquisas')
+        router.push('/posts/admin/paginaAdmin')
        
       })
       .catch((error) => {
@@ -57,7 +57,7 @@ export default function Login(){
                         </div>
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Senha</span>
-                        <input type="text" className="form-control" aria-label="Titulo" aria-describedby="basic-addon1"  onChange={e=>setPassword(e.target.value)}/>
+                        <input type="password" className="form-control" aria-label="Titulo" aria-describedby="basic-addon1"  onChange={e=>setPassword(e.target.value)}/>
                         </div>           
                         {error &&<span className="error">Ops, Algo deu errado, tente novamente ou contate a administração.</span>}
                         <br/>

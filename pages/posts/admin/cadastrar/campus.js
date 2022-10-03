@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import HDPagInicial from "../../../components/header/paginicial";
+import HDPagAdmin from './../../../components/header/pagadmin';
 
 export default function CadastrarCampus(){
     const [campus, setCampus] = useState({
@@ -46,7 +46,7 @@ export default function CadastrarCampus(){
             <Head>
                 <title>Cadastrar Campus</title>
             </Head>
-            <HDPagInicial/>
+            <HDPagAdmin/>
             <ToastContainer/>
             <div className="container border rounded mt-2 p-3">
                 <form onSubmit={handleSubmit}>

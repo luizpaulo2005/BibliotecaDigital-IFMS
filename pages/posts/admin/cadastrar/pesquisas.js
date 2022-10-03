@@ -1,5 +1,5 @@
 import Head from "next/head";
-import HDPagInicial from "../../../components/header/paginicial";
+import HDPagAdmin from './../../../components/header/pagadmin';
 
 export default function CadastrarPesquisa(){
     return(
@@ -9,7 +9,7 @@ export default function CadastrarPesquisa(){
                 Cadastro de Pesquisas
                 </title>
                 </Head>
-            <HDPagInicial/>
+            <HDPagAdmin/>
             <div className="container">
                 <form>
                     <fieldset className="border rounded p-3 mt-2">

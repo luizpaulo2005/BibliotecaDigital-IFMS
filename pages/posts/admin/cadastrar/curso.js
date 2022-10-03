@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { toast, ToastContainer } from "react-toastify";
-import HDPagInicial from "../../../components/header/paginicial";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
+import HDPagAdmin from './../../../components/header/pagadmin';
 
 export const getStaticProps = async () =>{
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/campus')
@@ -58,7 +58,7 @@ export default function CadastrarCurso({attributes}){
             <Head>
                 <title>Cadastro de Curso</title>
             </Head>
-            <HDPagInicial/>
+            <HDPagAdmin/>
             <ToastContainer/>
             <div className="container border rounded mt-2 p-3">
                 <form onSubmit={handleSubmit}>

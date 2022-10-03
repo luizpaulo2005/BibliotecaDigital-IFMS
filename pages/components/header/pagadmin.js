@@ -1,10 +1,11 @@
 import Link from "next/link";
+import PaginaAdmin from './../../posts/admin/paginaAdmin';
 
-export default function HDPagInicial(){
+export default function HDPagAdmin(){
     return(
         <nav className="navbar navbar-expand-lg bg-success">
         <div className="container">
-        <Link href="/">
+        <Link href="/posts/admin/paginaAdmin">
         <a className="navbar-brand"><span className="titleheader">Biblioteca Digital de Pesquisas - IFMS</span></a>
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,8 +29,7 @@ export default function HDPagInicial(){
         </ul>
         </li>
         </ul>
-        <Link href="/posts/admin/login/login"><button className="btn btn-outline-success" type="submit"><div className="white">Entrar</div></button></Link>
-       
+        <Link href="/"><button className="btn btn-outline-success" type="submit"><div className="white">Sair</div></button></Link>      
         </div>
         </div>
         </nav>
