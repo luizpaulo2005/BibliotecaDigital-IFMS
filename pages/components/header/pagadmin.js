@@ -16,16 +16,20 @@ export default function HDPagAdmin(){
         <li className="nav-item">
         <a className="nav-link active" aria-current="page" href="https://www.ifms.edu.br"><span className="white">Página IFMS</span></a>
         </li>
+        <li className="nav-item">
+        <Link href="/posts/admin/paginaAdmin"><a className="nav-link active"><span className="white">Painel</span></a></Link>
+        </li>
         <li className="nav-item dropdown">
         <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <span className="white">Categorias</span>
         </a>
         <ul className="dropdown-menu">
-        <li><Link href="/posts/user/todos/discentes"><a className="dropdown-item">Alunos</a></Link></li>
-        <li><Link href="/posts/user/todos/campus"><a className="dropdown-item">Campus</a></Link></li>
-        <li><Link href="/posts/user/todos/cursos"><a className="dropdown-item">Cursos</a></Link></li>
-        <li><Link href="/posts/user/todos/pesquisas"><a className="dropdown-item">Pesquisas</a></Link></li>
-        <li><Link href="/posts/user/todos/docentes"><a className="dropdown-item">Professores</a></Link></li>
+        <li><Link href="/posts/admin/todos/discente"><a className="dropdown-item">Alunos</a></Link></li>
+        <li><Link href="/posts/admin/todos/campus"><a className="dropdown-item">Campus</a></Link></li>
+        <li><Link href="/posts/admin/todos/curso"><a className="dropdown-item">Cursos</a></Link></li>
+        <li><Link href="/posts/admin/todos/matricula"><a className="dropdown-item">Matriculas</a></Link></li>
+        <li><Link href="/posts/admin/todos/pesquisa"><a className="dropdown-item">Pesquisas</a></Link></li>
+        <li><Link href="/posts/admin/todos/docente"><a className="dropdown-item">Professores</a></Link></li>
         </ul>
         </li>
         </ul>

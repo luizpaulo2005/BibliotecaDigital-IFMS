@@ -42,6 +42,7 @@ export default function CadastrarMatricula({attributes}){
             toast.error("Erro ao cadastrar a matrícula")
         }else{
             toast.success("Matrícula adicionada com sucesso")
+            router.push("/posts/admin/todos/matricula")
         }
     }
         const handleInputChange = (e) =>{
