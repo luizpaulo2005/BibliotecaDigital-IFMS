@@ -17,6 +17,8 @@ export const getStaticProps = async () => {
 
 export default function TodosDocentes({docentes}){
 const [consulta, setConsulta] = useState("")
+const [itensporPagina, setItensporPagina] = useState(10)
+const [paginasRecorrentes, setPaginasRecorrentes] = useState(0)
 
 const keys = ["nome"]
 
@@ -25,8 +27,11 @@ const filtro = (item) => {
   }
 
 
-const docentesfiltrados = docentes
-const consultaGeral = consulta.toLowerCase()
+  const consultaGeral = consulta.toLowerCase()
+  const paginas = Math.ceil(filtro(docentes).length / itensporPagina)
+  const startIndex = paginasRecorrentes * itensporPagina
+  const endIndex = startIndex + itensporPagina
+  const docentesfiltrados = filtro(docentes).slice(startIndex, endIndex)
 
     return(
         <div className="container-fluid g-0">
@@ -51,7 +56,7 @@ const consultaGeral = consulta.toLowerCase()
             </tr>
         </thead>
         <tbody>
-        {filtro(docentes).map(({id, nome, email, cpf, data_nascimento, formacao})=>(
+        {docentesfiltrados.map(({id, nome, email, cpf, data_nascimento, formacao})=>(
             <tr key={id}>
                 <td><Link href={`/posts/solo/docente/${id}`}><a>{nome}</a></Link></td>
                 <td>{email}</td>
@@ -62,6 +67,27 @@ const consultaGeral = consulta.toLowerCase()
         ))}
         </tbody>
         </table>
+
+        <center>
+
+<div>{Array.from(Array(paginas), (docentesfiltrados, index) =>{
+return <button type="button" className="btn btn-outline-dark" key={index} value={index} onClick={(e) =>setPaginasRecorrentes
+(Number(e.target.value))}>{index + 1}</button>})}
+</div>
+</center>
+<center>
+<form>
+    <span>Professores por página: </span>       
+    
+  <select onChange={(e) => setItensporPagina(Number(e.target.value))}>
+    <option value={5}>5</option>
+    <option selected value={10}>10</option>
+    <option value={20}>20</option>
+    <option value={50}>50</option>
+  </select>
+</form>
+</center>
+
             </div>
         </div>
     )

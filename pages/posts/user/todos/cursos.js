@@ -5,23 +5,32 @@ import { useState } from "react";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/curso');
-    const curso = await response.data;
+    const cursos = await response.data;
     return{
         props:{
-            curso
+            cursos
         }
     }
 }
 
-export default function TodosCursos({curso}){
+export default function TodosCursos({cursos}){
   const [consulta, setConsulta] = useState("")
+  const [itensporPagina, setItensporPagina] = useState(10)
+  const [paginasRecorrentes, setPaginasRecorrentes] = useState(0)
+
+
   const keys = ["nome"]
 
   const filtro= (item) => {
     return item.filter((item) => keys.some(key=>item[key].toLowerCase().includes(consultaGeral)))
   }
-  const campusfiltrados = curso
+
   const consultaGeral = consulta.toLowerCase()
+  const paginas = Math.ceil(filtro(cursos).length / itensporPagina)
+  const startIndex = paginasRecorrentes * itensporPagina
+  const endIndex = startIndex + itensporPagina
+  const cursosfiltrados = filtro(cursos).slice(startIndex, endIndex)
+  
   
     return(
         <div className="container-fluid g-0">
@@ -45,7 +54,7 @@ export default function TodosCursos({curso}){
                         </tr>
                     </thead>
                     <tbody>
-                    {filtro(curso).map(({id, nome, grade, duracao, campusId})=> (
+                    {cursosfiltrados.map(({id, nome, grade, duracao, campusId})=> (
                         <tr key={id}>
                             <td>{nome}</td>
                             <td>{grade}</td>
@@ -55,6 +64,27 @@ export default function TodosCursos({curso}){
                     ) )}
                     </tbody>
                 </table>
+
+                <center>
+
+<div>{Array.from(Array(paginas), (cursosfiltrados, index) =>{
+return <button type="button" className="btn btn-outline-dark" key={index} value={index} onClick={(e) =>setPaginasRecorrentes
+(Number(e.target.value))}>{index + 1}</button>})}
+</div>
+</center>
+<center>
+<form>
+    <span>Cursos por página: </span>       
+    
+  <select onChange={(e) => setItensporPagina(Number(e.target.value))}>
+    <option value={5}>5</option>
+    <option selected value={10}>10</option>
+    <option value={20}>20</option>
+    <option value={50}>50</option>
+  </select>
+</form>
+</center>
+
             </div>
         </div>
     )
