@@ -44,7 +44,7 @@ export default function CadastrarDiscente({attributes}){
             toast.error("Erro ao cadastrar o aluno");
         }else{
             toast.success("Aluno cadastrado com sucesso");
-            router.push('/posts/user/todos/discentes')
+            router.push('/posts/admin/todos/discente')
         }
     }
 

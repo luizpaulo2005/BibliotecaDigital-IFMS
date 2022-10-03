@@ -32,7 +32,7 @@ export default function CadastrarCampus(){
             toast.error("Erro ao cadastrar o campus")
         }else{
             toast.success("Campus adicionado com sucesso")
-            router.push('/posts/user/todos/campus')
+            router.push('/posts/admin/todos/campus')
         }
     }
         const handleInputChange = (e) => {

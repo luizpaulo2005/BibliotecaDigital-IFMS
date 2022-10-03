@@ -43,7 +43,7 @@ export default function CadastrarCurso({attributes}){
             toast.error("Erro ao cadastrar o curso")
         }else{
             toast.success("Curso adicionado com sucesso")
-            router.push('/posts/user/todos/cursos')
+            router.push('/posts/admin/todos/curso')
         }
     }
 
