@@ -2,6 +2,7 @@ import axios from "axios";
 import Head from "next/head";
 import HDPagInicial from "../../../components/header/paginicial";
 import { useState } from "react";
+import Link from "next/link";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/curso');
@@ -56,7 +57,7 @@ export default function TodosCursos({cursos}){
                     <tbody>
                     {cursosfiltrados.map(({id, nome, grade, duracao, campusId})=> (
                         <tr key={id}>
-                            <td>{nome}</td>
+                            <Link href={`/posts/admin/alterar/${id}`}><td>{nome}</td></Link>
                             <td>{grade}</td>
                             <td>{duracao}</td>
                             <td>{campusId}</td>
