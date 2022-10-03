@@ -58,7 +58,7 @@ export default function PaginaAdmin(){
     <h5 className="card-header">Discentes</h5>
       <div className="card-body">
         <Link href=""><a className="btn btn-primary">Ir aos Discentes  </a></Link>
-        <Link href="/posts/admin/cadastrar/discentes"><a className='btn btn-success ms-2'>Cadastrar</a></Link>
+        <Link href="/posts/admin/cadastrar/discente"><a className='btn btn-success ms-2'>Cadastrar</a></Link>
       </div>
     </div>
   </div>
