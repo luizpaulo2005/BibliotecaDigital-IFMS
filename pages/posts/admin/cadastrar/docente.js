@@ -59,29 +59,29 @@ export default function CadastrarDocente(){
                 <form onSubmit={handleSubmit}>
                     <fieldset>
                         <legend>Cadastro de Professor</legend>
-                    <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Nome</span>
-                    <input id="nome" type="text" onChange={handleInputChange} value={docente.nome} class="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">Nome</span>
+                    <input id="nome" type="text" onChange={handleInputChange} value={docente.nome} className="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
-                    <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Siape</span>
-                    <input id="siape" type="text" onChange={handleInputChange} value={docente.siape} class="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">Siape</span>
+                    <input id="siape" type="text" onChange={handleInputChange} value={docente.siape} className="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
-                    <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">E-mail</span>
-                    <input id="email" type="email" onChange={handleInputChange} value={docente.email} class="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">E-mail</span>
+                    <input id="email" type="email" onChange={handleInputChange} value={docente.email} className="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div> 
-                    <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Data de Nascimento</span>
-                    <input id="data_nascimento" type="date" onChange={handleInputChange} value={docente.data_nascimento} class="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">Data de Nascimento</span>
+                    <input id="data_nascimento" type="date" onChange={handleInputChange} value={docente.data_nascimento} className="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
-                    <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">CPF</span>
-                    <input id="cpf" type="number" onChange={handleInputChange} value={docente.cpf} placeholder="Somente Números" class="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">CPF</span>
+                    <input id="cpf" type="number" onChange={handleInputChange} value={docente.cpf} placeholder="Somente Números" className="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
-                    <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Formação</span>
-                    <input id="formacao" type="text" onChange={handleInputChange} value={docente.formacao} class="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <div className="input-group mb-3">
+                    <span className="input-group-text" id="basic-addon1">Formação</span>
+                    <input id="formacao" type="text" onChange={handleInputChange} value={docente.formacao} className="form-control" aria-label="Username" aria-describedby="basic-addon1"/>
                     </div>
                     <button className="btn btn-success" type="submit">Cadastrar</button>
                     </fieldset>
