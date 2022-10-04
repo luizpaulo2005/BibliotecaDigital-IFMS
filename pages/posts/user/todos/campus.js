@@ -9,7 +9,8 @@ export const getStaticProps = async () => {
     return{
         props: {
             campus
-        }
+        },
+        revalidate: 3600
     }
 }
 

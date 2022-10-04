@@ -10,8 +10,10 @@ export const getStaticProps = async () => {
     return {
       props: {
         pesquisas
-      }
+      },
+      revalidate: 3600
     }
+    
   }
 
 export default function TodasPesquisas({pesquisas}){

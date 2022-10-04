@@ -1,7 +1,6 @@
 import Head from "next/head";
 import axios from "axios"
 import HDPagInicial from "../../../components/header/paginicial";
-import { apiurl } from "../../../api/apiurl";
 import { format, parseISO } from "date-fns";
 import { useState,useEffect } from "react";
 
@@ -11,7 +10,8 @@ export const getStaticProps = async () => {
     return {
       props: {
         pesquisas
-      }
+      },
+      revalidate: 3600
     }
   }
 

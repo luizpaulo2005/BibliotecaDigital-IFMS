@@ -1,6 +1,5 @@
 import axios from "axios";
 import Head from "next/head";
-import HDPagInicial from "../../../components/header/paginicial";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
@@ -13,7 +12,8 @@ export const getStaticProps = async () => {
     return{
         props: {
             campus
-        }
+        },
+        revalidate: 3600
     }
 }
 
