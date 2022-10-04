@@ -1,7 +1,34 @@
+import axios from "axios";
 import Head from "next/head";
+import { useState } from "react";
 import HDPagAdmin from './../../../components/header/pagadmin';
 
-export default function CadastrarPesquisa(){
+export const getStaticProps = async () =>{
+    const response = await axios.get("https://databasebibliotecadigital.undertak3r.repl.co/discente")
+    const response1 = await axios.get("https://databasebibliotecadigital.undertak3r.repl.co/docente")
+    const attributes = await response.data;
+    const attributes1 = await response1.data;
+
+    return{
+        props: {
+            attributes, attributes1
+        }
+    }
+}
+
+export default function CadastrarPesquisa({attributes, attributes1}){
+
+    const [pesquisa, setPesquisa] = useState({
+        titulo: "",
+        discenteId: "",
+        docenteId: "",
+        data_apresentacao: "",
+        palavras_chave: "",
+        resumo: ""
+        
+    });
+
+
     return(
         <div className="container-fluid g-0">
             <Head>
@@ -20,21 +47,21 @@ export default function CadastrarPesquisa(){
                         </div>
                         <div className="input-group mb-3">
                         <label className="input-group-text" for="inputGroupSelect01">Alunos</label>
-                        <select className="form-select" id="inputGroupSelect01">
-                            <option selected disabled>Selecione o Discente</option>
-                            <option>Aluno 1</option>
-                            <option>Aluno 2</option>
-                            <option>Aluno 3</option>
-                        </select>
+                        <input list="listdisc" type="text" className="form-control"/>
+                        <datalist id="listdisc">
+                        {attributes.map(({id, nome})=>(
+                            <option key={id} value={id}>{nome}</option>
+                           ))}
+                        </datalist>
                         </div>
                         <div className="input-group mb-3">
                         <label className="input-group-text" for="inputGroupSelect01">Orientador</label>
-                        <select className="form-select" id="inputGroupSelect01">
-                            <option selected disabled>Selecione o Orientador</option>
-                            <option>Professor 1</option>
-                            <option>Professor 2</option>
-                            <option>Professor 3</option>
-                        </select>
+                        <input className="form-control" list="listdoc" type="text"/>
+                        <datalist id="listdoc">
+                            {attributes1.map(({id, nome}) => (
+                                <option key={id} value={id}>{nome}</option>
+                            ))}
+                        </datalist>
                         </div>
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Data de Apresentação</span>
@@ -59,7 +86,7 @@ export default function CadastrarPesquisa(){
                         </div>
                         <div className="mb-3">
                          <label for="formFile" className="form-label">Arquivo PDF</label>
-                        <input className="form-control" type="file" id="formFile"/>
+                        <input className="form-control" type="file" id="url_download"/>
                         </div>
                         <button type="submit" className="btn btn-success">Cadastrar</button>
                         <button type="button" className="btn btn-secondary ms-2">Cancelar</button>
