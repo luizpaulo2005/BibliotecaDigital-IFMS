@@ -60,7 +60,7 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
         <tbody>
         {discentesfiltrados.map(({id, nome, email, data_nascimento})=>(
         <tr key={id}>
-            <td><Link href={`/posts/solo/discente/${id}`}><a>{nome}</a></Link></td>
+            <td>{nome}</td>
             <td>{email}</td>
             <td>{format(parseISO(data_nascimento), 'dd/MM/yyyy')}</td>
         </tr>
