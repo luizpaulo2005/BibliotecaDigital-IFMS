@@ -5,6 +5,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import HDPagAdmin from "../../../components/header/pagadmin";
+import Link from "next/link";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/campus');
@@ -84,7 +85,7 @@ const handleDelete = async (e) => {
                             <td>{estado}</td>
                             <td>{email}</td>
                             <td>
-                                <button className="btn btn-sm btn-secondary me-1">Alterar</button>
+                            <Link href={`/posts/admin/alterar/campus/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                                 <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>
                             </td>
                         </tr>

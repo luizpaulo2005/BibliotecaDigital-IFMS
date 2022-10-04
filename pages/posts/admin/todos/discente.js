@@ -81,11 +81,11 @@ const handleDelete = async (e) => {
         {discentesfiltrados.map(({id, nome, email, data_nascimento})=>(
         <tr key={id}>
             <th scope="row">{id}</th>
-            <td><Link href={`/posts/solo/discente/${id}`}><a>{nome}</a></Link></td>
+            <td>{nome}</td>
             <td>{email}</td>
             <td>{format(parseISO(data_nascimento), 'dd/MM/yyyy')}</td>
             <td>
-                <button className="btn btn-sm btn-secondary me-1">Alterar</button>
+               <Link href={`/posts/admin/alterar/discentes/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                 <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>
             </td>
         </tr>

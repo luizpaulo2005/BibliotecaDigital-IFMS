@@ -81,13 +81,13 @@ const filtro = (item) => {
         {docentesfiltrados.map(({id, nome, email, cpf, data_nascimento, formacao})=>(
             <tr key={id}>
                 <th scope="row">{id}</th>
-                <td><Link href={`/posts/solo/docente/${id}`}><a>{nome}</a></Link></td>
+                <td>{nome}</td>
                 <td>{email}</td>
                 <td>{cpf}</td>
                 <td>{format(parseISO(data_nascimento), 'dd/MM/yyyy')}</td>
                 <td>{formacao}</td>
                 <td>
-                    <button className="btn btn-sm btn-secondary me-1">Alterar</button>
+                    <Link href={`/posts/admin/alterar/docente/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                     <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>
                 </td>
             </tr>

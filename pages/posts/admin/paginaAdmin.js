@@ -26,7 +26,7 @@ export default function PaginaAdmin(){
     <div className="card">
     <h5 className="card-header">Campus</h5>
       <div className="card-body">      
-        <Link href="/posts/admin/todos/campus"><a className="btn btn-primary">Ir aos Campus</a></Link>
+        <Link href="/posts/admin/todos/campus"><a className="btn btn-primary">Ir aos Campi</a></Link>
         <Link href="/posts/admin/cadastrar/campus"><a className='btn btn-success ms-2'>Cadastrar</a></Link>
       </div>
     </div>

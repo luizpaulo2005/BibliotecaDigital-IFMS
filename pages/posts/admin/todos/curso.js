@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../components/header/pagadmin";
+import Link from "next/link";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/curso');
@@ -85,7 +86,7 @@ export default function TodosCursos({cursos}){
                             <td>{duracao}</td>
                             <td>{campusId}</td>
                             <td>
-                                <button className="btn btn-sm btn-secondary me-1">Alterar</button>
+                            <Link href={`/posts/admin/alterar/cursos/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                                 <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>
                             </td>
                         </tr>
