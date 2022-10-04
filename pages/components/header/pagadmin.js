@@ -5,7 +5,7 @@ export default function HDPagAdmin(){
     return(
         <nav className="navbar navbar-expand-lg bg-success">
         <div className="container">
-        <Link href="/posts/admin/paginaAdmin">
+        <Link href="/">
         <a className="navbar-brand"><span className="titleheader">Biblioteca Digital de Pesquisas - IFMS</span></a>
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
