@@ -1,9 +1,8 @@
 import Head from "next/head";
 import axios from "axios"
-import HDPagInicial from "../../../components/header/paginicial";
-import { apiurl } from "../../../api/apiurl";
 import { format, parseISO } from "date-fns";
 import { useState,useEffect } from "react";
+import HDPagAdmin from "../../../components/header/pagadmin";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/pesquisa')
@@ -42,7 +41,7 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
             <Head>
                 <title>Pesquisas</title>
             </Head>
-            <HDPagInicial/>
+            <HDPagAdmin/>
            
              <div className="container mt-2">
               <form className="d-flex" role="search">
