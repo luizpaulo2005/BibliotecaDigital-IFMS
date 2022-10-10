@@ -29,8 +29,7 @@ export default function CadastrarPesquisa({attributes, attributes1}){
         tipo: "",
         palavras_chave: "",
         resumo: "",
-        url_download: uuidv4() ,
-        pesquisaFile: ""
+        url_download: uuidv4()
     });
 
     let router = useRouter();
@@ -62,7 +61,7 @@ export default function CadastrarPesquisa({attributes, attributes1}){
         setPesquisa({...pesquisa, [id]: value})
     }
 
-    const {titulo, discenteId, docenteId, data_apresentacao, tipo, palavras_chave, resumo, url_download, pesquisaFile } = pesquisa
+    const {titulo, discenteId, docenteId, data_apresentacao, tipo, palavras_chave, resumo, url_download } = pesquisa
     return(
         <div className="container-fluid g-0">
             <Head>
