@@ -47,7 +47,7 @@ export default function CadastrarPesquisa({attributes, attributes1}){
             ...pesquisa
         }
 
-        const response = await axios.post('http://localhost:4000/pesquisa' + data);
+        const response = await axios.post('https://databasebibliotecadigital.undertak3r.repl.co/pesquisa' + data);
 
         if (!response.statusText === "OK") {
             toast.error("Erro a cadastrar a pesquisa")
