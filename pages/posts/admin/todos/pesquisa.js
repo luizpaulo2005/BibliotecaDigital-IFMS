@@ -69,7 +69,9 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
           <td>{discenteId}</td>
           <td>{docenteId}</td>
           <td>{format(parseISO(data_apresentacao), 'dd/MM/yyyy')}</td>
-          <td>{url_download}</td>
+          <td>
+          <a className="btn btn-sm btn-primary" href='https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}'>Download</a>
+          </td>
           <td>
             <button className="btn btn-secondary btn-sm">Alterar</button>
             <button className="btn btn-danger btn-sm ms-1">Apagar</button>

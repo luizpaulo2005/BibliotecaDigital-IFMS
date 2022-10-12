@@ -3,6 +3,7 @@ import axios from "axios"
 import HDPagInicial from "../../../components/header/paginicial";
 import { format, parseISO } from "date-fns";
 import { useState,useEffect } from "react";
+import Link from "next/link";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/pesquisa')
@@ -66,8 +67,10 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
           <td>{titulo}</td>
           <td>{discenteId}</td>
           <td>{docenteId}</td>
-          <td>{/*format(parseISO(*/data_apresentacao/*), 'dd/MM/yyyy')*/}</td>
-          <td>{url_download}</td>
+          <td>{format(parseISO(data_apresentacao), 'dd/MM/yyyy')}</td>
+          <td>
+            <a className="btn btn-sm btn-primary" href='https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}'>Download</a>
+          </td>
           </tr>
         ))}
         
