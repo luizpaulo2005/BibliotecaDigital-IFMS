@@ -2,6 +2,7 @@ import axios from "axios";
 import Head from "next/head";
 import HDPagInicial from "../../../components/header/paginicial";
 import { useState } from "react";
+import Link from "next/link";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/campus');
@@ -48,17 +49,13 @@ const campusfiltrado = filtro(campus).slice(startIndex, endIndex)
                         <tr>
                             <th>Nome</th>
                             <th>Cidade</th>
-                            <th>Estado</th>
-                            <th>E-mail</th>
                         </tr>
                     </thead>
                     <tbody>
                     {campusfiltrado.map(({id, nome, cidade, estado, email})=>(
                         <tr key={id}>
-                            <td>{nome}</td>
+                            <td><Link href={`/posts/user/solo/campus/${id}`}><a className="list-group-item">{nome}</a></Link></td>
                             <td>{cidade}</td>
-                            <td>{estado}</td>
-                            <td>{email}</td>
                         </tr>
                     ))}
                     </tbody>

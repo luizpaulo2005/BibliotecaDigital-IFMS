@@ -8,7 +8,6 @@ export const getServerSideProps = async (context) =>{
     const id = context.query.id
     const response = await axios.get(`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/${id}`)
     const attributes = await response.data
-    console.log(attributes)
     return {
         props: {
             attributes
