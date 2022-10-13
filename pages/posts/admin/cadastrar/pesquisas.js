@@ -112,7 +112,7 @@ export default function CadastrarPesquisa({attributes, attributes1}){
                         </div>
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Resumo</span>
-                        <input id="resumo" type="text" onChange={handleInputChange} value={pesquisa.resumo} className="form-control" aria-label="Resumo" aria-describedby="basic-addon1"/>
+                        <textarea id="resumo" type="text" onChange={handleInputChange} value={pesquisa.resumo} className="form-control" aria-label="Resumo" aria-describedby="basic-addon1"/>
                         </div>  
                         <div className="input-group mb-3">
                         <span className="input-group-text" id="basic-addon1">Palavras Chave</span>

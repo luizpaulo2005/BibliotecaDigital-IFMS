@@ -64,12 +64,12 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
         <tbody>
         {pesquisasfiltradas.map(({id, titulo, discenteId, docenteId, data_apresentacao, url_download})=> (
           <tr key={id}>
-          <td>{titulo}</td>
+          <td><Link href={`/posts/user/solo/pesquisa/${id}`}><a className="list-group-item">{titulo}</a></Link></td>
           <td>{discenteId}</td>
           <td>{docenteId}</td>
           <td>{format(parseISO(data_apresentacao), 'dd/MM/yyyy')}</td>
           <td>
-            <a className="btn btn-sm btn-primary" href='https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}'>Download</a>
+            <a className="btn btn-sm btn-primary" href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}`}>Download</a>
           </td>
           </tr>
         ))}

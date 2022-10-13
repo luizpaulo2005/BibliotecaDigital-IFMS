@@ -34,3 +34,8 @@ body {
 .carrossel{
   width: 800px;
 }
+
+.links {
+  text-decoration: none;
+  color: dark;
+}
