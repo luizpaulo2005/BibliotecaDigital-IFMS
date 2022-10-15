@@ -1,6 +1,7 @@
 import axios from "axios"
 import { format, parseISO } from "date-fns"
 import Head from "next/head"
+import Link from "next/link"
 import HDPagInicial from "../../../../components/header/paginicial"
 
 export const getServerSideProps = async (context) =>{
@@ -29,6 +30,7 @@ export default function SoloDiscente({attributes}){
                 <p className="card-text">E-mail: {attributes.email}</p>
                 <p className="card-text">Data de Nascimento: {format(parseISO(attributes.data_nascimento), 'dd/MM/yyyy')}</p>
                 <p className="card-text">CPF: {attributes.cpf}</p>
+                <Link href="/posts/user/todos/discentes"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
                 </div>
                 </div>
 

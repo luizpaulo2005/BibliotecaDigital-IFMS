@@ -51,19 +51,13 @@ const filtro = (item) => {
             <tr>
             <th>Nome</th>
             <th>E-mail</th>
-            <th>CPF</th>
-            <th>Data de Nascimento</th>
-            <th>Formação</th>
             </tr>
         </thead>
         <tbody>
         {docentesfiltrados.map(({id, nome, email, cpf, data_nascimento, formacao})=>(
             <tr key={id}>
-                <td><Link href={`/posts/solo/docente/${id}`}><a>{nome}</a></Link></td>
+                <td><Link href={`/posts/user/solo/docente/${id}`}><a className="list-group-item">{nome}</a></Link></td>
                 <td>{email}</td>
-                <td>{cpf}</td>
-                <td>{format(parseISO(data_nascimento), 'dd/MM/yyyy')}</td>
-                <td>{formacao}</td>
             </tr>
         ))}
         </tbody>

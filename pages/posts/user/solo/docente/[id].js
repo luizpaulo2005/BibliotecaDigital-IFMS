@@ -1,5 +1,6 @@
 import axios from "axios"
 import Head from "next/head"
+import Link from "next/link"
 import HDPagInicial from "../../../../components/header/paginicial"
 
 export const getServerSideProps = async (context) =>{
@@ -29,6 +30,7 @@ export default function SoloDocente({attributes}){
                     <p className="card-text">Data de Nascimento: {attributes.data_nascimento}</p>
                     <p className="card-text">CPF: {attributes.cpf}</p>
                     <p className="card-text">Formação: {attributes.formacao}</p>   
+                    <Link href="/posts/user/todos/docentes"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
                     </div>
                 </div>
             </div>

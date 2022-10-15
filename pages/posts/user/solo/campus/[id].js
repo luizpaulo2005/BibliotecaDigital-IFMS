@@ -28,7 +28,7 @@ export default function SoloCampus({attributes}){
                     <p className="card-text">Cidade: {attributes.cidade}</p>
                     <p className="card-text">Estado: {attributes.estado}</p>
                     <p className="card-text">E-mail: {attributes.email}</p>
-                    <Link href="/posts/user/todos/campus"><a className="btn btn-sm btn-secondary m-1">Página Anterior</a></Link>
+                    <Link href="/posts/user/todos/campus"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
                     </div>
                 </div>
 

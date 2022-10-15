@@ -30,7 +30,7 @@ export default function SoloCurso({attributes}){
                     <p>Grade: {attributes.grade}</p>
                     <p>Duração: {attributes.duracao}</p>
                     <p>Campus: {attributes.campusId}</p>
-                    <Link href=""><a></a></Link>
+                    <Link href="/posts/user/todos/curso"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
                 </div>
             </div>           
             </div>
