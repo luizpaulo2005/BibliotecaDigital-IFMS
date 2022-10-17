@@ -5,7 +5,7 @@ import HDPagInicial from "../../../../components/header/paginicial"
 
 export const getServerSideProps = async (context) => {
     const id = context.query.id
-    const response = await axios.get(`https://databasebibliotecadigital.undertak3r.repl.co/curso/${id}`)
+    const response = await axios.get(`https://databasebibliotecadigital.undertak3r.repl.co/curso/${id}/campus`)
     const attributes = await response.data
     return {
         props: {
@@ -29,7 +29,7 @@ export default function SoloCurso({attributes}){
                 <div className="card-body">
                     <p>Grade: {attributes.grade}</p>
                     <p>Duração: {attributes.duracao}</p>
-                    <p>Campus: {attributes.campusId}</p>
+                    <p>Campus: {attributes.campus.nome}</p>
                     <Link href="/posts/user/todos/curso"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
                 </div>
             </div>           
