@@ -35,7 +35,7 @@ export default function SoloPesquisa({attributes}){
                     <a className="btn btn-sm btn-primary m-1" href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${attributes.id}`}>Download</a>
                     <Link href="/posts/user/todos/pesquisas"><a className="btn btn-sm btn-secondary m-1">Página Anterior</a></Link>
                     <Link href={`/posts/admin/alterar/pesquisa/${attributes.id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
-                    <button className="btn btn-sm btn-danger" onClick={handleDelete} id={attributes.id}>Apagar</button>
+                    {/* <button className="btn btn-sm btn-danger" onClick={handleDelete} id={attributes.id}>Apagar</button> */}
                     </div>
                 </div>
                 
