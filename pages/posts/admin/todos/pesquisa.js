@@ -3,6 +3,7 @@ import axios from "axios"
 import { format, parseISO } from "date-fns";
 import { useState,useEffect } from "react";
 import HDPagAdmin from "../../../components/header/pagadmin";
+import Link from "next/link";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/pesquisa')
@@ -65,7 +66,7 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
         <tbody>
         {pesquisasfiltradas.map(({id, titulo, discenteId, docenteId, data_apresentacao, url_download})=> (
           <tr key={id}>
-          <td>{titulo}</td>
+          <td><Link href={`/posts/admin/solo/pesquisa/${id}`}><a className="list-group-item">{titulo}</a></Link></td>
           <td>{discenteId}</td>
           <td>{docenteId}</td>
           <td>{format(parseISO(data_apresentacao), 'dd/MM/yyyy')}</td>

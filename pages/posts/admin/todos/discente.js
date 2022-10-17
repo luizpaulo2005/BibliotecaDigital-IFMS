@@ -82,7 +82,7 @@ const handleDelete = async (e) => {
         {discentesfiltrados.map(({id, nome, email, data_nascimento})=>(
         <tr key={id}>
             <th scope="row">{id}</th>
-            <td>{nome}</td>
+            <td><Link href={`/posts/admin/solo/discente/${id}`}><a className="list-group-item">{nome}</a></Link></td>
             <td>{email}</td>
             <td>{format(parseISO(data_nascimento), 'dd/MM/yyyy')}</td>
             <td>

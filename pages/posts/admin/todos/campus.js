@@ -80,13 +80,13 @@ const handleDelete = async (e) => {
                     {campusfiltrado.map(({id, nome, cidade, estado, email})=>(
                         <tr key={id}>
                             <th scope="row">{id}</th>
-                            <td>{nome}</td>
+                            <td><Link href={`/posts/admin/solo/campus/${id}`}><a className="list-group-item">{nome}</a></Link></td>
                             <td>{cidade}</td>
                             <td>{estado}</td>
                             <td>{email}</td>
                             <td>
                             <Link href={`/posts/admin/alterar/campus/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
-                                <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>
+                            <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>
                             </td>
                         </tr>
                     ))}

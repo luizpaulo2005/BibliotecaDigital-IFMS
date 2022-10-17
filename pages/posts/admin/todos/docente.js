@@ -53,6 +53,7 @@ const filtro = (item) => {
         toast.success("Professor excluído com sucesso")
       }
     }
+    
     return(
         <div className="container-fluid g-0">
             <Head>
@@ -82,7 +83,7 @@ const filtro = (item) => {
         {docentesfiltrados.map(({id, nome, email, cpf, data_nascimento, formacao})=>(
             <tr key={id}>
                 <th scope="row">{id}</th>
-                <td>{nome}</td>
+                <td><Link href={`/posts/admin/solo/docente/${id}`}><a className="list-group-item">{nome}</a></Link></td>
                 <td>{email}</td>
                 <td>{cpf}</td>
                 <td>{format(parseISO(data_nascimento), 'dd/MM/yyyy')}</td>
