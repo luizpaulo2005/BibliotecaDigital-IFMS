@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import { initializeApp } from "firebase/app";
+import Head from "next/head";
 
 
 
@@ -45,7 +46,10 @@ export default function Login(){
 
 
     return (
-        <div>
+        <div className="container-fluid g-0">
+            <Head>
+              <title>Login Administrativo</title>
+            </Head>
             <HDPagInicial />
             
             <form  onSubmit={handleLogin} className="container mt-2">

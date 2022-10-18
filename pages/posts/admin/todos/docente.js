@@ -73,9 +73,6 @@ const filtro = (item) => {
             <th>ID</th>
             <th>Nome</th>
             <th>E-mail</th>
-            <th>CPF</th>
-            <th>Data de Nascimento</th>
-            <th>Formação</th>
             <th>Ações</th>
             </tr>
         </thead>
@@ -85,9 +82,6 @@ const filtro = (item) => {
                 <th scope="row">{id}</th>
                 <td><Link href={`/posts/admin/solo/docente/${id}`}><a className="list-group-item">{nome}</a></Link></td>
                 <td>{email}</td>
-                <td>{cpf}</td>
-                <td>{format(parseISO(data_nascimento), 'dd/MM/yyyy')}</td>
-                <td>{formacao}</td>
                 <td>
                     <Link href={`/posts/admin/alterar/docente/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                     <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>

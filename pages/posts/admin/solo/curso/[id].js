@@ -46,7 +46,7 @@ export default function SoloCurso({attributes}){
                     <p>Grade: {attributes.grade}</p>
                     <p>Duração: {attributes.duracao}</p>
                     <p>Campus: {attributes.campusId}</p>
-                    <Link href="/posts/admin/todos/curso"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
+                    <Link href="/posts/admin/todos/curso"><a className="btn btn-sm btn-secondary me-1">Página Anterior</a></Link>
                     <Link href={`/posts/admin/alterar/curso/${attributes.id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                     <button className="btn btn-sm btn-danger" onClick={handleDelete} id={attributes.id}>Apagar</button>
                 </div>

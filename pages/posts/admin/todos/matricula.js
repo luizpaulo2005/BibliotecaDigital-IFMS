@@ -51,11 +51,11 @@ export default function TodasMatriculas({attributes}){
                         </tr>
                     </thead>
                     <tbody>
-                        {attributes.map(({id, data_inicio, cursoId}) => (
+                        {attributes.map(({id, data_inicio, curso}) => (
                             <tr key={id}>
                                 <th scope="row">{id}</th>
                                 <td>{format(parseISO(data_inicio), 'dd/MM/yyyy')}</td>
-                                <td>{cursoId}</td>
+                                <td>{curso.nome}</td>
                                 <td>
                                 <Link href={`/posts/admin/alterar/matricula/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                                 <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>

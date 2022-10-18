@@ -44,9 +44,9 @@ export default function SoloCampus({attributes}){
                     <p className="card-text">Cidade: {attributes.cidade}</p>
                     <p className="card-text">Estado: {attributes.estado}</p>
                     <p className="card-text">E-mail: {attributes.email}</p>
-                    <Link href="/posts/admin/todos/campus"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
-                    <Link href={`/posts/admin/alterar/campus/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
-                    <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>
+                    <Link href="/posts/admin/todos/campus"><a className="btn btn-sm btn-secondary me-1">Página Anterior</a></Link>
+                    <Link href={`/posts/admin/alterar/campus/${attributes.id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
+                    <button className="btn btn-sm btn-danger" onClick={handleDelete} id={attributes.id}>Apagar</button>
                     </div>
                 </div>
 

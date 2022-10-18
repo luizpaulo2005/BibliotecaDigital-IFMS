@@ -71,20 +71,16 @@ export default function TodosCursos({cursos}){
                         <tr>
                             <th>ID</th>
                             <th>Nome</th>
-                            <th>Grade</th>
-                            <th>Duração</th>
                             <th>Campus</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {cursosfiltrados.map(({id, nome, grade, duracao, campusId})=> (
+                    {cursosfiltrados.map(({id, nome, campus})=> (
                         <tr key={id}>
                             <th scope="row">{id}</th>
                             <td><Link href={`/posts/admin/solo/curso/${id}`}><a className="list-group-item">{nome}</a></Link></td>
-                            <td>{grade}</td>
-                            <td>{duracao}</td>
-                            <td>{campusId}</td>
+                            <td>{campus.nome}</td>
                             <td>
                             <Link href={`/posts/admin/alterar/cursos/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                                 <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>

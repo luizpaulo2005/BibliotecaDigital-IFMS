@@ -51,27 +51,23 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
                <input className="form-control filtro" type="search" placeholder="Pesquisar" aria-label="Search"  onChange={(e) => setConsulta(e.target.value)} />
              </form>
             </div>
-            <div className="container border rounded mt-2 p-3">
+            <div className="ms-2 me-2 container-fluid border rounded mt-2 p-3">
             <table className="table">
         <thead>
         <tr>
+        <th>ID</th>
         <th>Titulo</th>
-        <th>Discentes</th>
-        <th>Orientador(es)</th>
-        <th>Data de Apresentação</th>
         <th>PDF</th>
         <th>Ações</th>
         </tr>
         </thead>
         <tbody>
-        {pesquisasfiltradas.map(({id, titulo, discenteId, docenteId, data_apresentacao, url_download})=> (
+        {pesquisasfiltradas.map(({id, titulo, discente, docente, data_apresentacao})=> (
           <tr key={id}>
+          <td scope="row">{id}</td>
           <td><Link href={`/posts/admin/solo/pesquisa/${id}`}><a className="list-group-item">{titulo}</a></Link></td>
-          <td>{discenteId}</td>
-          <td>{docenteId}</td>
-          <td>{format(parseISO(data_apresentacao), 'dd/MM/yyyy')}</td>
           <td>
-          <a className="btn btn-sm btn-primary" href='https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}'>Download</a>
+          <a className="btn btn-sm btn-primary" href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}`}>Download</a>
           </td>
           <td>
             <button className="btn btn-secondary btn-sm">Alterar</button>

@@ -74,7 +74,6 @@ const handleDelete = async (e) => {
             <th>ID</th>
             <th>Nome</th>
             <th>E-mail</th>
-            <th>Data de Nascimento</th>
             <th>Ações</th>
             </tr>
         </thead>
@@ -84,7 +83,6 @@ const handleDelete = async (e) => {
             <th scope="row">{id}</th>
             <td><Link href={`/posts/admin/solo/discente/${id}`}><a className="list-group-item">{nome}</a></Link></td>
             <td>{email}</td>
-            <td>{format(parseISO(data_nascimento), 'dd/MM/yyyy')}</td>
             <td>
                <Link href={`/posts/admin/alterar/discentes/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                 <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>

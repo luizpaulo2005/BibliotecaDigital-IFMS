@@ -6,7 +6,7 @@ import HDPagAdmin from "../../../../components/header/pagadmin"
 
 export const getServerSideProps = async (context) =>{
     const id = context.query.id
-    const response = await axios.get(`https://databasebibliotecadigital.undertak3r.repl.co/discente/${id}`)
+    const response = await axios.get(`https://databasebibliotecadigital.undertak3r.repl.co/discente/${id}/pesquisas`)
     const attributes = await response.data
     return{
         props: {
@@ -46,12 +46,20 @@ export default function SoloDiscente({attributes}){
                 <p className="card-text">E-mail: {attributes.email}</p>
                 <p className="card-text">Data de Nascimento: {format(parseISO(attributes.data_nascimento), 'dd/MM/yyyy')}</p>
                 <p className="card-text">CPF: {attributes.cpf}</p>
-                <Link href="/posts/user/todos/discentes"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
+                <Link href="/posts/admin/todos/discente"><a className="btn btn-sm btn-secondary me-1">Página Anterior</a></Link>
                 <Link href={`/posts/admin/alterar/discente/${attributes.id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                 <button className="btn btn-sm btn-danger" onClick={handleDelete} id={attributes.id}>Apagar</button>
                 </div>
                 </div>
 
+                <div className="border rounded p-3 mt-2">
+                    <legend>Pesquisas que este aluno participa/ou: </legend>
+                    <ul className="list-group">
+                        {/* {attributes.map(({pesquisas}) => (
+                        <Link key={pesquisas.id} href={`/posts/admin/solo/pesquisa/${pesquisas.id}`}><a className="list-group-item">{pesquisas.nome}</a></Link>
+                    ))} */}
+                    </ul>
+                </div>
             </div>
         </div>
     )
