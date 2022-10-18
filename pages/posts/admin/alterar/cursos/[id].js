@@ -7,7 +7,7 @@ import HDPagAdmin from '../../../../components/header/pagadmin';
 
 export const getServerSideProps = async (context) => {
     const id = context.query.id
-    const response = await axios.get(`https://databasebibliotecadigital.undertak3r.repl.co/curso/${id}`);
+    const response = await axios.get(`https://databasebibliotecadigital.undertak3r.repl.co/curso/${id}/allattributes`);
     const cursos = await response.data;
     return{
         props:{
@@ -80,7 +80,12 @@ export default function AlterarCurso({cursos}){
                         <span className="input-group-text" id="basic-addon1">Campus</span>
 
                         <input id="campusId" type="text" list="campus" className="form-control" onChange={handleInputChange} placeholder={cursos.campusId} value={curso.campusId}/>
-
+                        
+                        <datalist id="campus">
+                        {/* {attributes.map(({id, nome}) => (
+                            <option key={id} value={id}>{nome}</option>
+                        ))} */}
+                        </datalist>
                         </div>
                     <button type="submit" className="btn btn-success">Alterar</button>
                 </form>
