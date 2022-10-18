@@ -84,8 +84,8 @@ export default function CadastrarMatricula({attributes}){
                     <input list="cursos" type="number" id="cursoId" className="form-control" onChange={handleInputChange} value={matricula.cursoId}/>
                     
                     <datalist id="cursos">
-                    {attributes.map(({id, nome})=> (
-                        <option key={id} value={id}>{nome}</option>
+                    {attributes.map(({id, nome, campus})=> (
+                        <option key={id} value={id}>{nome} - Campus {campus.nome}</option>
                     ))}
                     </datalist>
                     
