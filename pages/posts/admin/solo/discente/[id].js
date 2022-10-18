@@ -16,7 +16,7 @@ export const getServerSideProps = async (context) =>{
     }
 }
 
-export default function SoloDiscente({attributes}){
+export default function SoloDiscenteAdmin({attributes}){
 
     const handleDelete = async (e) => {
         e.preventDefault();

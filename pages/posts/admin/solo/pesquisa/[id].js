@@ -15,7 +15,7 @@ export const getServerSideProps = async (context) =>{
     }
 }
 
-export default function SoloPesquisa({attributes}){
+export default function SoloPesquisaAdmin({attributes}){
 
     const handleDelete = async (e) => {
         e.preventDefault();

@@ -14,7 +14,7 @@ export const getServerSideProps = async (context) =>{
     }
 }
 
-export default function SoloCampus({attributes}){
+export default function SoloCampusAdmin({attributes}){
 
     const handleDelete = async (e) => {
         e.preventDefault();

@@ -18,7 +18,7 @@ export const getStaticProps = async () => {
     }
   }
 
-export default function TodosDocentes({docentes}){
+export default function TodosDocentesAdmin({docentes}){
 
 let router = useRouter();
 

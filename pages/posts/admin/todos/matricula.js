@@ -16,7 +16,7 @@ export const getStaticProps = async () => {
     }
 }
 
-export default function TodasMatriculas({attributes}){
+export default function TodasMatriculasAdmin({attributes}){
 
     const handleDelete = async (e) => {
         e.preventDefault();

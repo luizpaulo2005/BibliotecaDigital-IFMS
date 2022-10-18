@@ -18,7 +18,7 @@ export const getStaticProps = async () => {
     }
   }
 
-export default function TodosDiscentes({discentes}){
+export default function TodosDiscentesAdmin({discentes}){
 
 let router = useRouter();
 

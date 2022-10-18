@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import HDPagAdmin from "../../../components/header/pagadmin";
 import Link from "next/link";
+import FooterTable from "../../../components/footer/footertable";
 
 export const getStaticProps = async () => {
     const response = await axios.get('https://databasebibliotecadigital.undertak3r.repl.co/campus');
@@ -17,7 +18,7 @@ export const getStaticProps = async () => {
     }
 }
 
-export default function TodosCampus({campus}){
+export default function TodosCampusAdmin({campus}){
 
 let router = useRouter();
 
@@ -84,7 +85,7 @@ const handleDelete = async (e) => {
                             </td>
                         </tr>
                     ))}
-                    </tbody>
+                    </tbody>                    
                 </table>
 
 
@@ -107,8 +108,8 @@ return <button type="button" className="btn btn-outline-dark" key={index} value=
   </select>
 </form>
 </center>
-
             </div>
+              <FooterTable/>
         </div>
     )
 }

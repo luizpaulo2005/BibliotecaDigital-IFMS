@@ -17,7 +17,7 @@ export const getStaticProps = async () => {
     
   }
 
-export default function TodasPesquisas({pesquisas}){
+export default function TodasPesquisasAdmin({pesquisas}){
 const [consulta, setConsulta] = useState("")
 const [itensporPagina, setItensporPagina] = useState(10)
 const [paginasRecorrentes, setPaginasRecorrentes] = useState(0)
