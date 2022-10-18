@@ -33,7 +33,14 @@ export default function SoloDiscente({attributes}){
                 <Link href="/posts/user/todos/discentes"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
                 </div>
                 </div>
-
+                <div className="border rounded p-3 mt-2">
+                    <legend>Pesquisas que este aluno participa/ou: </legend>
+                    <ul className="list-group">
+                         {attributes.pesquisas.map((p) => (
+                        <Link key={p.id} href={`/posts/user/solo/pesquisa/${p.id}`}><li className="list-group-item">{p.titulo}</li></Link>
+                    ))}
+                    </ul>
+                </div>
             </div>
         </div>
     )

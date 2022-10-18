@@ -44,8 +44,8 @@ export default function SoloPesquisaAdmin({attributes}){
                     <div className="card-body">
                     <p className="card-text">Resumo: {attributes.resumo}</p>
                     <p className="card-text">Tipo de Pesquisa: {attributes.tipo}</p>
-                    <p className="card-text">Aluno: {attributes.discenteId} - {attributes.discente.nome}</p>
-                    <p className="card-text">Orientador: {attributes.docenteId} - {attributes.docente.nome}</p>
+                    <Link href={`/posts/admin/solo/discente/${attributes.discenteId}`}><p className="card-text">Aluno: {attributes.discenteId} - {attributes.discente.nome}</p></Link>
+                    <Link href={`/posts/admin/solo/docente/${attributes.docenteId}`}><p className="card-text">Orientador: {attributes.docenteId} - {attributes.docente.nome}</p></Link>
                     <p className="card-text">Data de Apresentação: {format(parseISO(attributes.data_apresentacao), 'dd/MM/yyyy')}</p>
                     <p className="card-text">Palavras Chave: {attributes.palavras_chave}</p>
                     <a className="btn btn-sm btn-primary m-1" href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${attributes.id}`}>Download</a>
@@ -54,7 +54,6 @@ export default function SoloPesquisaAdmin({attributes}){
                     <button className="btn btn-sm btn-danger" onClick={handleDelete} id={attributes.id}>Apagar</button>
                     </div>
                 </div>
-                
             </div>
         </div>
     )

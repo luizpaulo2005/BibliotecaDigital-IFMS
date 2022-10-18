@@ -51,6 +51,14 @@ export default function SoloDocenteAdmin({attributes}){
                     <button className="btn btn-sm btn-danger" onClick={handleDelete} id={attributes.id}>Apagar</button>
                     </div>
                 </div>
+                <div className="border rounded p-3 mt-2">
+                    <legend>Pesquisas que este professor participa/ou: </legend>
+                    <ul className="list-group">
+                         {attributes.pesquisas.map((p) => (
+                        <Link key={p.id} href={`/posts/admin/solo/pesquisa/${p.id}`}><li className="list-group-item">{p.titulo}</li></Link>
+                    ))}
+                    </ul>
+                </div>
             </div>
         </div>
     )

@@ -28,8 +28,8 @@ export default function SoloPesquisa({attributes}){
                     <div className="card-body">
                     <p className="card-text">Resumo: {attributes.resumo}</p>
                     <p className="card-text">Tipo de Pesquisa: {attributes.tipo}</p>
-                    <p className="card-text">Aluno: {attributes.discente.nome}</p>
-                    <p className="card-text">Orientador: {attributes.docente.nome}</p>
+                    <Link href={`/posts/user/solo/discente/${attributes.discente.id}`}><p className="card-text">Aluno: {attributes.discente.nome}</p></Link>
+                    <Link href={`/posts/user/solo/docente/${attributes.docente.id}`}><p className="card-text">Orientador: {attributes.docente.nome}</p></Link>
                     <p className="card-text">Data de Apresentação: {format(parseISO(attributes.data_apresentacao), 'dd/MM/yyyy')}</p>
                     <p className="card-text">Palavras Chave: {attributes.palavras_chave}</p>
                     <a className="btn btn-sm btn-primary m-1" href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${attributes.id}`}>Download</a>

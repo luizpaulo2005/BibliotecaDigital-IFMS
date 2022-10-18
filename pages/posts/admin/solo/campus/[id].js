@@ -49,7 +49,14 @@ export default function SoloCampusAdmin({attributes}){
                     <button className="btn btn-sm btn-danger" onClick={handleDelete} id={attributes.id}>Apagar</button>
                     </div>
                 </div>
-
+                <div className="border rounded p-3 mt-2">
+                    <legend>Cursos deste Campus: </legend>
+                    <ul className="list-group">
+                         {attributes.campus.map((p) => (
+                        <Link key={p.id} href={`/posts/admin/solo/campus/${p.id}`}><li className="list-group-item">{p.nome}</li></Link>
+                    ))}
+                    </ul>
+                </div>
             </div>
         </div>
     )

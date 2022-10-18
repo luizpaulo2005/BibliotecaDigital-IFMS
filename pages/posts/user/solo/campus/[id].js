@@ -31,7 +31,14 @@ export default function SoloCampus({attributes}){
                     <Link href="/posts/user/todos/campus"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
                     </div>
                 </div>
-
+                <div className="border rounded p-3 mt-2">
+                    <legend>Cursos deste Campus: </legend>
+                    <ul className="list-group">
+                         {attributes.campus.map((p) => (
+                        <Link key={p.id} href={`/posts/user/solo/campus/${p.id}`}><li className="list-group-item">{p.nome}</li></Link>
+                    ))}
+                    </ul>
+                </div>
             </div>
         </div>
     )
