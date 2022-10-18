@@ -8,6 +8,7 @@ export const getServerSideProps = async (context) =>{
     const id = context.query.id
     const response = await axios.get(`https://databasebibliotecadigital.undertak3r.repl.co/discente/${id}/pesquisas`)
     const attributes = await response.data
+    // const pesquisa = await attributes.pesquisas
     return{
         props: {
             attributes
@@ -55,8 +56,8 @@ export default function SoloDiscente({attributes}){
                 <div className="border rounded p-3 mt-2">
                     <legend>Pesquisas que este aluno participa/ou: </legend>
                     <ul className="list-group">
-                        {/* {attributes.map(({pesquisas}) => (
-                        <Link key={pesquisas.id} href={`/posts/admin/solo/pesquisa/${pesquisas.id}`}><a className="list-group-item">{pesquisas.nome}</a></Link>
+                         {/* {attributes.map(({attributes}) => (
+                        <Link key={attributes.pesquisa.id} href={`/posts/admin/solo/pesquisa/${attributes.pesquisa.id}`}><li className="list-group-item">{attributes.pesquisa}</li></Link>
                     ))} */}
                     </ul>
                 </div>

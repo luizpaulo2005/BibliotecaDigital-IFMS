@@ -84,7 +84,7 @@ const handleDelete = async (e) => {
             <td><Link href={`/posts/admin/solo/discente/${id}`}><a className="list-group-item">{nome}</a></Link></td>
             <td>{email}</td>
             <td>
-               <Link href={`/posts/admin/alterar/discentes/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
+               <Link href={`/posts/admin/alterar/discente/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                 <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>
             </td>
         </tr>
