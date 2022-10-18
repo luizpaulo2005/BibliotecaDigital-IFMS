@@ -12,7 +12,7 @@ export const getStaticProps = async () => {
       props: {
         discentes
       },
-      revalidate: 3600
+      revalidate: 300
     }
   }
 
