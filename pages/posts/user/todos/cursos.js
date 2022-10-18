@@ -50,18 +50,14 @@ export default function TodosCursos({cursos}){
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            <th>Grade</th>
-                            <th>Duração</th>
                             <th>Campus</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {cursosfiltrados.map(({id, nome, grade, duracao, campus})=> (
+                    {cursosfiltrados.map(({id, nome, campus})=> (
                         <tr key={id}>
                             <td><Link href={`/posts/user/solo/curso/${id}`}><a className="list-group-item">{nome}</a></Link></td>
-                            <td>{grade}</td>
-                            <td>{duracao}</td>
-                            <td>{campus.nome}</td>
+                            <td><Link href={`/posts/user/solo/campus/${campus.id}`}><a className="list-group-item">{campus.nome}</a></Link></td>
                         </tr>
                     ) )}
                     </tbody>

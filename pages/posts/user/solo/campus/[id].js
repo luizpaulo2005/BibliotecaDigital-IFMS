@@ -5,7 +5,7 @@ import HDPagInicial from "../../../../components/header/paginicial";
 
 export const getServerSideProps = async (context) =>{
     const id = context.query.id
-    const response = await axios.get(`https://databasebibliotecadigital.undertak3r.repl.co/campus/${id}`)
+    const response = await axios.get(`https://databasebibliotecadigital.undertak3r.repl.co/campus/${id}/cursos`)
     const attributes = response.data
     return {
         props: {
@@ -34,8 +34,8 @@ export default function SoloCampus({attributes}){
                 <div className="border rounded p-3 mt-2">
                     <legend>Cursos deste Campus: </legend>
                     <ul className="list-group">
-                         {attributes.campus.map((p) => (
-                        <Link key={p.id} href={`/posts/user/solo/campus/${p.id}`}><li className="list-group-item">{p.nome}</li></Link>
+                         {attributes.cursos.map((p) => (
+                        <Link key={p.id} href={`/posts/user/solo/curso/${p.id}`}><li className="list-group-item">{p.nome}</li></Link>
                     ))}
                     </ul>
                 </div>

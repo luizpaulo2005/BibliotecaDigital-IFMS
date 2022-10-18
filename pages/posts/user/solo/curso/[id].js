@@ -29,7 +29,7 @@ export default function SoloCurso({attributes}){
                 <div className="card-body">
                     <p>Grade: {attributes.grade}</p>
                     <p>Duração: {attributes.duracao}</p>
-                    <p>Campus: {attributes.campus.nome}</p>
+                    <Link href={`/posts/user/solo/campus/${attributes.campus.id}`}><p>Campus: {attributes.campus.nome}</p></Link>
                     <Link href="/posts/user/todos/cursos"><a className="btn btn-sm btn-secondary">Página Anterior</a></Link>
                 </div>
             </div>           
