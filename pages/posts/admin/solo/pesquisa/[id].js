@@ -48,6 +48,7 @@ export default function SoloPesquisaAdmin({attributes}){
                     <Link href={`/posts/admin/solo/docente/${attributes.docenteId}`}><p className="card-text">Orientador: {attributes.docenteId} - {attributes.docente.nome}</p></Link>
                     <p className="card-text">Data de Apresentação: {format(parseISO(attributes.data_apresentacao), 'dd/MM/yyyy')}</p>
                     <p className="card-text">Palavras Chave: {attributes.palavras_chave}</p>
+                    <p className="card-text">UUID do Arquivo: {attributes.url_download}</p>
                     <a className="btn btn-sm btn-primary m-1" href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${attributes.id}`}>Download</a>
                     <Link href="/posts/user/todos/pesquisas"><a className="btn btn-sm btn-secondary m-1">Página Anterior</a></Link>
                     <Link href={`/posts/admin/alterar/pesquisa/${attributes.id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
