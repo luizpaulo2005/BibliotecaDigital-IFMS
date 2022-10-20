@@ -30,7 +30,7 @@ export default function Home({attributes}) {
     {/* <CRSPagInicial/> */}
 
     <div id="carouselExampleCaptions" className="carousel slide carrossel border rounded" data-bs-ride="false">
-        <div className="carousel-inner">
+        <div className="carousel-inner rounded">
         {attributes.map(({id, titulo, discente}) =>(
           <div className="carousel-item active" data-bs-interval="2000" key={id}>
           <div className="d-block w-100">
