@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/Home.module.css'
-import CRSPagInicial from './components/carrossel/paginicial'
 import HDPagInicial from './components/header/paginicial'
 
 export const getStaticProps = async () =>{
