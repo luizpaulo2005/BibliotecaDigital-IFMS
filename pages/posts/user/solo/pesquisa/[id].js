@@ -22,7 +22,7 @@ export default function SoloPesquisa({attributes}){
                 <title>{attributes.titulo}</title>
             </Head>
             <HDPagInicial/>
-            <div className="container rounded mt-2 p-3">
+            <div className="container rounded mt-2 p-3 w-75 d-flex justify-content-center flex-column">
                 <div className="card">
                     <div className="card-header">Título: {attributes.titulo}</div>
                     <div className="card-body">

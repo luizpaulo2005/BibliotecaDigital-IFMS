@@ -22,7 +22,7 @@ export default function SoloDocente({attributes}){
                 <title>{attributes.nome}</title>
             </Head>
             <HDPagInicial/>
-            <div className="container rounded p-3 mt-2">
+            <div className="container rounded p-3 mt-2 w-50 d-flex justify-content-center flex-column">
                 <div className="card">
                     <div className="card-header">{attributes.nome}</div>
                     <div className="card-body">
@@ -33,7 +33,7 @@ export default function SoloDocente({attributes}){
                     </div>
                 </div>
                 <div className="border rounded p-3 mt-2">
-                    <legend>Pesquisas que este aluno participa/ou: </legend>
+                    <legend>Pesquisas que este professor participa/ou: </legend>
                     <ul className="list-group">
                          {attributes.pesquisas.map((p) => (
                         <Link key={p.id} href={`/posts/user/solo/pesquisa/${p.id}`}><li className="list-group-item">{p.titulo}</li></Link>

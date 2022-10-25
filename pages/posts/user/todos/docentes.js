@@ -45,7 +45,7 @@ const filtro = (item) => {
                <input className="form-control filtro" type="search" placeholder="Pesquisar" aria-label="Search"  onChange={(e) => setConsulta(e.target.value)} />
              </form>
             </div>
-            <div className="container border rounded p-3 mt-2">
+            <div className="container border rounded p-3 mt-2 w-50">
             <table className="table">
         <thead>
             <tr>

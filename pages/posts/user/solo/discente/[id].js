@@ -22,7 +22,7 @@ export default function SoloDiscente({attributes}){
                 <title>{attributes.nome}</title>
             </Head>
             <HDPagInicial/>
-            <div className="container rounded mt-2 p-3">
+            <div className="container rounded mt-2 p-3 w-50 d-flex justify-content-center flex-column">
                 <div className="card">
                 <div className="card-header">{attributes.nome}</div>
                 <div className="card-body">

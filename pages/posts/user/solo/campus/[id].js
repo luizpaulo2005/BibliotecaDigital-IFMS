@@ -21,7 +21,7 @@ export default function SoloCampus({attributes}){
                 <title>{attributes.nome}</title>
             </Head>
             <HDPagInicial/>
-            <div className="container rounded p-3 mt-2">
+            <div className="container rounded p-3 mt-2 w-50 d-flex justify-content-center flex-column">
             <div className="card">
                     <div className="card-header">Nome: {attributes.nome}</div>
                     <div className="card-body">

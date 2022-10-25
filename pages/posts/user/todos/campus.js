@@ -43,7 +43,7 @@ const campusfiltrado = filtro(campus).slice(startIndex, endIndex)
                <input className="form-control filtro" type="search" placeholder="Pesquisar" aria-label="Search"  onChange={(e) => setConsulta(e.target.value)} />
              </form>
             </div>
-            <div className="container border rounded mt-2 p-3">
+            <div className="container border rounded mt-2 p-3 w-50">
                 <table className="table">
                     <thead>
                         <tr>
