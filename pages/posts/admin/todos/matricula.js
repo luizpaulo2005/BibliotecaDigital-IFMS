@@ -40,23 +40,23 @@ export default function TodasMatriculasAdmin({attributes}){
             </Head>
             <HDPagAdmin/>
             <ToastContainer/>
-            <div className="container border rounded p-3 mt-2">
+            <div className="container border rounded p-3 mt-2 w-75">
                 <table className="table">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Data de Início</th>
-                            <th>Curso</th>
-                            <th>Ações</th>
+                            <th>Pertence ao:</th>
+                            <th className="d-flex justify-content-end">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {attributes.map(({id, data_inicio, curso}) => (
+                        {attributes.map(({id, data_inicio, discentes}) => (
                             <tr key={id}>
                                 <th scope="row">{id}</th>
                                 <td>{format(parseISO(data_inicio), 'dd/MM/yyyy')}</td>
-                                <td>{curso.nome}</td>
-                                <td>
+                                <Link href={`/posts/admin/solo/discente/${discentes.id}`}><td>{discentes.nome}</td></Link>
+                                <td className="d-flex justify-content-end">
                                 <Link href={`/posts/admin/alterar/matricula/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                                 <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>
                                 </td>

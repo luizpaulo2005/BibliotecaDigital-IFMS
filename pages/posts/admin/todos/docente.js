@@ -66,14 +66,14 @@ const filtro = (item) => {
                <input className="form-control filtro" type="search" placeholder="Pesquisar" aria-label="Search"  onChange={(e) => setConsulta(e.target.value)} />
              </form>
             </div>
-            <div className="container border rounded p-3 mt-2">
+            <div className="container border rounded p-3 mt-2 w-50">
             <table className="table">
         <thead>
             <tr>
             <th>ID</th>
             <th>Nome</th>
             <th>E-mail</th>
-            <th>Ações</th>
+            <th className="d-flex justify-content-end">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -82,7 +82,7 @@ const filtro = (item) => {
                 <th scope="row">{id}</th>
                 <td><Link href={`/posts/admin/solo/docente/${id}`}><a className="list-group-item">{nome}</a></Link></td>
                 <td>{email}</td>
-                <td>
+                <td className="d-flex justify-content-end">
                     <Link href={`/posts/admin/alterar/docente/${id}`}><button className="btn btn-sm btn-secondary me-1">Alterar</button></Link>
                     <button className="btn btn-sm btn-danger" onClick={handleDelete} id={id}>Apagar</button>
                 </td>

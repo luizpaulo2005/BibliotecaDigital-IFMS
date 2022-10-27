@@ -51,14 +51,14 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
                <input className="form-control filtro" type="search" placeholder="Pesquisar" aria-label="Search"  onChange={(e) => setConsulta(e.target.value)} />
              </form>
             </div>
-            <div className="ms-2 me-2 container-fluid border rounded mt-2 p-3">
+            <div className="container border rounded mt-2 p-3 w-75">
             <table className="table">
         <thead>
         <tr>
         <th>ID</th>
         <th>Titulo</th>
         <th>PDF</th>
-        <th>Ações</th>
+        <th className="d-flex justify-content-end">Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -69,7 +69,7 @@ useEffect(()=>{setPaginasRecorrentes(0)}, [setItensporPagina])
           <td>
           <a className="btn btn-sm btn-primary" href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}`}>Download</a>
           </td>
-          <td>
+          <td  className="d-flex justify-content-end">
             <button className="btn btn-secondary btn-sm">Alterar</button>
             <button className="btn btn-danger btn-sm ms-1">Apagar</button>
           </td>
