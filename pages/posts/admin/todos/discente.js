@@ -65,7 +65,7 @@ export default function TodosDiscentesAdmin({ attributes }) {
   const {usuario} = useContext(AuthContext)
 
   const Protecaoderota = ({children}) => {
-    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa entrar autenticado!</h2>)
+    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa estar autenticado!</h2>)
    }
 
 
@@ -97,7 +97,7 @@ export default function TodosDiscentesAdmin({ attributes }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
-          <Protecaoderota>
+          <Protecaoderota handleDelete={handleDelete}>
           <tbody>
             {discentesfiltrados.map(({ id, nome, email, data_nascimento }) => (
               <tr key={id}>
