@@ -4,6 +4,8 @@ import Head from "next/head";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../components/header/pagadmin";
+import { AuthContext } from "../login/login";
+import { useContext, useEffect } from "react";
 
 export const getStaticProps = async () => {
   const response = await axios.get(
@@ -36,6 +38,12 @@ export default function TodasMatriculasAdmin({ attributes }) {
     }
   };
 
+  const {usuario} = useContext(AuthContext)
+
+  const Protecaoderota = ({children}) => {
+    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa estar autenticado!</h2>)
+  }
+
   return (
     <div className="container-fluid g-0">
       <Head>
@@ -53,6 +61,7 @@ export default function TodasMatriculasAdmin({ attributes }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
+          <Protecaoderota>
           <tbody>
             {attributes.map(({ id, data_inicio, discentes }) => (
               <tr key={id}>
@@ -78,6 +87,7 @@ export default function TodasMatriculasAdmin({ attributes }) {
               </tr>
             ))}
           </tbody>
+          </Protecaoderota>
         </table>
       </div>
     </div>
