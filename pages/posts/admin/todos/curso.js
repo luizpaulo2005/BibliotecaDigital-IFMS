@@ -1,10 +1,11 @@
 import axios from "axios";
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../components/header/pagadmin";
 import Link from "next/link";
+import { AuthContext } from "../login/login";
 
 export const getStaticProps = async () => {
   const response = await axios.get(
@@ -57,6 +58,16 @@ export default function TodosCursosAdmin({ attributes }) {
     }
   };
 
+  const {usuario} = useContext(AuthContext)
+
+  const Protecaoderota = ({children}) => {
+    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa estar autenticado!</h2>)
+  }
+
+   useEffect(() => {
+    setPaginasRecorrentes(0);
+  }, [setItensporPagina]);
+
   return (
     <div className="container-fluid g-0">
       <Head>
@@ -85,6 +96,7 @@ export default function TodosCursosAdmin({ attributes }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
+          <Protecaoderota>
           <tbody>
             {cursosfiltrados.map(({ id, nome, campus }) => (
               <tr key={id}>
@@ -112,6 +124,7 @@ export default function TodosCursosAdmin({ attributes }) {
               </tr>
             ))}
           </tbody>
+          </Protecaoderota>
         </table>
 
         <center>

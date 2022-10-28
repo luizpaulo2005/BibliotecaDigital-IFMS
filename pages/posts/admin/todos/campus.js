@@ -1,6 +1,6 @@
 import axios from "axios";
 import Head from "next/head";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import HDPagAdmin from "../../../components/header/pagadmin";
