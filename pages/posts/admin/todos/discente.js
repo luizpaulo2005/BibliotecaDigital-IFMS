@@ -1,10 +1,11 @@
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import HDPagAdmin from "../../../components/header/pagadmin";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
+import Login, {AuthContext} from "../login/login";
 
 export const getStaticProps = async () => {
   const response = await axios.get(
@@ -60,9 +61,16 @@ export default function TodosDiscentesAdmin({ attributes }) {
       toast.success("Aluno excluído com sucesso");
     }
   };
+  
+  const {usuario} = useContext(AuthContext)
+
+  const Protecaoderota = ({children}) => {
+    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa entrar autenticado!</h2>)
+   }
+
 
   return (
-    <div className="container-fluid g-0">
+      <div className="container-fluid g-0">
       <Head>
         <title>Lista de Alunos</title>
       </Head>
@@ -89,6 +97,7 @@ export default function TodosDiscentesAdmin({ attributes }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
+          <Protecaoderota>
           <tbody>
             {discentesfiltrados.map(({ id, nome, email, data_nascimento }) => (
               <tr key={id}>
@@ -116,6 +125,7 @@ export default function TodosDiscentesAdmin({ attributes }) {
               </tr>
             ))}
           </tbody>
+          </Protecaoderota>
         </table>
 
         <center>
