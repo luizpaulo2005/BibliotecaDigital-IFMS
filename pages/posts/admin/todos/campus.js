@@ -64,6 +64,9 @@ export default function TodosCampusAdmin({ attributes }) {
    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa estar autenticado!</h2>)
   }
 
+  useEffect(() => {
+    setPaginasRecorrentes(0);
+  }, [setItensporPagina]);
   return (
     <div className="container-fluid g-0">
       <Head>

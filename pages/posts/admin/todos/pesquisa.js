@@ -1,9 +1,10 @@
 import Head from "next/head";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import HDPagAdmin from "../../../components/header/pagadmin";
 import Link from "next/link";
+import { AuthContext } from "../login/login";
 
 export const getStaticProps = async () => {
   const response = await axios.get(
@@ -41,6 +42,11 @@ export default function TodasPesquisasAdmin({ pesquisas }) {
     setPaginasRecorrentes(0);
   }, [setItensporPagina]);
 
+  const {usuario} = useContext(AuthContext)
+
+  const Protecaoderota = ({children}) =>{
+    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa entrar autenticado!</h2>)
+  }
   return (
     <div className="container-fluid g-0">
       <Head>
@@ -69,6 +75,7 @@ export default function TodasPesquisasAdmin({ pesquisas }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
+          <Protecaoderota>
           <tbody>
             {pesquisasfiltradas.map(
               ({ id, titulo, discente, docente, data_apresentacao }) => (
@@ -99,6 +106,7 @@ export default function TodasPesquisasAdmin({ pesquisas }) {
               )
             )}
           </tbody>
+          </Protecaoderota>
         </table>
 
         <center>
