@@ -66,9 +66,6 @@ export default function CadastrarPesquisa({ attributes, attributes1 }) {
     formData.append("url_download", data.url_download);
     formData.append("pesquisaFile", file);
 
-    if (file.length === "") {
-      return toast.error("Arquivo não selecionado");
-    }
     const config = {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -234,6 +231,7 @@ export default function CadastrarPesquisa({ attributes, attributes1 }) {
                 type="file"
                 id="pesquisaFile"
                 onChange={handleFileSelect}
+                required
               />
             </div>
             <button type="submit" className="btn btn-success">
