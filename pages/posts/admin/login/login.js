@@ -1,10 +1,44 @@
 import react from "react";
 import HDPagInicial from "../../../components/header/paginicial";
-import { useState } from "react";
+import { useState, useContext, useReducer, createContext } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import { initializeApp } from "firebase/app";
 import Head from "next/head";
+
+
+export const AuthContextProvider = ({children}) => {
+  const [autenticacao, setAutenticacao] = useReducer(AuthReducer, UsuarioInicial)
+
+  return (
+      <AuthContext.Provider value={{usuario : autenticacao.usuario, setAutenticacao}}>
+          {children}
+      </AuthContext.Provider>
+  )
+}
+
+const UsuarioInicial = {
+  usuario : null
+}
+
+export const AuthContext = createContext(UsuarioInicial);
+
+export const AuthReducer = (autenticacao, tipo) => {
+  switch (tipo.type){
+      case "LOGIN": {
+          return  {
+              usuario:tipo.payload,
+          }
+      }
+      case "LOGOUT":{
+return {
+  usuario : null,
+}
+      }
+
+      default: return autenticacao;
+  }
+} 
 
 export default function Login() {
   const [error, setError] = useState(false);
@@ -12,6 +46,8 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   let router = useRouter();
+
+  const {setAutenticacao} = useContext(AuthContext)
 
   const firebaseConfig = {
     apiKey: "AIzaSyCdFNaUPOEGlEeKl6KCDxjAj4VXApFo47k",
@@ -31,6 +67,7 @@ export default function Login() {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
+        setAutenticacao({type:"LOGIN", payload:user})
         router.push("/posts/admin/paginaAdmin");
       })
       .catch((error) => {
