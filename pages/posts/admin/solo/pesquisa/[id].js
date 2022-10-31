@@ -3,6 +3,8 @@ import { format, parseISO } from "date-fns";
 import Head from "next/head";
 import Link from "next/link";
 import HDPagAdmin from "../../../../components/header/pagadmin";
+import { useContext } from 'react';
+import Login, {AuthContext} from "../../login/login";
 
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
@@ -35,8 +37,14 @@ export default function SoloPesquisaAdmin({ attributes }) {
     }
   };
 
+  const {usuario} = useContext(AuthContext)
+  const Protecaoderota = ({children})=>{
+    return usuario ? children : (<Login></Login>)
+  }
+
   return (
-    <div className="container-fluid g-0">
+    <Protecaoderota>
+<div className="container-fluid g-0">
       <Head>
         <title>{attributes.titulo}</title>
       </Head>
@@ -90,5 +98,6 @@ export default function SoloPesquisaAdmin({ attributes }) {
         </div>
       </div>
     </div>
-  );
+    </Protecaoderota>
+  )
 }
