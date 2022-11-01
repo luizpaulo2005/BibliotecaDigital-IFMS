@@ -6,7 +6,7 @@ import HDPagAdmin from "../../../../components/header/pagadmin";
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const response = await axios.get(
-    `https://databasebibliotecadigital.undertak3r.repl.co/docente/${id}`
+    `https://databasebibliotecadigital.undertak3r.repl.co/docente/${id}/pesquisas`
   );
   const attributes = await response.data;
   return {
