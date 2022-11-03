@@ -6,13 +6,13 @@ import HDPagAdmin from "../../../../components/header/pagadmin";
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const response = await axios.get(
-    `https://databasebibliotecadigital.undertak3r.repl.co/campus/${id}/cursos`
+    process.env.URL_API + `/campus/${id}/cursos`
   );
   const attributes = response.data;
-  console.log(attributes)
+  console.log(attributes);
   return {
     props: {
-      attributes
+      attributes,
     },
   };
 };
@@ -24,9 +24,7 @@ export default function SoloCampusAdmin({ attributes }) {
     const data = {
       id: Number(id),
     };
-    const response = await axios.delete(
-      `https://databasebibliotecadigital.undertak3r.repl.co/campus/${id}`
-    );
+    const response = await axios.delete(process.env.URL_API + `/campus/${id}`);
     if (!response.statusText === "OK") {
       toast.error("Erro ao excluir o campus");
     } else {

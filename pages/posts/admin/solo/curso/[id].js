@@ -5,13 +5,11 @@ import HDPagAdmin from "../../../../components/header/pagadmin";
 
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
-  const response = await axios.get(
-    `https://databasebibliotecadigital.undertak3r.repl.co/curso/${id}`
-  );
+  const response = await axios.get(process.env.URL_API + `/curso/${id}`);
   const attributes = await response.data;
   return {
     props: {
-      attributes
+      attributes,
     },
   };
 };
@@ -23,9 +21,7 @@ export default function SoloCursoAdmin({ attributes }) {
     const data = {
       id: Number(id),
     };
-    const response = await axios.delete(
-      `https://databasebibliotecadigital.undertak3r.repl.co/curso/${id}`
-    );
+    const response = await axios.delete(process.env.URL_API + `/curso/${id}`);
     if (!response.statusText === "OK") {
       toast.error("Erro ao excluir o curso");
     } else {

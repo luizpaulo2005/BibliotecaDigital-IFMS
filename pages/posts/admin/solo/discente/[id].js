@@ -7,12 +7,12 @@ import HDPagAdmin from "../../../../components/header/pagadmin";
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const response = await axios.get(
-    `https://databasebibliotecadigital.undertak3r.repl.co/discente/${id}/pesquisas`
+    process.env.URL_API + `/discente/${id}/pesquisas`
   );
   const attributes = await response.data;
   return {
     props: {
-      attributes
+      attributes,
     },
   };
 };
@@ -25,7 +25,7 @@ export default function SoloDiscenteAdmin({ attributes }) {
       id: Number(id),
     };
     const response = await axios.delete(
-      `https://databasebibliotecadigital.undertak3r.repl.co/discente/${id}`
+      process.env.URL_API + `/discente/${id}`
     );
     if (!response.statusText === "OK") {
       toast.error("Erro ao excluir o aluno");
