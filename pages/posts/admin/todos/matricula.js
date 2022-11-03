@@ -8,13 +8,11 @@ import { AuthContext } from "../login/login";
 import { useContext, useEffect } from "react";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/matricula"
-  );
+  const response = await axios.get(process.env.URL_API + "/matricula");
   const attributes = await response.data;
   return {
     props: {
-      attributes
+      attributes,
     },
     revalidate: 300,
   };
@@ -38,11 +36,17 @@ export default function TodasMatriculasAdmin({ attributes }) {
     }
   };
 
-  const {usuario} = useContext(AuthContext)
+  const { usuario } = useContext(AuthContext);
 
-  const Protecaoderota = ({children}) => {
-    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa estar autenticado!</h2>)
-  }
+  const Protecaoderota = ({ children }) => {
+    return usuario ? (
+      children
+    ) : (
+      <h2 className="mt-4 verde">
+        Acesso negado, você precisa estar autenticado!
+      </h2>
+    );
+  };
 
   return (
     <div className="container-fluid g-0">
@@ -62,31 +66,31 @@ export default function TodasMatriculasAdmin({ attributes }) {
             </tr>
           </thead>
           <Protecaoderota>
-          <tbody>
-            {attributes.map(({ id, data_inicio, discentes }) => (
-              <tr key={id}>
-                <th scope="row">{id}</th>
-                <td>{format(parseISO(data_inicio), "dd/MM/yyyy")}</td>
-                <Link href={`/posts/admin/solo/discente/${discentes.id}`}>
-                  <td>{discentes.nome}</td>
-                </Link>
-                <td className="d-flex justify-content-end">
-                  <Link href={`/posts/admin/alterar/matricula/${id}`}>
-                    <button className="btn btn-sm btn-secondary me-1">
-                      Alterar
-                    </button>
+            <tbody>
+              {attributes.map(({ id, data_inicio, discentes }) => (
+                <tr key={id}>
+                  <th scope="row">{id}</th>
+                  <td>{format(parseISO(data_inicio), "dd/MM/yyyy")}</td>
+                  <Link href={`/posts/admin/solo/discente/${discentes.id}`}>
+                    <td>{discentes.nome}</td>
                   </Link>
-                  <button
-                    className="btn btn-sm btn-danger"
-                    onClick={handleDelete}
-                    id={id}
-                  >
-                    Apagar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                  <td className="d-flex justify-content-end">
+                    <Link href={`/posts/admin/alterar/matricula/${id}`}>
+                      <button className="btn btn-sm btn-secondary me-1">
+                        Alterar
+                      </button>
+                    </Link>
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={handleDelete}
+                      id={id}
+                    >
+                      Apagar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </Protecaoderota>
         </table>
       </div>

@@ -8,13 +8,11 @@ import Link from "next/link";
 import { AuthContext } from "../login/login";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/campus"
-  );
+  const response = await axios.get(process.env.URL_API + "/campus");
   const attributes = await response.data;
   return {
     props: {
-      attributes
+      attributes,
     },
     revalidate: 300,
   };
@@ -58,11 +56,16 @@ export default function TodosCampusAdmin({ attributes }) {
     }
   };
 
-
-  const {usuario} = useContext(AuthContext)
-  const Protecaoderota = ({children}) =>{
-   return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa estar autenticado!</h2>)
-  }
+  const { usuario } = useContext(AuthContext);
+  const Protecaoderota = ({ children }) => {
+    return usuario ? (
+      children
+    ) : (
+      <h2 className="mt-4 verde">
+        Acesso negado, você precisa estar autenticado!
+      </h2>
+    );
+  };
 
   useEffect(() => {
     setPaginasRecorrentes(0);
@@ -95,32 +98,32 @@ export default function TodosCampusAdmin({ attributes }) {
             </tr>
           </thead>
           <Protecaoderota>
-          <tbody>
-            {campusfiltrado.map(({ id, nome }) => (
-              <tr key={id}>
-                <th scope="row">{id}</th>
-                <td>
-                  <Link href={`/posts/admin/solo/campus/${id}`}>
-                    <a className="list-group-item">{nome}</a>
-                  </Link>
-                </td>
-                <td className="d-flex justify-content-end">
-                  <Link href={`/posts/admin/alterar/campus/${id}`}>
-                    <button className="btn btn-sm btn-secondary me-1">
-                      Alterar
+            <tbody>
+              {campusfiltrado.map(({ id, nome }) => (
+                <tr key={id}>
+                  <th scope="row">{id}</th>
+                  <td>
+                    <Link href={`/posts/admin/solo/campus/${id}`}>
+                      <a className="list-group-item">{nome}</a>
+                    </Link>
+                  </td>
+                  <td className="d-flex justify-content-end">
+                    <Link href={`/posts/admin/alterar/campus/${id}`}>
+                      <button className="btn btn-sm btn-secondary me-1">
+                        Alterar
+                      </button>
+                    </Link>
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={handleDelete}
+                      id={id}
+                    >
+                      Apagar
                     </button>
-                  </Link>
-                  <button
-                    className="btn btn-sm btn-danger"
-                    onClick={handleDelete}
-                    id={id}
-                  >
-                    Apagar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </Protecaoderota>
         </table>
 

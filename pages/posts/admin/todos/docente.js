@@ -10,7 +10,7 @@ import { AuthContext } from "../login/login";
 
 export const getStaticProps = async () => {
   const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/docente"
+    process.env.URL_API + "/docente"
   );
   const docentes = await response.data;
   return {

@@ -7,13 +7,11 @@ import Link from "next/link";
 import { AuthContext } from "../login/login";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/pesquisa"
-  );
+  const response = await axios.get(process.env.URL_API + "/pesquisa");
   const pesquisas = await response.data;
   return {
     props: {
-      pesquisas
+      pesquisas,
     },
     revalidate: 300,
   };
@@ -42,11 +40,17 @@ export default function TodasPesquisasAdmin({ pesquisas }) {
     setPaginasRecorrentes(0);
   }, [setItensporPagina]);
 
-  const {usuario} = useContext(AuthContext)
+  const { usuario } = useContext(AuthContext);
 
-  const Protecaoderota = ({children}) =>{
-    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa entrar autenticado!</h2>)
-  }
+  const Protecaoderota = ({ children }) => {
+    return usuario ? (
+      children
+    ) : (
+      <h2 className="mt-4 verde">
+        Acesso negado, você precisa entrar autenticado!
+      </h2>
+    );
+  };
   return (
     <div className="container-fluid g-0">
       <Head>
@@ -76,36 +80,36 @@ export default function TodasPesquisasAdmin({ pesquisas }) {
             </tr>
           </thead>
           <Protecaoderota>
-          <tbody>
-            {pesquisasfiltradas.map(
-              ({ id, titulo, discente, docente, data_apresentacao }) => (
-                <tr key={id}>
-                  <td scope="row">{id}</td>
-                  <td>
-                    <Link href={`/posts/admin/solo/pesquisa/${id}`}>
-                      <a className="list-group-item">{titulo}</a>
-                    </Link>
-                  </td>
-                  <td>
-                    <a
-                      className="btn btn-sm btn-primary"
-                      href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}`}
-                    >
-                      Download
-                    </a>
-                  </td>
-                  <td className="d-flex justify-content-end">
-                    <button className="btn btn-secondary btn-sm">
-                      Alterar
-                    </button>
-                    <button className="btn btn-danger btn-sm ms-1">
-                      Apagar
-                    </button>
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
+            <tbody>
+              {pesquisasfiltradas.map(
+                ({ id, titulo, discente, docente, data_apresentacao }) => (
+                  <tr key={id}>
+                    <td scope="row">{id}</td>
+                    <td>
+                      <Link href={`/posts/admin/solo/pesquisa/${id}`}>
+                        <a className="list-group-item">{titulo}</a>
+                      </Link>
+                    </td>
+                    <td>
+                      <a
+                        className="btn btn-sm btn-primary"
+                        href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}`}
+                      >
+                        Download
+                      </a>
+                    </td>
+                    <td className="d-flex justify-content-end">
+                      <button className="btn btn-secondary btn-sm">
+                        Alterar
+                      </button>
+                      <button className="btn btn-danger btn-sm ms-1">
+                        Apagar
+                      </button>
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
           </Protecaoderota>
         </table>
 

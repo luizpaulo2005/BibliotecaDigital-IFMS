@@ -5,16 +5,14 @@ import { useState, useEffect, useContext } from "react";
 import HDPagAdmin from "../../../components/header/pagadmin";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
-import Login, {AuthContext} from "../login/login";
+import Login, { AuthContext } from "../login/login";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/discente"
-  );
+  const response = await axios.get(process.env.URL_API + "/discente");
   const attributes = await response.data;
   return {
     props: {
-      attributes
+      attributes,
     },
     revalidate: 300,
   };
@@ -61,16 +59,21 @@ export default function TodosDiscentesAdmin({ attributes }) {
       toast.success("Aluno excluído com sucesso");
     }
   };
-  
-  const {usuario} = useContext(AuthContext)
 
-  const Protecaoderota = ({children}) => {
-    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa estar autenticado!</h2>)
-   }
+  const { usuario } = useContext(AuthContext);
 
+  const Protecaoderota = ({ children }) => {
+    return usuario ? (
+      children
+    ) : (
+      <h2 className="mt-4 verde">
+        Acesso negado, você precisa estar autenticado!
+      </h2>
+    );
+  };
 
   return (
-      <div className="container-fluid g-0">
+    <div className="container-fluid g-0">
       <Head>
         <title>Lista de Alunos</title>
       </Head>
@@ -98,33 +101,35 @@ export default function TodosDiscentesAdmin({ attributes }) {
             </tr>
           </thead>
           <Protecaoderota handleDelete={handleDelete}>
-          <tbody>
-            {discentesfiltrados.map(({ id, nome, email, data_nascimento }) => (
-              <tr key={id}>
-                <th scope="row">{id}</th>
-                <td>
-                  <Link href={`/posts/admin/solo/discente/${id}`}>
-                    <a className="list-group-item">{nome}</a>
-                  </Link>
-                </td>
-                <td>{email}</td>
-                <td className="d-flex justify-content-end">
-                  <Link href={`/posts/admin/alterar/discente/${id}`}>
-                    <button className="btn btn-sm btn-secondary me-1">
-                      Alterar
-                    </button>
-                  </Link>
-                  <button
-                    className="btn btn-sm btn-danger"
-                    onClick={handleDelete}
-                    id={id}
-                  >
-                    Apagar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+            <tbody>
+              {discentesfiltrados.map(
+                ({ id, nome, email, data_nascimento }) => (
+                  <tr key={id}>
+                    <th scope="row">{id}</th>
+                    <td>
+                      <Link href={`/posts/admin/solo/discente/${id}`}>
+                        <a className="list-group-item">{nome}</a>
+                      </Link>
+                    </td>
+                    <td>{email}</td>
+                    <td className="d-flex justify-content-end">
+                      <Link href={`/posts/admin/alterar/discente/${id}`}>
+                        <button className="btn btn-sm btn-secondary me-1">
+                          Alterar
+                        </button>
+                      </Link>
+                      <button
+                        className="btn btn-sm btn-danger"
+                        onClick={handleDelete}
+                        id={id}
+                      >
+                        Apagar
+                      </button>
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
           </Protecaoderota>
         </table>
 

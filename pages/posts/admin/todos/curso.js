@@ -8,13 +8,11 @@ import Link from "next/link";
 import { AuthContext } from "../login/login";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/curso"
-  );
+  const response = await axios.get(process.env.URL_API + "/curso");
   const attributes = await response.data;
   return {
     props: {
-      attributes
+      attributes,
     },
     revalidate: 300,
   };
@@ -58,13 +56,19 @@ export default function TodosCursosAdmin({ attributes }) {
     }
   };
 
-  const {usuario} = useContext(AuthContext)
+  const { usuario } = useContext(AuthContext);
 
-  const Protecaoderota = ({children}) => {
-    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa estar autenticado!</h2>)
-  }
+  const Protecaoderota = ({ children }) => {
+    return usuario ? (
+      children
+    ) : (
+      <h2 className="mt-4 verde">
+        Acesso negado, você precisa estar autenticado!
+      </h2>
+    );
+  };
 
-   useEffect(() => {
+  useEffect(() => {
     setPaginasRecorrentes(0);
   }, [setItensporPagina]);
 
@@ -97,33 +101,33 @@ export default function TodosCursosAdmin({ attributes }) {
             </tr>
           </thead>
           <Protecaoderota>
-          <tbody>
-            {cursosfiltrados.map(({ id, nome, campus }) => (
-              <tr key={id}>
-                <th scope="row">{id}</th>
-                <td>
-                  <Link href={`/posts/admin/solo/curso/${id}`}>
-                    <a className="list-group-item">{nome}</a>
-                  </Link>
-                </td>
-                <td>{campus.nome}</td>
-                <td className="d-flex justify-content-end">
-                  <Link href={`/posts/admin/alterar/cursos/${id}`}>
-                    <button className="btn btn-sm btn-secondary me-1">
-                      Alterar
+            <tbody>
+              {cursosfiltrados.map(({ id, nome, campus }) => (
+                <tr key={id}>
+                  <th scope="row">{id}</th>
+                  <td>
+                    <Link href={`/posts/admin/solo/curso/${id}`}>
+                      <a className="list-group-item">{nome}</a>
+                    </Link>
+                  </td>
+                  <td>{campus.nome}</td>
+                  <td className="d-flex justify-content-end">
+                    <Link href={`/posts/admin/alterar/cursos/${id}`}>
+                      <button className="btn btn-sm btn-secondary me-1">
+                        Alterar
+                      </button>
+                    </Link>
+                    <button
+                      className="btn btn-sm btn-danger"
+                      onClick={handleDelete}
+                      id={id}
+                    >
+                      Apagar
                     </button>
-                  </Link>
-                  <button
-                    className="btn btn-sm btn-danger"
-                    onClick={handleDelete}
-                    id={id}
-                  >
-                    Apagar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </Protecaoderota>
         </table>
 
