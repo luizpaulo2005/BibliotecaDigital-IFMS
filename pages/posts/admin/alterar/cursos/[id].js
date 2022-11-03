@@ -8,7 +8,7 @@ import HDPagAdmin from "../../../../components/header/pagadmin";
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const response = await axios.get(
-    `https://databasebibliotecadigital.undertak3r.repl.co/curso/${id}/allattributes`
+    process.env.URL_API + `/curso/${id}/allattributes`
   );
   const cursos = await response.data;
   return {
@@ -43,7 +43,7 @@ export default function AlterarCurso({ cursos }) {
     };
     const id = cursos.id;
     const response = await axios.put(
-      `https://databasebibliotecadigital.undertak3r.repl.co/curso/${id}`,
+      process.env.URL_API + `/curso/${id}`,
       data
     );
 

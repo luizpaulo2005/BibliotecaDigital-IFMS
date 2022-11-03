@@ -7,9 +7,7 @@ import HDPagAdmin from "../../../../components/header/pagadmin";
 
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
-  const response = await axios.get(
-    `https://databasebibliotecadigital.undertak3r.repl.co/campus/${id}`
-  );
+  const response = await axios.get(process.env.URL_API + `/campus/${id}`);
   const campi = await response.data;
   return {
     props: {
@@ -42,7 +40,7 @@ export default function AlterarCampus({ campi }) {
     };
     const id = campi.id;
     const response = await axios.put(
-      `https://databasebibliotecadigital.undertak3r.repl.co/campus/${id}`,
+      process.env.URL_API + `/campus/${id}`,
       data
     );
 
