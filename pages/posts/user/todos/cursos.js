@@ -5,9 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/curso"
-  );
+  const response = await axios.get( process.env.URL_API + "/curso");
   const cursos = await response.data;
   return {
     props: {

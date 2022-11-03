@@ -6,14 +6,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    process.env.URL_API +
-    "/pesquisa"
-  );
+  const response = await axios.get(process.env.URL_API + "/pesquisa");
   const pesquisas = await response.data;
   return {
     props: {
-      pesquisas
+      pesquisas,
     },
     revalidate: 300,
   };

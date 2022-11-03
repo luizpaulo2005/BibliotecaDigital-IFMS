@@ -6,9 +6,7 @@ import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/discente"
-  );
+  const response = await axios.get( process.env.URL_API + "/discente");
   const discentes = await response.data;
   return {
     props: {

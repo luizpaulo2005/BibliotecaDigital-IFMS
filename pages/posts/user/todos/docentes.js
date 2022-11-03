@@ -5,13 +5,11 @@ import HDPagInicial from "../../../components/header/paginicial";
 import { useState } from "react";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/docente"
-  );
+  const response = await axios.get(process.env.URL_API + "/docente");
   const docentes = await response.data;
   return {
     props: {
-      docentes
+      docentes,
     },
     revalidate: 300,
   };
