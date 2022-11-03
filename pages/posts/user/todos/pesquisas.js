@@ -83,7 +83,7 @@ export default function TodasPesquisas({ pesquisas }) {
                   <td>
                     <a
                       className="btn btn-sm btn-primary"
-                      href={process.env.URL_API + `/pesquisa/download/${id}`}
+                      href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}`}
                     >
                       Download
                     </a>

@@ -77,9 +77,7 @@ export default function SoloPesquisaAdmin({ attributes }) {
               </p>
               <a
                 className="btn btn-sm btn-primary m-1"
-                href={
-                  process.env.URL_API + `/pesquisa/download/${attributes.id}`
-                }
+                href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}`}
               >
                 Download
               </a>
