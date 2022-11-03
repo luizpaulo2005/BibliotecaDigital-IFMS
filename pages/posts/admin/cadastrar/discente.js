@@ -6,13 +6,11 @@ import { toast, ToastContainer } from "react-toastify";
 import HDPagAdmin from "./../../../components/header/pagadmin";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/matricula"
-  );
+  const response = await axios.get(process.env.URL_API + "/matricula");
   const attributes = await response.data;
   return {
     props: {
-      attributes
+      attributes,
     },
   };
 };
@@ -39,13 +37,10 @@ export default function CadastrarDiscente({ attributes }) {
     }
 
     const data = {
-      ...discente
+      ...discente,
     };
 
-    const response = await axios.post(
-      "https://databasebibliotecadigital.undertak3r.repl.co/discente",
-      data
-    );
+    const response = await axios.post(process.env.URL_API + "/discente", data);
 
     if (!response.statusText === "OK") {
       toast.error("Erro ao cadastrar o aluno");

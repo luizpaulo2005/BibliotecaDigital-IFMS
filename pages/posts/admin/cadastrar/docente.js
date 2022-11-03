@@ -28,13 +28,10 @@ export default function CadastrarDocente() {
     }
 
     const data = {
-      ...docente
+      ...docente,
     };
 
-    const response = await axios.post(
-      "https://databasebibliotecadigital.undertak3r.repl.co/docente",
-      data
-    );
+    const response = await axios.post(process.env.URL_API + "/docente", data);
 
     if (!response.statusText === "OK") {
       toast.error("Erro ao cadastrar o professor");

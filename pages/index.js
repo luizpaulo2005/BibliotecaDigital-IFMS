@@ -6,9 +6,7 @@ import styles from "../styles/Home.module.css";
 import HDPagInicial from "./components/header/paginicial";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/pesquisa"
-  );
+  const response = await axios.get(process.env.URL_API + "/pesquisa");
   const attributes = await response.data;
   return {
     props: {

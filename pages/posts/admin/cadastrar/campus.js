@@ -25,13 +25,10 @@ export default function CadastrarCampus() {
       return;
     }
     const data = {
-      ...campus
+      ...campus,
     };
 
-    const response = await axios.post(
-      "https://databasebibliotecadigital.undertak3r.repl.co/campus",
-      data
-    );
+    const response = await axios.post(process.env.URL_API + "/campus", data);
 
     if (!response.statusText === "OK") {
       toast.error("Erro ao cadastrar o campus");

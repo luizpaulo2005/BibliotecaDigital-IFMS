@@ -7,19 +7,15 @@ import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 
 export const getStaticProps = async () => {
-  const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/discente"
-  );
-  const response1 = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/docente"
-  );
+  const response = await axios.get(process.env.URL_API + "/discente");
+  const response1 = await axios.get(process.env.URL_API + "/docente");
   const attributes = await response.data;
   const attributes1 = await response1.data;
 
   return {
     props: {
       attributes,
-      attributes1
+      attributes1,
     },
   };
 };
@@ -51,10 +47,10 @@ export default function CadastrarPesquisa({ attributes, attributes1 }) {
       return;
     }
     const data = {
-      ...pesquisa
+      ...pesquisa,
     };
 
-    const url = "https://databasebibliotecadigital.undertak3r.repl.co/pesquisa";
+    const url = process.env.URL_API + "/pesquisa";
 
     formData.append("titulo", data.titulo);
     formData.append("tipo", data.tipo);

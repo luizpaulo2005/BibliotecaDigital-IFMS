@@ -7,7 +7,7 @@ import HDPagAdmin from "./../../../components/header/pagadmin";
 
 export const getStaticProps = async () => {
   const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/campus"
+    process.env.URL_API + "/campus"
   );
   const attributes = await response.data;
   return {
