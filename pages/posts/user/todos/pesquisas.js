@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export const getStaticProps = async () => {
   const response = await axios.get(
-    "https://databasebibliotecadigital.undertak3r.repl.co/pesquisa"
+    `${process.env.URL_API}/pesquisa`
   );
   const pesquisas = await response.data;
   return {
