@@ -6,11 +6,11 @@ import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 
 export const getStaticProps = async () => {
-  const response = await axios.get( process.env.URL_API + "/discente");
+  const response = await axios.get(process.env.URL_API + "/discente");
   const discentes = await response.data;
   return {
     props: {
-      discentes
+      discentes,
     },
     revalidate: 300,
   };

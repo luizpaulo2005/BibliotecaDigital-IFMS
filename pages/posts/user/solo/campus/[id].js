@@ -6,12 +6,12 @@ import HDPagInicial from "../../../../components/header/paginicial";
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const response = await axios.get(
-    `https://databasebibliotecadigital.undertak3r.repl.co/campus/${id}/cursos`
+    process.env.URL_API + `/campus/${id}/cursos`
   );
   const attributes = response.data;
   return {
     props: {
-      attributes
+      attributes,
     },
   };
 };

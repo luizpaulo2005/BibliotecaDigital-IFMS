@@ -7,12 +7,12 @@ import HDPagInicial from "../../../../components/header/paginicial";
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const response = await axios.get(
-    `https://databasebibliotecadigital.undertak3r.repl.co/discente/${id}/pesquisas`
+    process.env.URL_API + `/discente/${id}/pesquisas`
   );
   const attributes = await response.data;
   return {
     props: {
-      attributes
+      attributes,
     },
   };
 };
