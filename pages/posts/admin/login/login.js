@@ -50,12 +50,12 @@ export default function Login() {
   const {setAutenticacao} = useContext(AuthContext)
 
   const firebaseConfig = {
-    apiKey: "AIzaSyCdFNaUPOEGlEeKl6KCDxjAj4VXApFo47k",
-    authDomain: "adminifms.firebaseapp.com",
-    projectId: "adminifms",
-    storageBucket: "adminifms.appspot.com",
-    messagingSenderId: "319895162614",
-    appId: "1:319895162614:web:2da4b5076c5d20f277a6d7",
+    apiKey: process.env.NEXT_PUBLIC_APP_FIREBASE_KEY,
+    authDomain: process.env.NEXT_PUBLIC_APP_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_APP_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_APP_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_APP_APP_ID,
   };
   const app = initializeApp(firebaseConfig);
   const auth = getAuth();
