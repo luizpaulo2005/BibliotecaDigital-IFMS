@@ -94,6 +94,7 @@ export default function TodasPesquisasAdmin({ pesquisas }) {
                       <a
                         className="btn btn-sm btn-primary"
                         href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}`}
+                        download
                       >
                         Download
                       </a>
