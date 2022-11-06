@@ -77,7 +77,7 @@ export default function SoloPesquisaAdmin({ attributes }) {
               </p>
               <a
                 className="btn btn-sm btn-primary m-1"
-                href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}`}
+                href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${attributes.id}`}
                 download
               >
                 Download

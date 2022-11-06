@@ -8,6 +8,7 @@ export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const response = await axios.get(process.env.URL_API + `/pesquisa/${id}`);
   const attributes = await response.data;
+  console.log(attributes)
   return {
     props: {
       attributes,
@@ -43,7 +44,7 @@ export default function SoloPesquisa({ attributes }) {
             </p>
             <a
               className="btn btn-sm btn-primary m-1"
-              href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${id}`}
+              href={`https://databasebibliotecadigital.undertak3r.repl.co/pesquisa/download/${attributes.id}`}
               download
             >
               Download
