@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import HDPagAdmin from "./../../../components/header/pagadmin";
+import HDPagAdmin from "../../../../components/header/pagadmin";
 
 export default function CadastrarCampus() {
   const [campus, setCampus] = useState({

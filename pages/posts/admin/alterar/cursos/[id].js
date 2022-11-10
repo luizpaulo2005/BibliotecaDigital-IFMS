@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
-import HDPagAdmin from "../../../../components/header/pagadmin";
+import HDPagAdmin from "../../../../../components/header/pagadmin";
 
 export const getServerSideProps = async (context) => {
   const id = context.query.id;

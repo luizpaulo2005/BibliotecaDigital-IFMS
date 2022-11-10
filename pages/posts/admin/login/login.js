@@ -1,10 +1,11 @@
 import react from "react";
-import HDPagInicial from "../../../components/header/paginicial";
+
 import { useState, useContext, useReducer, createContext } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import { initializeApp } from "firebase/app";
 import Head from "next/head";
+import HDPagInicial from "../../../../components/header/paginicial";
 
 
 export const AuthContextProvider = ({children}) => {

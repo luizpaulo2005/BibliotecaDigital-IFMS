@@ -1,7 +1,7 @@
 import axios from "axios";
 import Head from "next/head";
 import { useState } from "react";
-import HDPagAdmin from "./../../../components/header/pagadmin";
+import HDPagAdmin from "../../../../components/header/pagadmin";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
