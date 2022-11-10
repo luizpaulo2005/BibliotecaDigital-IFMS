@@ -1,5 +1,4 @@
 import Link from "next/link";
-import PaginaAdmin from "./../../posts/admin/paginaAdmin";
 
 export default function HDPagAdmin() {
   return (
