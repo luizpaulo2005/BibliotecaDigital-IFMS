@@ -99,11 +99,6 @@ export default function Home({ attributes }) {
                 placeholder="Pesquisar"
                 aria-label="Search"
               />
-              <Link href="/posts/user/todos/pesquisas">
-                <button className="btn btn-outline-success" type="submit">
-                  Search
-                </button>
-              </Link>
             </form>
           </div>
         </nav>
