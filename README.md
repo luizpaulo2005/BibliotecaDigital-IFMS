@@ -21,4 +21,5 @@ Este é o FrontEnd da Biblioteca Digital de TCCs desenvolvida para o IFMS
 
 > Diretórios
 
+- [user/slo](pages/posts/user/solo/readme.md)
 - [user/todos](pages/posts/user/todos/readme.md)
