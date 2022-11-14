@@ -1,5 +1,5 @@
 
-# Documentação do diretório user/todos
+# Documentação do diretório user/solo
 
 Basicamente todas as páginas desse diretório, só se diferenciam no que será buscado e mostrado na tela, resultando em poucas modificações de código entre elas
 
