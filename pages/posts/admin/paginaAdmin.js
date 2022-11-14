@@ -1,4 +1,4 @@
-import HDPagAdmin from "./../../components/header/pagadmin";
+import HDPagAdmin from "../../../components/header/pagadmin";
 import Link from "next/link";
 import Head from "next/head";
 import { useContext } from "react";
@@ -6,8 +6,8 @@ import Login, { AuthContext } from "./login/login";
 
 export default function PaginaAdmin() {
   const { usuario } = useContext(AuthContext);
-
   const Protecaoderota = ({ children }) => {
+ 
     return usuario ? children : <Login></Login>;
   };
 

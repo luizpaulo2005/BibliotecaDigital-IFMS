@@ -2,7 +2,7 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
-import HDPagAdmin from "../../../components/header/pagadmin";
+import HDPagAdmin from "../../../../components/header/pagadmin";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import Login, { AuthContext } from "../login/login";
