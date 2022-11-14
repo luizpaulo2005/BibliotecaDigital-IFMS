@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import HDPagInicial from "../components/header/paginicial";
-import { nome } from "../components/teste/teste";
 
 export const getStaticProps = async () => {
   const response = await axios.get(process.env.URL_API + "/pesquisa");
@@ -17,9 +16,6 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ attributes }) {
-
-  console.log(nome)
-
   return (
     <div className="container-fluid g-0">
       <Head>
