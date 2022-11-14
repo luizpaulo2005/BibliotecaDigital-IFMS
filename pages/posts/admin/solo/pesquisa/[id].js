@@ -4,7 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import HDPagAdmin from "../../../../../components/header/pagadmin";
 import { useContext } from "react";
-import Login, { AuthContext } from "../../login/login";
+import Login from "../../login/login";
 
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
