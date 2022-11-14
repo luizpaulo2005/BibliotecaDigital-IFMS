@@ -1,11 +1,12 @@
 import axios from "axios";
+import { useContext } from "react";
 import { format, parseISO } from "date-fns";
 import Head from "next/head";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
-import HDPagAdmin from "../../../components/header/pagadmin";
-import { AuthContext } from "../login/login";
-import { useContext, useEffect } from "react";
+import HDPagAdmin from "../../../../components/header/pagadmin";
+import Login from "../login/login";
+import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
 
 export const getStaticProps = async () => {
   const response = await axios.get(process.env.URL_API + "/matricula");

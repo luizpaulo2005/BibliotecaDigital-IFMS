@@ -6,7 +6,8 @@ import { useState, useEffect, useContext } from "react";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
-import { AuthContext } from "../login/login";
+import Login from "../login/login";
+import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
 
 export const getStaticProps = async () => {
   const response = await axios.get(

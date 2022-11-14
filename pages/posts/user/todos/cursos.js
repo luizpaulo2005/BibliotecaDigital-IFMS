@@ -1,6 +1,6 @@
 import axios from "axios";
 import Head from "next/head";
-import HDPagInicial from "../../../../../components/header/paginicial";
+import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 import Link from "next/link";
 

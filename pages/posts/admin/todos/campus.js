@@ -5,7 +5,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import Link from "next/link";
-import { AuthContext } from "../login/login";
+import Login from "../login/login";
+import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
 
 export const getStaticProps = async () => {
   const response = await axios.get(process.env.URL_API + "/campus");

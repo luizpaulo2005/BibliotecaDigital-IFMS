@@ -5,7 +5,8 @@ import { useState, useEffect, useContext } from "react";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
-import Login, { AuthContext } from "../login/login";
+import Login from "../login/login";
+import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
 
 export const getStaticProps = async () => {
   const response = await axios.get(process.env.URL_API + "/discente");

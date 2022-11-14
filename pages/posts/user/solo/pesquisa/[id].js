@@ -2,7 +2,7 @@ import axios from "axios";
 import { format, parseISO } from "date-fns";
 import Head from "next/head";
 import Link from "next/link";
-import HDPagInicial from "../../../../components/header/paginicial";
+import HDPagInicial from "../../../../../components/header/paginicial";
 
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
