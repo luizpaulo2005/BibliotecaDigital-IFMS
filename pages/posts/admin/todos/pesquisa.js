@@ -2,7 +2,7 @@ import Head from "next/head";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
 import { useState, useEffect, useContext } from "react";
-import HDPagAdmin from "../../../components/header/pagadmin";
+import HDPagAdmin from "../../../../components/header/pagadmin";
 import Link from "next/link";
 import { AuthContext } from "../login/login";
 
