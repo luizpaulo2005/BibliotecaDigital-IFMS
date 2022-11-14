@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { format, parseISO } from "date-fns";
 import { useState, useEffect, useContext } from "react";
-import HDPagAdmin from "../../../components/header/pagadmin";
+import HDPagAdmin from "../../../../components/header/pagadmin";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import { AuthContext } from "../login/login";
