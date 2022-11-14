@@ -2,7 +2,7 @@ import axios from "axios";
 import { format, parseISO } from "date-fns";
 import Head from "next/head";
 import Link from "next/link";
-import HDPagAdmin from "../../../../components/header/pagadmin";
+import HDPagAdmin from "../../../../../components/header/pagadmin";
 import { useContext } from "react";
 import Login, { AuthContext } from "../../login/login";
 
