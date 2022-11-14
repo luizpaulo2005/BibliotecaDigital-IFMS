@@ -7,22 +7,19 @@ import HDPagAdmin from "../../../../components/header/pagadmin";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import Login from "../login/login";
-import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
+import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 
-export const getStaticProps = async () => {
-  const response = await axios.get(
-    process.env.URL_API + "/docente"
-  );
-  const docentes = await response.data;
+export const getServerSideProps = async () => {
+  const response = await axios.get(process.env.URL_API + "/docente");
+  const attributes = await response.data;
   return {
     props: {
-      docentes
-    },
-    revalidate: 300,
+      attributes,
+    }
   };
 };
 
-export default function TodosDocentesAdmin({ docentes }) {
+export default function TodosDocentesAdmin({ attributes }) {
   let router = useRouter();
 
   const [consulta, setConsulta] = useState("");
@@ -38,10 +35,10 @@ export default function TodosDocentesAdmin({ docentes }) {
   };
 
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(docentes).length / itensporPagina);
+  const paginas = Math.ceil(filtro(attributes).length / itensporPagina);
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const docentesfiltrados = filtro(docentes).slice(startIndex, endIndex);
+  const docentesfiltrados = filtro(attributes).slice(startIndex, endIndex);
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -60,12 +57,17 @@ export default function TodosDocentesAdmin({ docentes }) {
     }
   };
 
-  const {usuario} = useContext(AuthContext)
+  const { usuario } = useContext(AuthContext);
 
-  const Protecaoderota = ({children}) => {
-    return usuario ? children : (<h2 className="mt-4 verde">Acesso negado, você precisa estar autenticado!</h2>)
-  }
-
+  const Protecaoderota = ({ children }) => {
+    return usuario ? (
+      children
+    ) : (
+      <h2 className="mt-4 verde">
+        Acesso negado, você precisa estar autenticado!
+      </h2>
+    );
+  };
 
   useEffect(() => {
     setPaginasRecorrentes(0);
@@ -98,37 +100,37 @@ export default function TodosDocentesAdmin({ docentes }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
-         <Protecaoderota>
-         <tbody>
-            {docentesfiltrados.map(
-              ({ id, nome, email, cpf, data_nascimento, formacao }) => (
-                <tr key={id}>
-                  <th scope="row">{id}</th>
-                  <td>
-                    <Link href={`/posts/admin/solo/docente/${id}`}>
-                      <a className="list-group-item">{nome}</a>
-                    </Link>
-                  </td>
-                  <td>{email}</td>
-                  <td className="d-flex justify-content-end">
-                    <Link href={`/posts/admin/alterar/docente/${id}`}>
-                      <button className="btn btn-sm btn-secondary me-1">
-                        Alterar
+          <Protecaoderota>
+            <tbody>
+              {docentesfiltrados.map(
+                ({ id, nome, email, cpf, data_nascimento, formacao }) => (
+                  <tr key={id}>
+                    <th scope="row">{id}</th>
+                    <td>
+                      <Link href={`/posts/admin/solo/docente/${id}`}>
+                        <a className="list-group-item">{nome}</a>
+                      </Link>
+                    </td>
+                    <td>{email}</td>
+                    <td className="d-flex justify-content-end">
+                      <Link href={`/posts/admin/alterar/docente/${id}`}>
+                        <button className="btn btn-sm btn-secondary me-1">
+                          Alterar
+                        </button>
+                      </Link>
+                      <button
+                        className="btn btn-sm btn-danger"
+                        onClick={handleDelete}
+                        id={id}
+                      >
+                        Apagar
                       </button>
-                    </Link>
-                    <button
-                      className="btn btn-sm btn-danger"
-                      onClick={handleDelete}
-                      id={id}
-                    >
-                      Apagar
-                    </button>
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
-         </Protecaoderota>
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </Protecaoderota>
         </table>
 
         <center>

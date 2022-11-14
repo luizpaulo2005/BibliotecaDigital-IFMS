@@ -8,14 +8,13 @@ import HDPagAdmin from "../../../../components/header/pagadmin";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/matricula");
   const attributes = await response.data;
   return {
     props: {
       attributes,
-    },
-    revalidate: 300,
+    }
   };
 };
 
