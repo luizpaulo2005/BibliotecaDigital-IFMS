@@ -3,7 +3,7 @@ import Head from "next/head";
 import { useState, useContext, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
-import HDPagAdmin from "../../../components/header/pagadmin";
+import HDPagAdmin from "../../../../components/header/pagadmin";
 import Link from "next/link";
 import { AuthContext } from "../login/login";
 
