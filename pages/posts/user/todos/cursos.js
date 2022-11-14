@@ -4,18 +4,17 @@ import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 import Link from "next/link";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/curso");
-  const cursos = await response.data;
+  const attributes = await response.data;
   return {
     props: {
-      cursos,
-    },
-    revalidate: 300,
+      attributes
+    }
   };
 };
 
-export default function TodosCursos({ cursos }) {
+export default function TodosCursos({ attributes }) {
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
@@ -29,10 +28,10 @@ export default function TodosCursos({ cursos }) {
   };
 
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(cursos).length / itensporPagina);
+  const paginas = Math.ceil(filtro(attributes).length / itensporPagina);
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const cursosfiltrados = filtro(cursos).slice(startIndex, endIndex);
+  const cursosfiltrados = filtro(attributes).slice(startIndex, endIndex);
 
   return (
     <div className="container-fluid g-0">

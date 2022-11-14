@@ -89,19 +89,6 @@ export default function Home({ attributes }) {
             <span className="visually-hidden">Next</span>
           </button>
         </div>
-
-        <nav className="navbar bg-light">
-          <div className="container-fluid textcenter">
-            <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Pesquisar"
-                aria-label="Search"
-              />
-            </form>
-          </div>
-        </nav>
       </div>
     </div>
   );

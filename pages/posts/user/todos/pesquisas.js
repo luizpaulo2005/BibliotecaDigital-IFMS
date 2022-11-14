@@ -5,18 +5,17 @@ import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (context) => {
   const response = await axios.get(process.env.URL_API + "/pesquisa");
-  const pesquisas = await response.data;
+  const attributes = await response.data;
   return {
     props: {
-      pesquisas,
-    },
-    revalidate: 300,
+      attributes
+    }
   };
 };
 
-export default function TodasPesquisas({ pesquisas }) {
+export default function TodasPesquisas({ attributes }) {
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
@@ -30,10 +29,10 @@ export default function TodasPesquisas({ pesquisas }) {
   };
 
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(pesquisas).length / itensporPagina);
+  const paginas = Math.ceil(filtro(attributes).length / itensporPagina);
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const pesquisasfiltradas = filtro(pesquisas).slice(startIndex, endIndex);
+  const pesquisasfiltradas = filtro(attributes).slice(startIndex, endIndex);
 
   useEffect(() => {
     setPaginasRecorrentes(0);

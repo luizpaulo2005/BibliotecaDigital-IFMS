@@ -4,18 +4,17 @@ import Link from "next/link";
 import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/docente");
-  const docentes = await response.data;
+  const attributes = await response.data;
   return {
     props: {
-      docentes,
-    },
-    revalidate: 300,
+      attributes
+    }
   };
 };
 
-export default function TodosDocentes({ docentes }) {
+export default function TodosDocentes({ attributes }) {
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
@@ -29,10 +28,10 @@ export default function TodosDocentes({ docentes }) {
   };
 
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(docentes).length / itensporPagina);
+  const paginas = Math.ceil(filtro(attributes).length / itensporPagina);
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const docentesfiltrados = filtro(docentes).slice(startIndex, endIndex);
+  const docentesfiltrados = filtro(attributes).slice(startIndex, endIndex);
 
   return (
     <div className="container-fluid g-0">

@@ -4,14 +4,13 @@ import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 import Link from "next/link";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/campus");
-  const campus = await response.data;
+  const attributes = await response.data;
   return {
     props: {
-      campus,
-    },
-    revalidate: 300,
+      attributes,
+    }
   };
 };
 
