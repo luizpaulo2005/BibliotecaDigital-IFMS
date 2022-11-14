@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/discente");
   const response1 = await axios.get(process.env.URL_API + "/docente");
   const attributes = await response.data;

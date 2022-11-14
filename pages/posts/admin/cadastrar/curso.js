@@ -5,14 +5,12 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 
-export const getStaticProps = async () => {
-  const response = await axios.get(
-    process.env.URL_API + "/campus"
-  );
+export const getServerSideProps = async () => {
+  const response = await axios.get(process.env.URL_API + "/campus");
   const attributes = await response.data;
   return {
     props: {
-      attributes
+      attributes,
     },
   };
 };
@@ -38,7 +36,7 @@ export default function CadastrarCurso({ attributes }) {
     }
 
     const data = {
-      ...curso
+      ...curso,
     };
 
     const response = await axios.post(

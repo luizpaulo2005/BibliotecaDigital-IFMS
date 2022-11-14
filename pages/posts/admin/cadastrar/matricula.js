@@ -5,7 +5,7 @@ import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/curso");
   const attributes = await response.data;
   return {
