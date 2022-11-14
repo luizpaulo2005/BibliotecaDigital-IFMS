@@ -2,7 +2,8 @@ import HDPagAdmin from "../../../components/header/pagadmin";
 import Link from "next/link";
 import Head from "next/head";
 import { useContext } from "react";
-import Login, { AuthContext } from "./login/login";
+import Login from "./login/login";
+import {AuthContext} from "../../../components/AuthContext&ReducerContext/AuthFunctions"
 
 export default function PaginaAdmin() {
   const { usuario } = useContext(AuthContext);
