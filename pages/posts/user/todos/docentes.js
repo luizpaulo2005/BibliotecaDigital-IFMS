@@ -1,7 +1,7 @@
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
-import HDPagInicial from "../../../components/header/paginicial";
+import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 
 export const getStaticProps = async () => {

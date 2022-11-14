@@ -1,6 +1,6 @@
 import Head from "next/head";
 import axios from "axios";
-import HDPagInicial from "../../../components/header/paginicial";
+import HDPagInicial from "../../../../components/header/paginicial";
 import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 import Link from "next/link";
