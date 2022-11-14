@@ -14,7 +14,7 @@ export const getServerSideProps = async () => {
   };
 };
 
-export default function TodosCampus({ campus }) {
+export default function TodosCampus({ attributes }) {
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
@@ -28,10 +28,10 @@ export default function TodosCampus({ campus }) {
   };
 
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(campus).length / itensporPagina);
+  const paginas = Math.ceil(filtro(attributes).length / itensporPagina);
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const campusfiltrado = filtro(campus).slice(startIndex, endIndex);
+  const campusfiltrado = filtro(attributes).slice(startIndex, endIndex);
 
   return (
     <div className="container-fluid g-0">
