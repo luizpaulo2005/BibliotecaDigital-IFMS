@@ -6,6 +6,7 @@ import HDPagAdmin from "../../../../components/header/pagadmin";
 import Link from "next/link";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
+import { filtro } from "../../../../components/Filter/filtro";
 
 export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/pesquisa");
@@ -24,17 +25,13 @@ export default function TodasPesquisasAdmin({ attributes }) {
 
   const keys = ["titulo"];
 
-  const filtro = (item) => {
-    return item.filter((item) =>
-      keys.some((key) => item[key].toLowerCase().includes(consultaGeral))
-    );
-  };
+ 
 
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(attributes).length / itensporPagina);
+  const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const pesquisasfiltradas = filtro(attributes).slice(startIndex, endIndex);
+  const pesquisasfiltradas = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
 
   useEffect(() => {
     setPaginasRecorrentes(0);

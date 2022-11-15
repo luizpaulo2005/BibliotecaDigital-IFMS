@@ -8,6 +8,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
 import Login from "../login/login";
 import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
+import { filtro } from "../../../../components/Filter/filtro";
 
 export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/docente");
@@ -28,17 +29,13 @@ export default function TodosDocentesAdmin({ attributes }) {
 
   const keys = ["nome"];
 
-  const filtro = (item) => {
-    return item.filter((item) =>
-      keys.some((key) => item[key].toLowerCase().includes(consultaGeral))
-    );
-  };
+  
 
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(attributes).length / itensporPagina);
+  const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const docentesfiltrados = filtro(attributes).slice(startIndex, endIndex);
+  const docentesfiltrados = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
 
   const handleDelete = async (e) => {
     e.preventDefault();
