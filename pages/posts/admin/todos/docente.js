@@ -76,7 +76,8 @@ export default function TodosDocentesAdmin({ attributes }) {
       </Head>
       <HDPagAdmin />
       <ToastContainer />
-      <div className="container mt-2">
+      <div className="container border rounded p-3 mt-2 w-50">
+      <div className="container">
         <form className="d-flex" role="search">
           <input
             className="form-control filtro"
@@ -87,7 +88,6 @@ export default function TodosDocentesAdmin({ attributes }) {
           />
         </form>
       </div>
-      <div className="container border rounded p-3 mt-2 w-50">
         <table className="table">
           <thead>
             <tr>

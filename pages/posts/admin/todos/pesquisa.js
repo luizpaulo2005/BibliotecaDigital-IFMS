@@ -54,8 +54,8 @@ export default function TodasPesquisasAdmin({ attributes }) {
         <title>Pesquisas</title>
       </Head>
       <HDPagAdmin />
-
-      <div className="container mt-2">
+      <div className="container border rounded mt-2 p-3 w-75">
+      <div className="container d-flex justify-content-center">
         <form className="d-flex" role="search">
           <input
             className="form-control filtro"
@@ -66,7 +66,6 @@ export default function TodasPesquisasAdmin({ attributes }) {
           />
         </form>
       </div>
-      <div className="container border rounded mt-2 p-3 w-75">
         <table className="table">
           <thead>
             <tr>

@@ -6,7 +6,7 @@ import { toast, ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import Link from "next/link";
 import Login from "../login/login";
-import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
+import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { filtro } from "../../../../components/Filter/filtro";
 
 export const getServerSideProps = async () => {
@@ -15,7 +15,7 @@ export const getServerSideProps = async () => {
   return {
     props: {
       attributes,
-    }
+    },
   };
 };
 
@@ -29,10 +29,15 @@ export default function TodosCursosAdmin({ attributes }) {
   const keys = ["nome"];
 
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
+  const paginas = Math.ceil(
+    filtro(attributes, keys, consultaGeral).length / itensporPagina
+  );
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const cursosfiltrados = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
+  const cursosfiltrados = filtro(attributes, keys, consultaGeral).slice(
+    startIndex,
+    endIndex
+  );
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -74,18 +79,18 @@ export default function TodosCursosAdmin({ attributes }) {
       </Head>
       <HDPagAdmin />
       <ToastContainer />
-      <div className="container mt-2">
-        <form className="d-flex" role="search">
-          <input
-            className="form-control filtro"
-            type="search"
-            placeholder="Pesquisar"
-            aria-label="Search"
-            onChange={(e) => setConsulta(e.target.value)}
-          />
-        </form>
-      </div>
       <div className="container border rounded mt-2 p-3 w-50">
+        <div className="container">
+          <form className="d-flex" role="search">
+            <input
+              className="form-control filtro"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Search"
+              onChange={(e) => setConsulta(e.target.value)}
+            />
+          </form>
+        </div>
         <table className="table">
           <thead>
             <tr>

@@ -3,12 +3,11 @@ import Link from "next/link";
 import Head from "next/head";
 import { useContext } from "react";
 import Login from "./login/login";
-import {AuthContext} from "../../../components/AuthContext&ReducerContext/AuthFunctions"
+import { AuthContext } from "../../../components/AuthContext&ReducerContext/AuthFunctions";
 
 export default function PaginaAdmin() {
   const { usuario } = useContext(AuthContext);
   const Protecaoderota = ({ children }) => {
- 
     return usuario ? children : <Login></Login>;
   };
 

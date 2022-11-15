@@ -5,13 +5,13 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import HDPagInicial from "../components/header/paginicial";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/pesquisa");
   const attributes = await response.data;
   return {
     props: {
       attributes,
-    },
+    }
   };
 };
 
@@ -26,8 +26,6 @@ export default function Home({ attributes }) {
         <HDPagInicial />
       </div>
       <div className={styles.main}>
-        {/* <CRSPagInicial/> */}
-
         <div
           id="carouselExampleCaptions"
           className="carousel slide carrossel border rounded"
