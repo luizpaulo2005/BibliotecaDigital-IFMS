@@ -1,5 +1,4 @@
 import react from "react";
-
 import { useState, useContext, useReducer, createContext } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
