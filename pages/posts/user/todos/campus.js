@@ -10,7 +10,7 @@ export const getServerSideProps = async () => {
   return {
     props: {
       attributes,
-    }
+    },
   };
 };
 
@@ -39,18 +39,18 @@ export default function TodosCampus({ attributes }) {
         <title>Lista de Campus</title>
       </Head>
       <HDPagInicial />
-      <div className="container mt-2">
-        <form className="d-flex" role="search">
-          <input
-            className="form-control filtro"
-            type="search"
-            placeholder="Pesquisar"
-            aria-label="Search"
-            onChange={(e) => setConsulta(e.target.value)}
-          />
-        </form>
-      </div>
       <div className="container border rounded mt-2 p-3 w-50">
+        <div className="container">
+          <form className="d-flex" role="search">
+            <input
+              className="form-control filtro"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Search"
+              onChange={(e) => setConsulta(e.target.value)}
+            />
+          </form>
+        </div>
         <table className="table">
           <thead>
             <tr>

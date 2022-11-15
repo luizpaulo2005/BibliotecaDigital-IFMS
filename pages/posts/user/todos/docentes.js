@@ -9,8 +9,8 @@ export const getServerSideProps = async () => {
   const attributes = await response.data;
   return {
     props: {
-      attributes
-    }
+      attributes,
+    },
   };
 };
 
@@ -39,18 +39,18 @@ export default function TodosDocentes({ attributes }) {
         <title>Lista de Docentes</title>
       </Head>
       <HDPagInicial />
-      <div className="container mt-2">
-        <form className="d-flex" role="search">
-          <input
-            className="form-control filtro"
-            type="search"
-            placeholder="Pesquisar"
-            aria-label="Search"
-            onChange={(e) => setConsulta(e.target.value)}
-          />
-        </form>
-      </div>
       <div className="container border rounded p-3 mt-2 w-50">
+        <div className="container">
+          <form className="d-flex" role="search">
+            <input
+              className="form-control filtro"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Search"
+              onChange={(e) => setConsulta(e.target.value)}
+            />
+          </form>
+        </div>
         <table className="table">
           <thead>
             <tr>
