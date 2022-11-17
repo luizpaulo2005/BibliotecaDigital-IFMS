@@ -5,6 +5,16 @@ import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
+/**   
+
+* getServerSideProps
+* Função que realiza a busca os dados na API
+* @namespace
+* @property {string} response - Variável que recebe os dados brutos da API
+* @property {string} attributes - Variável que converte os dados de response em JSON
+
+*/
+
 export const getServerSideProps = async (context) => {
   const response = await axios.get(process.env.URL_API + "/pesquisa");
   const attributes = await response.data;
