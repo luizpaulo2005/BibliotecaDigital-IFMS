@@ -1,3 +1,16 @@
+/** 
+ * @module user/todos/pesquisas.js
+ * 
+ * @requires axios
+ * @requires ../../../../components/header/paginicial
+ * @requires date-fns
+ * @requires react
+ * @requires next/link
+ * @requires next/head
+ * @name user/todos/pesquisas
+ * 
+ */
+
 import Head from "next/head";
 import axios from "axios";
 import HDPagInicial from "../../../../components/header/paginicial";
@@ -5,17 +18,22 @@ import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-/**   
+/**
+ * Componente que retorna os dados recebidos da API.
+ *
+ * @component
+ * @async
+ * @example
+ * const response = await axios.get(process.env.URL_API + "/pesquisa");
+ * const attributes = await response.data;
+ * return {
+    props: {
+      attributes
+    }
+  };
+ */
 
-* getServerSideProps
-* Função que realiza a busca os dados na API
-* @namespace
-* @property {string} response - Variável que recebe os dados brutos da API
-* @property {string} attributes - Variável que converte os dados de response em JSON
-
-*/
-
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/pesquisa");
   const attributes = await response.data;
   return {
@@ -24,6 +42,34 @@ export const getServerSideProps = async (context) => {
     },
   };
 };
+
+/**
+ * Componente que renderiza a página user/todos/pesquisas e envia o formulário
+ * 
+ * @component
+ * @example
+ * const [consulta, setConsulta] = useState("");
+ * const [itensporPagina, setItensporPagina] = useState(10);
+ * const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
+ *
+ * const keys = ["titulo"];
+ *
+ * const filtro = (item) => {
+ *   return item.filter((item) =>
+ *     keys.some((key) => item[key].toLowerCase().includes(consultaGeral))
+ *   );
+ * };
+ *
+ * const consultaGeral = consulta.toLowerCase();
+ * const paginas = Math.ceil(filtro(attributes).length / itensporPagina);
+ * const startIndex = paginasRecorrentes * itensporPagina;
+ * const endIndex = startIndex + itensporPagina;
+ * const pesquisasfiltradas = filtro(attributes).slice(startIndex, endIndex);
+ *
+ * useEffect(() => {
+ *   setPaginasRecorrentes(0);
+ * }, [setItensporPagina]);
+ */
 
 export default function TodasPesquisas({ attributes }) {
   const [consulta, setConsulta] = useState("");

@@ -52,7 +52,7 @@ export default function Login() {
 
       <form onSubmit={handleLogin} className="container mt-2">
         <fieldset className="border rounded p-3 mt-2">
-          <legend className="container navbar navbar-expand-lg bg-light verde">
+          <legend className="container navbar navbar-expand-lg verde">
             {" "}
             Autenticação de Acesso
           </legend>
