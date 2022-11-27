@@ -3,6 +3,15 @@ import Head from "next/head";
 import Link from "next/link";
 import HDPagInicial from "../../../../../components/header/paginicial";
 
+/* 
+Função getServerSideProps
+É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo;
+Como esse arquivo realiza a busca de um objeto em específico em sua primeira variável atribuimos o ID a ser buscado utilizando o parâmetro context;
+A segunda variável, response, é a que realiza a conexão e chama os dados para si mesma;
+A terceira variável, attributes, coleta os dados da variável response e os converte para objeto;
+Por fim, a função retorna em um objeto a variável attributes para ser utilizada em outros componentes;
+*/
+
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const response = await axios.get(
@@ -15,6 +24,14 @@ export const getServerSideProps = async (context) => {
     },
   };
 };
+
+/* 
+Função SoloCampus
+A função principal é a que renderiza o conteúdo inserido nela;
+
+Por fim a função retorna o HTML contendo a tabela que irá conter os dados trazidos da função getServerSideProps, junto à paginação;
+
+*/
 
 export default function SoloCampus({ attributes }) {
   return (
