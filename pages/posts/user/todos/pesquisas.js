@@ -4,6 +4,7 @@ import HDPagInicial from "../../../../components/header/paginicial";
 import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { filtro } from './../../../../components/Filter/filtro';
 
 /**   
 
@@ -32,17 +33,12 @@ export default function TodasPesquisas({ attributes }) {
 
   const keys = ["titulo"];
 
-  const filtro = (item) => {
-    return item.filter((item) =>
-      keys.some((key) => item[key].toLowerCase().includes(consultaGeral))
-    );
-  };
 
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(attributes).length / itensporPagina);
+  const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const pesquisasfiltradas = filtro(attributes).slice(startIndex, endIndex);
+  const pesquisasfiltradas = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
 
   useEffect(() => {
     setPaginasRecorrentes(0);

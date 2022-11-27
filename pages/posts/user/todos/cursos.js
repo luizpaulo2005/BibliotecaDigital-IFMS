@@ -3,6 +3,7 @@ import Head from "next/head";
 import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 import Link from "next/link";
+import { filtro } from './../../../../components/Filter/filtro';
 
 export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/curso");
@@ -21,17 +22,13 @@ export default function TodosCursos({ attributes }) {
 
   const keys = ["nome"];
 
-  const filtro = (item) => {
-    return item.filter((item) =>
-      keys.some((key) => item[key].toLowerCase().includes(consultaGeral))
-    );
-  };
+
 
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(attributes).length / itensporPagina);
+  const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const cursosfiltrados = filtro(attributes).slice(startIndex, endIndex);
+  const cursosfiltrados = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
 
   return (
     <div className="container-fluid g-0">
