@@ -1,4 +1,3 @@
-
 # Documentação do diretório admin/solo
 
 Basicamente todas as páginas desse diretório, só se diferenciam no que será buscado e mostrado na tela, resultando em poucas modificações de código entre elas, em comparação ao diretório ``` user/solo ``` , esse diretório possui algumas adições, como o botão de alteração e de exclusão
