@@ -6,7 +6,6 @@ import { toast, ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
-import Login from './../login/login';
 
 export default function CadastrarDocente() {
  
