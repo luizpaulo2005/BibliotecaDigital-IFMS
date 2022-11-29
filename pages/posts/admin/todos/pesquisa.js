@@ -5,8 +5,16 @@ import { useState, useEffect, useContext } from "react";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import Link from "next/link";
 import Login from "../login/login";
-import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
+import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { filtro } from "../../../../components/Filter/filtro";
+
+/* 
+Função getServerSideProps
+É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo
+Sua primeira variável, response, é a que realiza a conexão e chama os dados para si mesma
+A segunda variável, attributes, coleta os dados da variável response e os converte para objeto
+Por fim, a função retorna em um objeto a variável attributes para ser utilizada em outros componentes
+*/
 
 export const getServerSideProps = async () => {
   const response = await axios.get(process.env.URL_API + "/pesquisa");
@@ -14,9 +22,20 @@ export const getServerSideProps = async () => {
   return {
     props: {
       attributes,
-    }
+    },
   };
 };
+
+/* 
+Função TodasPesquisasAdmin
+A função principal é a que renderiza o conteúdo inserido nela, porém antes de se retornar algo, foi inserido um tratamento para realizar a paginação
+
+Explicar Paginação
+Explicar Proteção de Rotas
+
+Por fim a função retorna o HTML contendo a tabela que irá conter os dados trazidos da função getServerSideProps, junto à paginação
+
+*/
 
 export default function TodasPesquisasAdmin({ attributes }) {
   const [consulta, setConsulta] = useState("");
@@ -25,13 +44,16 @@ export default function TodasPesquisasAdmin({ attributes }) {
 
   const keys = ["titulo"];
 
- 
-
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
+  const paginas = Math.ceil(
+    filtro(attributes, keys, consultaGeral).length / itensporPagina
+  );
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const pesquisasfiltradas = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
+  const pesquisasfiltradas = filtro(attributes, keys, consultaGeral).slice(
+    startIndex,
+    endIndex
+  );
 
   useEffect(() => {
     setPaginasRecorrentes(0);
@@ -55,17 +77,17 @@ export default function TodasPesquisasAdmin({ attributes }) {
       </Head>
       <HDPagAdmin />
       <div className="container border rounded mt-2 p-3 w-75">
-      <div className="container d-flex justify-content-center">
-        <form className="d-flex" role="search">
-          <input
-            className="form-control filtro"
-            type="search"
-            placeholder="Pesquisar"
-            aria-label="Search"
-            onChange={(e) => setConsulta(e.target.value)}
-          />
-        </form>
-      </div>
+        <div className="container d-flex justify-content-center">
+          <form className="d-flex" role="search">
+            <input
+              className="form-control filtro"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Search"
+              onChange={(e) => setConsulta(e.target.value)}
+            />
+          </form>
+        </div>
         <table className="table">
           <thead>
             <tr>
