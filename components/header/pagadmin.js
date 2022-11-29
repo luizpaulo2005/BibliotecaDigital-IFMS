@@ -1,19 +1,21 @@
 import Link from "next/link";
-import { AuthContextProvider, AuthContext, AuthReducer } from './../AuthContext&ReducerContext/AuthFunctions';
+import {
+  AuthContextProvider,
+  AuthContext,
+  AuthReducer,
+} from "./../AuthContext&ReducerContext/AuthFunctions";
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 
-
 export default function HDPagAdmin() {
   let router = useRouter();
-  const {setAutenticacao} = useContext(AuthContext)
-  const {usuario} = useContext(AuthContext) 
-  const handleLogout =(e)=>{
+  const { setAutenticacao } = useContext(AuthContext);
+  const { usuario } = useContext(AuthContext);
+  const handleLogout = (e) => {
     const user = usuario;
-    setAutenticacao({type:"LOGOUT", payload:user})
+    setAutenticacao({ type: "LOGOUT", payload: user });
     router.push("/");
-  }
-
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-success">
@@ -98,9 +100,15 @@ export default function HDPagAdmin() {
               </ul>
             </li>
           </ul>
-          {usuario &&(<span class="navbar-text" role="search">
-         <form class="d-flex" onSubmit={handleLogout}><button className="form-control me-2 btn-outline-light">Logout</button></form>
-        </span>)}
+          {usuario && (
+            <span class="navbar-text" role="search">
+              <form class="d-flex" onSubmit={handleLogout}>
+                <button className="form-control me-2 btn-outline-light">
+                  Logout
+                </button>
+              </form>
+            </span>
+          )}
         </div>
       </div>
     </nav>
