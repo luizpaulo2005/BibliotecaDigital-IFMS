@@ -2,8 +2,11 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import HDPagAdmin from "../../../../../components/header/pagadmin";
+import Login from "../../login/login";
+import { parseCookies } from 'nookies';
 
 export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const id = context.query.id;
   const response = await axios.get(
     process.env.URL_API + `/campus/${id}/cursos`
@@ -13,11 +16,12 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       attributes,
+      Auth: cookies.usuario || null
     },
   };
 };
 
-export default function SoloCampusAdmin({ attributes }) {
+export default function SoloCampusAdmin({ attributes, Auth }) {
   const handleDelete = async (e) => {
     e.preventDefault();
     const { id } = e.target;
@@ -33,8 +37,15 @@ export default function SoloCampusAdmin({ attributes }) {
     }
   };
 
+  const usuario = Auth
+
+  const Protecaoderota =({children})=>{
+    return usuario ? children : <Login></Login>
+  }
+
   return (
-    <div className="container-fluid g-0">
+    <Protecaoderota>
+      <div className="container-fluid g-0">
       <Head>
         <title>{attributes.nome}</title>
       </Head>
@@ -73,5 +84,6 @@ export default function SoloCampusAdmin({ attributes }) {
         </div>
       </div>
     </div>
+    </Protecaoderota>
   );
 }

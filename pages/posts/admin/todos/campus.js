@@ -8,18 +8,21 @@ import Link from "next/link";
 import Login from "../login/login";
 import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { filtro } from "../../../../components/Filter/filtro";
+import { parseCookies } from "nookies";
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/campus");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth:cookies.usuario || null
     },
   };
 };
 
-export default function TodosCampusAdmin({ attributes }) {
+export default function TodosCampusAdmin({ attributes, Auth }) {
   let router = useRouter();
 
   const [consulta, setConsulta] = useState("");
@@ -56,22 +59,10 @@ export default function TodosCampusAdmin({ attributes }) {
     }
   };
 
-  const { usuario } = useContext(AuthContext);
-  const Protecaoderota = ({ children }) => {
+  const usuario  = Auth;
+  const Protecaoderota = () => {
     return usuario ? (
-      children
-    ) : (
-      <h2 className="mt-4 verde">
-        Acesso negado, você precisa estar autenticado!
-      </h2>
-    );
-  };
-
-  useEffect(() => {
-    setPaginasRecorrentes(0);
-  }, [setItensporPagina]);
-  return (
-    <div className="container-fluid g-0">
+      <div className="container-fluid g-0">
       <Head>
         <title>Lista de Campus</title>
       </Head>
@@ -97,7 +88,7 @@ export default function TodosCampusAdmin({ attributes }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
-          <Protecaoderota>
+          
             <tbody>
               {campusfiltrado.map(({ id, nome }) => (
                 <tr key={id}>
@@ -124,7 +115,7 @@ export default function TodosCampusAdmin({ attributes }) {
                 </tr>
               ))}
             </tbody>
-          </Protecaoderota>
+         
         </table>
 
         <center>
@@ -160,5 +151,15 @@ export default function TodosCampusAdmin({ attributes }) {
         </center>
       </div>
     </div>
+    ) : (
+      <Login></Login>
+    );
+  };
+
+  useEffect(() => {
+    setPaginasRecorrentes(0);
+  }, [setItensporPagina]);
+  return (
+   <Protecaoderota></Protecaoderota>
   );
 }

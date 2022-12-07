@@ -4,18 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import HDPagInicial from "../components/header/paginicial";
+import { parseCookies } from 'nookies';
 
-export const getServerSideProps = async () => {
+
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/pesquisa");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth: cookies.usuario || null
     }
   };
 };
 
-export default function Home({ attributes }) {
+export default function Home({ attributes, Auth }) {
   return (
     <div className="container-fluid g-0">
       <Head>
@@ -23,7 +27,7 @@ export default function Home({ attributes }) {
       </Head>
 
       <div>
-        <HDPagInicial />
+        <HDPagInicial Auth={Auth} />
       </div>
       <div className={styles.main}>
         <div

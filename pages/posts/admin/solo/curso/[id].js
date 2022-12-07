@@ -2,19 +2,29 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import HDPagAdmin from "../../../../../components/header/pagadmin";
+import { parseCookies } from "nookies";
+import Login from "../../login/login";
 
 export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const id = context.query.id;
   const response = await axios.get(process.env.URL_API + `/curso/${id}`);
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth: cookies.usuario || null
     },
   };
 };
 
-export default function SoloCursoAdmin({ attributes }) {
+export default function SoloCursoAdmin({ attributes, Auth }) {
+  const usuario = Auth
+
+  const Protecaoderota = ({children}) =>{
+    return usuario ? children : <Login></Login>
+  }
+
   const handleDelete = async (e) => {
     e.preventDefault();
     const { id } = e.target;
@@ -31,7 +41,8 @@ export default function SoloCursoAdmin({ attributes }) {
   };
 
   return (
-    <div className="container-fluid g-0">
+   <Protecaoderota>
+     <div className="container-fluid g-0">
       <Head>
         <title>{attributes.nome}</title>
       </Head>
@@ -60,5 +71,6 @@ export default function SoloCursoAdmin({ attributes }) {
         </div>
       </div>
     </div>
+   </Protecaoderota>
   );
 }

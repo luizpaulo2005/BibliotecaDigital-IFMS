@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import HDPagAdmin from "../../../../../components/header/pagadmin";
 
+
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const response = await axios.get(

@@ -3,7 +3,7 @@ import { format, parseISO } from "date-fns";
 import Head from "next/head";
 import Link from "next/link";
 import HDPagInicial from "../../../../../components/header/paginicial";
-
+import { parseCookies } from 'nookies';
 /* 
 Função getServerSideProps
 É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo;
@@ -14,6 +14,7 @@ Por fim, a função retorna em um objeto a variável attributes para ser utiliza
 */
 
 export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const id = context.query.id;
   const response = await axios.get(process.env.URL_API + `/pesquisa/${id}`);
   const attributes = await response.data;
@@ -21,6 +22,7 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       attributes,
+      Auth : cookies.usuario || null
     },
   };
 };
@@ -33,13 +35,13 @@ Por fim a função retorna o HTML contendo a tabela que irá conter os dados tra
 
 */
 
-export default function SoloPesquisa({ attributes }) {
+export default function SoloPesquisa({ attributes, Auth }) {
   return (
     <div className="container-fluid g-0">
       <Head>
         <title>{attributes.titulo}</title>
       </Head>
-      <HDPagInicial />
+      <HDPagInicial Auth={Auth} />
       <div className="container rounded mt-2 p-3 w-75 d-flex justify-content-center flex-column">
         <div className="card">
           <div className="card-header">Título: {attributes.titulo}</div>

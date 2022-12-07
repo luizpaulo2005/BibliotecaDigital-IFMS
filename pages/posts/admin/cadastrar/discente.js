@@ -6,24 +6,25 @@ import { toast, ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
+import { parseCookies } from 'nookies';
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/matricula");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth: cookies.usuario || null
     },
   };
 };
 
-export default function CadastrarDiscente({ attributes }) {
+export default function CadastrarDiscente({ attributes, Auth }) {
 
-  const {usuario} = useContext(AuthContext)
+  const usuario = Auth
 
  const Protecaoderota = () =>{
-
-console.log(usuario)
 
   const [discente, setDiscente] = useState({
     nome: "",

@@ -5,6 +5,8 @@ import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { filtro } from './../../../../components/Filter/filtro';
+import { parseCookies } from 'nookies';
+
 
 /* 
 Função getServerSideProps
@@ -14,12 +16,14 @@ A segunda variável, attributes, coleta os dados da variável response e os conv
 Por fim, a função retorna em um objeto a variável attributes para ser utilizada em outros componentes
 */
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/pesquisa");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth : cookies.usuario || null
     },
   };
 };
@@ -34,7 +38,7 @@ Por fim a função retorna o HTML contendo a tabela que irá conter os dados tra
 
 */
 
-export default function TodasPesquisas({ attributes }) {
+export default function TodasPesquisas({ attributes, Auth }) {
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
@@ -57,7 +61,7 @@ export default function TodasPesquisas({ attributes }) {
       <Head>
         <title>Pesquisas</title>
       </Head>
-      <HDPagInicial />
+      <HDPagInicial Auth={Auth} />
       <div className="container border rounded mt-2 p-3">
         <div className="container d-flex justify-content-center">
           <form className="d-flex" role="search">

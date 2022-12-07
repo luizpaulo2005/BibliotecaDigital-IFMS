@@ -1,23 +1,26 @@
 import axios from "axios";
-import { format, parseISO } from "date-fns";
+import { format, nextSunday, parseISO } from "date-fns";
 import Head from "next/head";
 import Link from "next/link";
 import HDPagAdmin from "../../../../../components/header/pagadmin";
 import { useContext } from "react";
 import Login from "../../login/login";
+import { parseCookies } from 'nookies';
 
 export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const id = context.query.id;
   const response = await axios.get(process.env.URL_API + `/pesquisa/${id}`);
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth: cookies.usuario || null
     },
   };
 };
 
-export default function SoloPesquisaAdmin({ attributes }) {
+export default function SoloPesquisaAdmin({ attributes, Auth }) {
   const handleDelete = async (e) => {
     e.preventDefault();
     const { id } = e.target;
@@ -35,7 +38,7 @@ export default function SoloPesquisaAdmin({ attributes }) {
     }
   };
 
-  const { usuario } = useContext(AuthContext);
+  const  usuario = Auth;
   const Protecaoderota = ({ children }) => {
     return usuario ? children : <Login></Login>;
   };

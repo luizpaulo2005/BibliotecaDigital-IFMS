@@ -8,19 +8,27 @@ import Link from "next/link";
 import Login from "../login/login";
 import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { filtro } from "../../../../components/Filter/filtro";
+import { parseCookies } from "nookies";
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/curso");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth: cookies.usuario || null
     },
   };
 };
 
-export default function TodosCursosAdmin({ attributes }) {
-  let router = useRouter();
+export default function TodosCursosAdmin({ attributes, Auth }) {
+  
+
+  const usuario = Auth
+
+  const Protecaoderota = ({ children }) => {
+    let router = useRouter();
 
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
@@ -55,25 +63,11 @@ export default function TodosCursosAdmin({ attributes }) {
       toast.success("Curso excluído com sucesso");
     }
   };
-
-  const { usuario } = useContext(AuthContext);
-
-  const Protecaoderota = ({ children }) => {
-    return usuario ? (
-      children
-    ) : (
-      <h2 className="mt-4 verde">
-        Acesso negado, você precisa estar autenticado!
-      </h2>
-    );
-  };
-
   useEffect(() => {
     setPaginasRecorrentes(0);
   }, [setItensporPagina]);
-
-  return (
-    <div className="container-fluid g-0">
+    return usuario ? (
+      <div className="container-fluid g-0">
       <Head>
         <title>Lista de Cursos</title>
       </Head>
@@ -100,7 +94,6 @@ export default function TodosCursosAdmin({ attributes }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
-          <Protecaoderota>
             <tbody>
               {cursosfiltrados.map(({ id, nome, campus }) => (
                 <tr key={id}>
@@ -128,7 +121,6 @@ export default function TodosCursosAdmin({ attributes }) {
                 </tr>
               ))}
             </tbody>
-          </Protecaoderota>
         </table>
 
         <center>
@@ -164,5 +156,15 @@ export default function TodosCursosAdmin({ attributes }) {
         </center>
       </div>
     </div>
-  );
+  )
+     : (
+      <Login></Login>
+    );
+  };
+
+
+
+  return (
+    <Protecaoderota></Protecaoderota>
+  )
 }

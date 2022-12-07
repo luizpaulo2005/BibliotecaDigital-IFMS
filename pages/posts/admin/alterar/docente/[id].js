@@ -4,66 +4,74 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../../../components/header/pagadmin";
+import { parseCookies } from 'nookies';
+import Login from "../../login/login";
 
 export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const id = context.query.id;
   const response = await axios.get(process.env.URL_API + `/docente/${id}`);
   const docentes = await response.data;
   return {
     props: {
       docentes,
+      Auth : cookies.usuario || null
     },
   };
 };
 
-export default function AlterarDocente({ docentes }) {
-  const [docente, setDocente] = useState({
-    nome: "",
-    siape: "",
-    email: "",
-    data_nascimento: "",
-    cpf: "",
-    formacao: "",
-  });
+export default function AlterarDocente({ docentes, Auth }) {
+ 
+  const usuario = Auth
 
-  let router = useRouter();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const emptyFieldCheck = Object.values(docente).some(
-      (element) => element === ""
-    );
-    if (emptyFieldCheck) {
-      toast.error("Há algum campo vazio");
-      return;
-    }
-
-    const data = {
-      ...docente,
+  const Protecaoderota =()=>{
+    const [docente, setDocente] = useState({
+      nome: "",
+      siape: "",
+      email: "",
+      data_nascimento: "",
+      cpf: "",
+      formacao: "",
+    });
+  
+    let router = useRouter();
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const emptyFieldCheck = Object.values(docente).some(
+        (element) => element === ""
+      );
+      if (emptyFieldCheck) {
+        toast.error("Há algum campo vazio");
+        return;
+      }
+  
+      const data = {
+        ...docente,
+      };
+      const id = docentes.id;
+      const response = await axios.put(
+        process.env.URL_API + `/docente/${id}`,
+        data
+      );
+  
+      if (!response.statusText === "OK") {
+        toast.error("Erro ao alterar o professor");
+      } else {
+        toast.success("Professor alterado com sucesso");
+        router.push("/posts/admin/todos/docente");
+      }
     };
-    const id = docentes.id;
-    const response = await axios.put(
-      process.env.URL_API + `/docente/${id}`,
-      data
-    );
+  
+    const handleInputChange = (e) => {
+      const { id, value } = e.target;
+      setDocente({ ...docente, [id]: value });
+    };
+  
+    const { nome, siape, email, data_nascimento, cpf, formacao } = docente;
 
-    if (!response.statusText === "OK") {
-      toast.error("Erro ao alterar o professor");
-    } else {
-      toast.success("Professor alterado com sucesso");
-      router.push("/posts/admin/todos/docente");
-    }
-  };
-
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setDocente({ ...docente, [id]: value });
-  };
-
-  const { nome, siape, email, data_nascimento, cpf, formacao } = docente;
-
-  return (
-    <div className="container-fluid g-0">
+    return usuario ? (
+      <div className="container-fluid g-0">
       <Head>
         <title>Cadastro de Professor</title>
       </Head>
@@ -170,5 +178,12 @@ export default function AlterarDocente({ docentes }) {
         </form>
       </div>
     </div>
+    ): (
+      <Login></Login>
+    )
+  }
+
+  return (
+    <Protecaoderota></Protecaoderota>
   );
 }

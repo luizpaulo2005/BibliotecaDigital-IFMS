@@ -8,72 +8,66 @@ import { toast, ToastContainer } from "react-toastify";
 import Login from "../login/login";
 import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { filtro } from "../../../../components/Filter/filtro";
+import { parseCookies } from 'nookies';
 
-export const getServerSideProps = async () => {
+export async function getServerSideProps (context){
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/discente");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth: cookies.usuario || null
     },
   };
 };
 
-export default function TodosDiscentesAdmin({ attributes }) {
-  let router = useRouter();
-
-  const [consulta, setConsulta] = useState("");
-  const [itensporPagina, setItensporPagina] = useState(10);
-  const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
-
-  const keys = ["nome"];
-
-  const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(
-    filtro(attributes, keys, consultaGeral).length / itensporPagina
-  );
-  const startIndex = paginasRecorrentes * itensporPagina;
-  const endIndex = startIndex + itensporPagina;
-  const discentesfiltrados = filtro(attributes, keys, consultaGeral).slice(
-    startIndex,
-    endIndex
-  );
-
-  useEffect(() => {
-    setPaginasRecorrentes(0);
-  }, [setItensporPagina]);
-
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    const { id } = e.target;
-    const data = {
-      id: Number(id),
-    };
-    const response = await axios.delete(
-      `https://databasebibliotecadigital.undertak3r.repl.co/discente/${id}`
-    );
-    if (!response.statusText === "OK") {
-      toast.error("Erro ao excluir o aluno");
-    } else {
-      router.push("/posts/admin/todos/discente");
-      toast.success("Aluno excluído com sucesso");
-    }
-  };
-
-  const { usuario } = useContext(AuthContext);
+export default function TodosDiscentesAdmin({ attributes, Auth }) {
+  const  usuario  = Auth
 
   const Protecaoderota = ({ children }) => {
-    return usuario ? (
-      children
-    ) : (
-      <h2 className="mt-4 verde">
-        Acesso negado, você precisa estar autenticado!
-      </h2>
-    );
-  };
+    let router = useRouter();
 
-  return (
-    <div className="container-fluid g-0">
+    const [consulta, setConsulta] = useState("");
+    const [itensporPagina, setItensporPagina] = useState(10);
+    const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
+  
+    const keys = ["nome"];
+  
+    const consultaGeral = consulta.toLowerCase();
+    const paginas = Math.ceil(
+      filtro(attributes, keys, consultaGeral).length / itensporPagina
+    );
+    const startIndex = paginasRecorrentes * itensporPagina;
+    const endIndex = startIndex + itensporPagina;
+    const discentesfiltrados = filtro(attributes, keys, consultaGeral).slice(
+      startIndex,
+      endIndex
+    );
+  
+    useEffect(() => {
+      setPaginasRecorrentes(0);
+    }, [setItensporPagina]);
+  
+    const handleDelete = async (e) => {
+      e.preventDefault();
+      const { id } = e.target;
+      const data = {
+        id: Number(id),
+      };
+      const response = await axios.delete(
+        `https://databasebibliotecadigital.undertak3r.repl.co/discente/${id}`
+      );
+      if (!response.statusText === "OK") {
+        toast.error("Erro ao excluir o aluno");
+      } else {
+        router.push("/posts/admin/todos/discente");
+        toast.success("Aluno excluído com sucesso");
+      }
+    };
+
+    return usuario ? (
+      <div className="container-fluid g-0">
       <Head>
         <title>Lista de Alunos</title>
       </Head>
@@ -100,7 +94,7 @@ export default function TodosDiscentesAdmin({ attributes }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
-          <Protecaoderota handleDelete={handleDelete}>
+         
             <tbody>
               {discentesfiltrados.map(
                 ({ id, nome, email, data_nascimento }) => (
@@ -130,7 +124,7 @@ export default function TodosDiscentesAdmin({ attributes }) {
                 )
               )}
             </tbody>
-          </Protecaoderota>
+          
         </table>
 
         <center>
@@ -166,5 +160,12 @@ export default function TodosDiscentesAdmin({ attributes }) {
         </center>
       </div>
     </div>
+    ) : (
+     <Login></Login>
+    );
+  };
+
+  return (
+   <Protecaoderota></Protecaoderota>
   );
 }

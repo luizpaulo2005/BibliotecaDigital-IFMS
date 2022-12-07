@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }) {
     import("bootstrap/dist/js/bootstrap");
   }, []);
   return (
+    //Aqui eu espalho o status do usuário pela aplicação
     <AuthContextProvider>
       <Component {...pageProps} />
     </AuthContextProvider>

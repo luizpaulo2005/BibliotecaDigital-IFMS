@@ -7,8 +7,10 @@ import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
+import { parseCookies } from 'nookies';
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/discente");
   const response1 = await axios.get(process.env.URL_API + "/docente");
   const attributes = await response.data;
@@ -18,14 +20,14 @@ export const getServerSideProps = async () => {
     props: {
       attributes,
       attributes1,
+      Auth: cookies.usuario || null
     },
   };
 };
 
-export default function CadastrarPesquisa({ attributes, attributes1 }) {
+export default function CadastrarPesquisa({ attributes, attributes1, Auth}) {
   
-  const {usuario} = useContext(AuthContext)
-
+  const usuario = Auth
   const Protecaoderota = () =>{
     const [file, setFile] = useState();
 

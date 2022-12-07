@@ -7,18 +7,21 @@ import { ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
+import { parseCookies } from 'nookies';
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/matricula");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth: cookies.usuario || null
     }
   };
 };
 
-export default function TodasMatriculasAdmin({ attributes }) {
+export default function TodasMatriculasAdmin({ attributes, Auth }) {
   const handleDelete = async (e) => {
     e.preventDefault();
     const { id } = e.target;
@@ -36,20 +39,11 @@ export default function TodasMatriculasAdmin({ attributes }) {
     }
   };
 
-  const { usuario } = useContext(AuthContext);
+  const usuario = Auth;
 
-  const Protecaoderota = ({ children }) => {
+  const Protecaoderota = () => {
     return usuario ? (
-      children
-    ) : (
-      <h2 className="mt-4 verde">
-        Acesso negado, você precisa estar autenticado!
-      </h2>
-    );
-  };
-
-  return (
-    <div className="container-fluid g-0">
+      <div className="container-fluid g-0">
       <Head>
         <title>Lista de Matriculas</title>
       </Head>
@@ -65,7 +59,6 @@ export default function TodasMatriculasAdmin({ attributes }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
-          <Protecaoderota>
             <tbody>
               {attributes.map(({ id, data_inicio, discentes }) => (
                 <tr key={id}>
@@ -91,9 +84,15 @@ export default function TodasMatriculasAdmin({ attributes }) {
                 </tr>
               ))}
             </tbody>
-          </Protecaoderota>
         </table>
       </div>
     </div>
+    ) : (
+     <Login></Login>
+    );
+  };
+
+  return (
+  <Protecaoderota></Protecaoderota>
   );
 }

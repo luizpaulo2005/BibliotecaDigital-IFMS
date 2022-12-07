@@ -9,19 +9,25 @@ import { useRouter } from "next/router";
 import Login from "../login/login";
 import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { filtro } from "../../../../components/Filter/filtro";
+import { parseCookies } from 'nookies';
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/docente");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth : cookies.usuario || null
     }
   };
 };
 
-export default function TodosDocentesAdmin({ attributes }) {
-  let router = useRouter();
+export default function TodosDocentesAdmin({ attributes, Auth }) {
+  const usuario = Auth;
+
+  const Protecaoderota = () => {
+    let router = useRouter();
 
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
@@ -53,24 +59,12 @@ export default function TodosDocentesAdmin({ attributes }) {
       toast.success("Professor excluído com sucesso");
     }
   };
-
-  const { usuario } = useContext(AuthContext);
-
-  const Protecaoderota = ({ children }) => {
-    return usuario ? (
-      children
-    ) : (
-      <h2 className="mt-4 verde">
-        Acesso negado, você precisa estar autenticado!
-      </h2>
-    );
-  };
-
   useEffect(() => {
     setPaginasRecorrentes(0);
   }, [setItensporPagina]);
-  return (
-    <div className="container-fluid g-0">
+
+    return usuario ? (
+      <div className="container-fluid g-0">
       <Head>
         <title>Lista de Docentes</title>
       </Head>
@@ -97,7 +91,6 @@ export default function TodosDocentesAdmin({ attributes }) {
               <th className="d-flex justify-content-end">Ações</th>
             </tr>
           </thead>
-          <Protecaoderota>
             <tbody>
               {docentesfiltrados.map(
                 ({ id, nome, email, cpf, data_nascimento, formacao }) => (
@@ -127,7 +120,6 @@ export default function TodosDocentesAdmin({ attributes }) {
                 )
               )}
             </tbody>
-          </Protecaoderota>
         </table>
 
         <center>
@@ -163,5 +155,12 @@ export default function TodosDocentesAdmin({ attributes }) {
         </center>
       </div>
     </div>
+    ) : (
+      <Login></Login>
+    );
+  };
+
+  return (
+   <Protecaoderota></Protecaoderota>
   );
 }

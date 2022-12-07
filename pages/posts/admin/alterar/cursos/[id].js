@@ -4,8 +4,11 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../../../components/header/pagadmin";
+import { parseCookies } from 'nookies';
+import Login from './../../login/login';
 
 export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const id = context.query.id;
   const response = await axios.get(
     process.env.URL_API + `/curso/${id}/allattributes`
@@ -14,56 +17,60 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       cursos,
+      Auth: cookies.usuario
     },
   };
 };
 
-export default function AlterarCurso({ cursos }) {
-  const [curso, setCurso] = useState({
-    nome: "",
-    grade: "",
-    duracao: "",
-    campusId: "",
-  });
+export default function AlterarCurso({ cursos, Auth }) {
+  
+  const usuario = Auth;
 
-  let router = useRouter();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const emptyFieldCheck = Object.values(curso).some(
-      (element) => element === ""
-    );
-    if (emptyFieldCheck) {
-      toast.error("Há algum campo vazio");
-      return;
-    }
-
-    const data = {
-      ...curso,
+  const Protecaoderota = () =>{
+    const [curso, setCurso] = useState({
+      nome: "",
+      grade: "",
+      duracao: "",
+      campusId: "",
+    });
+  
+    let router = useRouter();
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const emptyFieldCheck = Object.values(curso).some(
+        (element) => element === ""
+      );
+      if (emptyFieldCheck) {
+        toast.error("Há algum campo vazio");
+        return;
+      }
+  
+      const data = {
+        ...curso,
+      };
+      const id = cursos.id;
+      const response = await axios.put(
+        process.env.URL_API + `/curso/${id}`,
+        data
+      );
+  
+      if (!response.statusText === "OK") {
+        toast.error("Erro ao cadastrar o curso");
+      } else {
+        toast.success("Curso adicionado com sucesso");
+        router.push("/posts/admin/todos/cursos");
+      }
     };
-    const id = cursos.id;
-    const response = await axios.put(
-      process.env.URL_API + `/curso/${id}`,
-      data
-    );
+  
+    const handleInputChange = (e) => {
+      const { id, value } = e.target;
+      setCurso({ ...curso, [id]: value });
+    };
+  
+    const { nome, grade, duracao, campusId } = curso;
 
-    if (!response.statusText === "OK") {
-      toast.error("Erro ao cadastrar o curso");
-    } else {
-      toast.success("Curso adicionado com sucesso");
-      router.push("/posts/admin/todos/cursos");
-    }
-  };
-
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setCurso({ ...curso, [id]: value });
-  };
-
-  const { nome, grade, duracao, campusId } = curso;
-
-  return (
-    <div>
+    return usuario ? ( <div>
       <HDPagAdmin />
       <form onSubmit={handleSubmit} className="container">
         <fieldset>
@@ -139,6 +146,10 @@ export default function AlterarCurso({ cursos }) {
           Alterar
         </button>
       </form>
-    </div>
+    </div>) : (<Login></Login>)
+  }
+  
+  return (
+   <Protecaoderota></Protecaoderota>
   );
 }

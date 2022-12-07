@@ -4,6 +4,7 @@ import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 import Link from "next/link";
 import { filtro } from './../../../../components/Filter/filtro';
+import { parseCookies } from 'nookies';
 
 /* 
 Função getServerSideProps
@@ -13,12 +14,14 @@ A segunda variável, attributes, coleta os dados da variável response e os conv
 Por fim, a função retorna em um objeto a variável attributes para ser utilizada em outros componentes
 */
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/curso");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth : cookies.usuario || null
     },
   };
 };
@@ -33,7 +36,7 @@ Por fim a função retorna o HTML contendo a tabela que irá conter os dados tra
 
 */
 
-export default function TodosCursos({ attributes }) {
+export default function TodosCursos({ attributes, Auth }) {
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
@@ -53,7 +56,7 @@ export default function TodosCursos({ attributes }) {
       <Head>
         <title>Lista de Cursos</title>
       </Head>
-      <HDPagInicial />
+      <HDPagInicial Auth={Auth} />
       <div className="container border rounded mt-2 p-3 w-50">
         <div className="container">
           <form className="d-flex" role="search">

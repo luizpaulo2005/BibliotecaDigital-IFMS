@@ -1,6 +1,26 @@
 import Link from "next/link";
+import { AuthContext, AuthContextProvider } from "../AuthContext&ReducerContext/AuthFunctions";
+import {setCookie} from 'nookies'
+import { useContext } from "react";
+import { useRouter } from 'next/router';
 
-export default function HDPagInicial() {
+export default function HDPagInicial({Auth}) {
+  const router = useRouter()
+  const usuario = Auth
+  const {setAutenticacao} = useContext(AuthContext)
+  const handleLogout =(e)=>{
+    const user = usuario;
+    setAutenticacao({type:"LOGOUT", payload:user})
+    //aqui eu defino o Logout
+    setCookie(null , "usuario" , null, {
+      maxAge: 0,
+      path: "/",       
+    })
+    //aqui eu defino o cookie como nulo
+    router.push("/");
+  }
+
+
   return (
     <nav className="navbar navbar-expand-lg bg-success">
       <div className="container">
@@ -72,11 +92,12 @@ export default function HDPagInicial() {
               </ul>
             </li>
           </ul>
-          <Link href="/posts/admin/login/login">
+          <Link href="/posts/admin/paginaAdmin">
             <button className="btn btn-outline-success" type="submit">
-              <div className="white">Entrar</div>
+              <div className="white">Administração</div>
             </button>
           </Link>
+          {usuario&&(<form onSubmit={handleLogout}><button type="submit">Logout</button></form>) }
         </div>
       </div>
     </nav>

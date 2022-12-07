@@ -7,9 +7,21 @@ import HDPagAdmin from "../../../../components/header/pagadmin";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
 
-export default function CadastrarCampus() {
+import { parseCookies } from 'nookies';
+
+export const getServerSideProps=(context)=>{
+  const cookies= parseCookies(context)
+
+  return{
+    props : {
+      Auth: cookies.usuario || null
+    }
+  }
+}
+
+export default function CadastrarCampus({Auth}) {
  
-  const {usuario} = useContext(AuthContext)
+  const usuario = Auth
 
   const Protecaoderota = () =>{
     const [campus, setCampus] = useState({

@@ -5,6 +5,8 @@ import HDPagInicial from "../../../../components/header/paginicial";
 import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 import { filtro } from './../../../../components/Filter/filtro';
+import { parseCookies } from 'nookies';
+
 
 /* 
 Função getServerSideProps
@@ -14,12 +16,14 @@ A segunda variável, attributes, coleta os dados da variável response e os conv
 Por fim, a função retorna em um objeto a variável attributes para ser utilizada em outros componentes
 */
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/discente");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth : cookies.usuario || null
     },
   };
 };
@@ -34,29 +38,40 @@ Por fim a função retorna o HTML contendo a tabela que irá conter os dados tra
 
 */
 
-export default function TodosDiscentes({ attributes }) {
+export default function TodosDiscentes({ attributes, Auth }) {
   const [consulta, setConsulta] = useState("");
+  //Aqui é onde os dados do filtro é armazenado
   const [itensporPagina, setItensporPagina] = useState(10);
+  //Aqui é onde é colocado a quantidade de elemetos tera por pagina na paginação, por "Default", está posto por 10
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
+  //Aqui é onde o usuario pode ver quantas paginas ainda podem ser vistas, esse pedenra de quantos elementos no total tem.
 
   const keys = ["nome"];
+  // aqui é onde  eu defino o atributo que o filtro ira procura quando utilizar a função "pesquisa"
 
 
   const consultaGeral = consulta.toLowerCase();
+  // Aqui é coloco todos os caracteres em minusculos para que fiquei mais facil de procurar
   const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
+  // aqui é definido as celulas
   const startIndex = paginasRecorrentes * itensporPagina;
+  //aqui é definido a quantidade de itens na pagina conforme indicado no select ou por default
   const endIndex = startIndex + itensporPagina;
+  //Aqui é somado para definir quantas páginas serão dependendo do valor de itens selecionados por página
   const discentesfiltrados = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
+  //Aqui eu aplico o filtro, e com o slide eu divido os itens.
 
   useEffect(() => {
     setPaginasRecorrentes(0);
   }, [setItensporPagina]);
+
+  
   return (
     <div className="container-fluid g-0">
       <Head>
         <title>Lista de Alunos</title>
       </Head>
-      <HDPagInicial />
+      <HDPagInicial Auth={Auth} />
       <div className="container border rounded mt-2 p-3 w-75">
         <div className="container d-flex justify-content-center">
           <form className="d-flex" role="search">

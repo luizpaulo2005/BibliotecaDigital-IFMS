@@ -4,7 +4,7 @@ import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 import Link from "next/link";
 import { filtro } from './../../../../components/Filter/filtro';
-
+import { parseCookies } from 'nookies';
 /* 
 Função getServerSideProps
 É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo
@@ -13,12 +13,14 @@ A segunda variável, attributes, coleta os dados da variável response e os conv
 Por fim, a função retorna em um objeto a variável attributes para ser utilizada em outros componentes
 */
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/campus");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth : cookies.usuario || null
     },
   };
 };
@@ -26,14 +28,13 @@ export const getServerSideProps = async () => {
 /* 
 Função TodosCampus
 A função principal é a que renderiza o conteúdo inserido nela, porém antes de se retornar algo, foi inserido um tratamento para realizar a paginação
-
-Explicar Paginação
-
+a limitação de itens por página para que não fique muito extenso e o usuário tenha a escolha baseada nos valores  de 5, 10(Valor default), 20 e 50
+disponível no select.
 Por fim a função retorna o HTML contendo a tabela que irá conter os dados trazidos da função getServerSideProps, junto à paginação
 
 */
 
-export default function TodosCampus({ attributes }) {
+export default function TodosCampus({ attributes, Auth }) {
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
@@ -53,7 +54,7 @@ export default function TodosCampus({ attributes }) {
       <Head>
         <title>Lista de Campus</title>
       </Head>
-      <HDPagInicial />
+      <HDPagInicial Auth={Auth} />
       <div className="container border rounded mt-2 p-3 w-50">
         <div className="container">
           <form className="d-flex" role="search">

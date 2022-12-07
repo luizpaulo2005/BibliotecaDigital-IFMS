@@ -6,10 +6,21 @@ import { toast, ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
+import { parseCookies } from 'nookies';
 
-export default function CadastrarDocente() {
+
+export const getServerSideProps=(context)=>{
+  const cookies = parseCookies(context)
+  return{
+    props: {
+      Auth: cookies.usuario || null
+    }
+  }
+}
+
+export default function CadastrarDocente({Auth}) {
  
-  const {usuario} = useContext(AuthContext)
+  const usuario = Auth
 
   const Protecaoderota = () =>{
     const [docente, setDocente] = useState({

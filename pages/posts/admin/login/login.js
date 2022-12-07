@@ -6,16 +6,23 @@ import { initializeApp } from "firebase/app";
 import Head from "next/head";
 import HDPagInicial from "../../../../components/header/paginicial";
 import { AuthContext, AuthReducer } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
+import { setCookie } from "nookies";
+
+
 
 
 export default function Login() {
   const [error, setError] = useState(false);
+  //aqui é o status da mensagem de erro
   const [email, setEmail] = useState("");
+  //constante responsavel por armazenar o email que o usuario digitar
   const [password, setPassword] = useState("");
+  //constante responsavel por armazenar a senha que o usuario digitar
 
   let router = useRouter();
 
   const {setAutenticacao} = useContext(AuthContext)
+ 
 
   const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_APP_FIREBASE_KEY,
@@ -25,21 +32,37 @@ export default function Login() {
     messagingSenderId: process.env.NEXT_PUBLIC_APP_SENDER_ID,
     appId: process.env.NEXT_PUBLIC_APP_APP_ID,
   };
+  //Dados da api do Firebase
   const app = initializeApp(firebaseConfig);
-  const auth = getAuth();
+  //essa const e reponsavel por pegar os dados do usuário
 
+  // Esta função é responsavel por pegar os valores dos inputs, e se estiverem corretas, e se estiverem corretas, por meio do context
+  //espalhar o status que ha um usuario logado na aplicação
   const handleLogin = (e) => {
     e.preventDefault();
     const auth = getAuth();
+    //essa constante é a importação da função do firebase para pegar as credencias do usuario ao logar
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+        //aqui eu passo a crendencial do usuario, que veio do firebase pra uma constante
+        console.log(user);   
         setAutenticacao({type:"LOGIN", payload:user})
+        //aqui eu passo pro AuthContextProvider que passa pro app o status do usuário.
+        setCookie(null , "usuario" , "Logado", {
+          maxAge: 3600 * 24,
+          path: "/",       
+        })
+        //aqui eu declaro um cookie, com uma duração de uma hora, que estara disponivel para todas as páginas
+        //para que ao recarregar
+        
         router.push("/posts/admin/paginaAdmin");
+        //com o router push ele ira re
       })
       .catch((error) => {
         setError(true);
+        //Se a autenticação falar, o Status do erro, iniciamente "false", sera passado para "true", ao acontecer isso a mensagem
+        //sera exibida para o usuario saber que o login falhou, seja por dados errados(Email ou senha), ou conexão com o firebase(Banco de dados da google)
       });
   };
 

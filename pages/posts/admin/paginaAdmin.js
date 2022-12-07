@@ -1,15 +1,42 @@
 import HDPagAdmin from "../../../components/header/pagadmin";
 import Link from "next/link";
 import Head from "next/head";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Login from "./login/login";
 import { AuthContext } from "../../../components/AuthContext&ReducerContext/AuthFunctions";
+import { setCookie, parseCookies } from "nookies";
 
-export default function PaginaAdmin() {
-  const { usuario } = useContext(AuthContext);
+
+export async function getServerSideProps (context){
+  const cookies = parseCookies(context)
+//constante reponsável por armazenar os cookies
+  return {
+    props: {
+      Auth : cookies.usuario || null
+      //Se houver cookies vai ser passado o valor para o Auth, se não, vai ser dado como nulo, e não tera um usuário disponível
+    },
+  }
+ }
+ //está função é responsável por pegar os cookies se houver, para que a páginaAdmin fique disponivel para uso
+
+export default function PaginaAdmin(props) {
+  const usuario = props.Auth
+  // essa função é resposanvel por armazenar os dados do Cookies
   const Protecaoderota = ({ children }) => {
-    return usuario ? children : <Login></Login>;
+    return usuario ? children  : <Login></Login>;
   };
+//Aqui temos uma função q ira analizar o status do Usuario, se houver um usuário, A pagina sera renderizada normalmente
+//Se não houver um usuario será renderizada a página de Login
+
+  const handleLogout =(e)=>{
+    const user = usuario;
+    setAutenticacao({type:"LOGOUT", payload:user})
+    setCookie(null , "usuario" , "Logout", {
+      maxAge: 0,
+      path: "/",       
+    })
+    router.push("/");
+  }
 
   return (
     <Protecaoderota>

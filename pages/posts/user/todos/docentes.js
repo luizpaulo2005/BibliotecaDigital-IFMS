@@ -4,7 +4,7 @@ import Link from "next/link";
 import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 import { filtro } from './../../../../components/Filter/filtro';
-
+import { parseCookies } from 'nookies';
 /* 
 Função getServerSideProps
 É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo
@@ -13,12 +13,14 @@ A segunda variável, attributes, coleta os dados da variável response e os conv
 Por fim, a função retorna em um objeto a variável attributes para ser utilizada em outros componentes
 */
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/docente");
   const attributes = await response.data;
   return {
     props: {
       attributes,
+      Auth : cookies.usuario || null
     },
   };
 };
@@ -33,7 +35,7 @@ Por fim a função retorna o HTML contendo a tabela que irá conter os dados tra
 
 */
 
-export default function TodosDocentes({ attributes }) {
+export default function TodosDocentes({ attributes, Auth }) {
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
@@ -52,7 +54,7 @@ export default function TodosDocentes({ attributes }) {
       <Head>
         <title>Lista de Docentes</title>
       </Head>
-      <HDPagInicial />
+      <HDPagInicial Auth={Auth} />
       <div className="container border rounded p-3 mt-2 w-50">
         <div className="container">
           <form className="d-flex" role="search">
