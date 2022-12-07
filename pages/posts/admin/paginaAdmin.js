@@ -21,7 +21,7 @@ export async function getServerSideProps (context){
 
 export default function PaginaAdmin(props) {
   const usuario = props.Auth
-  // essa função é resposanvel por armazenar os dados do Cookies
+  // essa constante é resposanvel por armazenar os dados do Cookies
   const Protecaoderota = ({ children }) => {
     return usuario ? children  : <Login></Login>;
   };
