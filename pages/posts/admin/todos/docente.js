@@ -11,6 +11,15 @@ import { AuthContext } from "../../../../components/AuthContext&ReducerContext/A
 import { filtro } from "../../../../components/Filter/filtro";
 import { parseCookies } from 'nookies';
 
+/* 
+Função getServerSideProps
+É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo
+Sua primeira variável, response, é a que realiza a conexão e chama os dados para si mesma
+A segunda variável, attributes, coleta os dados da variável response e os converte para objeto
+Por fim, a função retorna em um objeto a variável attributes para ser utilizada em outros componentes
+*/
+
+
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/docente");
@@ -18,10 +27,21 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       attributes,
-      Auth : cookies.usuario || null
+      Auth : cookies.usuario || null  
     }
   };
 };
+
+/* 
+Função TodosDocentesAdmin
+A função principal é a que renderiza o conteúdo inserido nela, porém antes de se retornar algo, foi inserido um tratamento para realizar a paginação
+
+Explicar Paginação
+Explicar Proteção de Rotas
+
+Por fim a função retorna o HTML contendo a tabela que irá conter os dados trazidos da função getServerSideProps, junto à paginação
+
+*/
 
 export default function TodosDocentesAdmin({ attributes, Auth }) {
   const usuario = Auth;
@@ -35,13 +55,16 @@ export default function TodosDocentesAdmin({ attributes, Auth }) {
 
   const keys = ["nome"];
 
-  
-
   const consultaGeral = consulta.toLowerCase();
-  const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
+  const paginas = Math.ceil(
+    filtro(attributes, keys, consultaGeral).length / itensporPagina
+  );
   const startIndex = paginasRecorrentes * itensporPagina;
   const endIndex = startIndex + itensporPagina;
-  const docentesfiltrados = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
+  const docentesfiltrados = filtro(attributes, keys, consultaGeral).slice(
+    startIndex,
+    endIndex
+  );
 
   const handleDelete = async (e) => {
     e.preventDefault();
@@ -71,17 +94,17 @@ export default function TodosDocentesAdmin({ attributes, Auth }) {
       <HDPagAdmin />
       <ToastContainer />
       <div className="container border rounded p-3 mt-2 w-50">
-      <div className="container">
-        <form className="d-flex" role="search">
-          <input
-            className="form-control filtro"
-            type="search"
-            placeholder="Pesquisar"
-            aria-label="Search"
-            onChange={(e) => setConsulta(e.target.value)}
-          />
-        </form>
-      </div>
+        <div className="container">
+          <form className="d-flex" role="search">
+            <input
+              className="form-control filtro"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Search"
+              onChange={(e) => setConsulta(e.target.value)}
+            />
+          </form>
+        </div>
         <table className="table">
           <thead>
             <tr>

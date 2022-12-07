@@ -1,32 +1,21 @@
 import Link from "next/link";
-import { AuthContextProvider, AuthContext, AuthReducer } from './../AuthContext&ReducerContext/AuthFunctions';
+import {
+  AuthContextProvider,
+  AuthContext,
+  AuthReducer,
+} from "./../AuthContext&ReducerContext/AuthFunctions";
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-import {setCookie} from 'nookies'
 
-
-
-
-export default function HDPagAdmin() { 
+export default function HDPagAdmin() {
   let router = useRouter();
-  const {setAutenticacao} = useContext(AuthContext)
-  //Aqui eu defino o usuário como existente com o auth context
-
-  const usuario = useContext(AuthContext)
-
-  //está função tem como objetivo limpar os cookies do usuário e chamar o Logout do switch para que a página de administração fique indisponível
-  const handleLogout =(e)=>{
+  const { setAutenticacao } = useContext(AuthContext);
+  const { usuario } = useContext(AuthContext);
+  const handleLogout = (e) => {
     const user = usuario;
-    setAutenticacao({type:"LOGOUT", payload:user})
-    //aqui eu defino o Logout
-    setCookie(null , "usuario" , null, {
-      maxAge: 0,
-      path: "/",       
-    })
-    //aqui eu defino o cookie como nulo
+    setAutenticacao({ type: "LOGOUT", payload: user });
     router.push("/");
-  }
-
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-success">
@@ -111,10 +100,15 @@ export default function HDPagAdmin() {
               </ul>
             </li>
           </ul>
-          {usuario &&(<span class="navbar-text" role="search">
-            <div>Admin</div>
-         <form class="d-flex" onSubmit={handleLogout}><button className="form-control me-2 btn-outline-light">Logout</button></form>
-        </span>)}
+          {usuario && (
+            <span class="navbar-text" role="search">
+              <form class="d-flex" onSubmit={handleLogout}>
+                <button className="form-control me-2 btn-outline-light">
+                  Logout
+                </button>
+              </form>
+            </span>
+          )}
         </div>
       </div>
     </nav>

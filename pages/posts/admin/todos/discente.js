@@ -10,7 +10,14 @@ import { AuthContext } from "../../../../components/AuthContext&ReducerContext/A
 import { filtro } from "../../../../components/Filter/filtro";
 import { parseCookies } from 'nookies';
 
-export async function getServerSideProps (context){
+/* 
+Função getServerSideProps
+É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo
+Sua primeira variável, response, é a que realiza a conexão e chama os dados para si mesma
+A segunda variável, attributes, coleta os dados da variável response e os converte para objeto
+Por fim, a função retorna em um objeto a variável attributes para ser utilizada em outros componentes
+*/
+export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
   const response = await axios.get(process.env.URL_API + "/discente");
   const attributes = await response.data;
@@ -26,7 +33,7 @@ export default function TodosDiscentesAdmin({ attributes, Auth }) {
   const  usuario  = Auth
 
   const Protecaoderota = ({ children }) => {
-    let router = useRouter();
+  let router = useRouter();
 
     const [consulta, setConsulta] = useState("");
     const [itensporPagina, setItensporPagina] = useState(10);

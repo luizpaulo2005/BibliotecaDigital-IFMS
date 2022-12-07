@@ -7,7 +7,14 @@ import { ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
-import { parseCookies } from 'nookies';
+
+/* 
+Função getServerSideProps
+É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo
+Sua primeira variável, response, é a que realiza a conexão e chama os dados para si mesma
+A segunda variável, attributes, coleta os dados da variável response e os converte para objeto
+Por fim, a função retorna em um objeto a variável attributes para ser utilizada em outros componentes
+*/
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)

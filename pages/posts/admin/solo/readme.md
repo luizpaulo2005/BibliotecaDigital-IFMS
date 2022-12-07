@@ -1,7 +1,6 @@
+# Documentação do diretório admin/solo
 
-# Documentação do diretório user/solo
-
-Basicamente todas as páginas desse diretório, só se diferenciam no que será buscado e mostrado na tela, resultando em poucas modificações de código entre elas
+Basicamente todas as páginas desse diretório, só se diferenciam no que será buscado e mostrado na tela, resultando em poucas modificações de código entre elas, em comparação ao diretório ``` user/solo ``` , esse diretório possui algumas adições, como o botão de alteração e de exclusão
 
 Outra diferença é que comparado com o diretório ``` todos ```, é que o solo utiliza o ``` Dynamic Routes ``` do ``` NextJS ```, que serve para receber rodas com dados específicos, que no nosso caso seria o ``` ID ```
 
