@@ -22,6 +22,7 @@ export default function Login() {
   let router = useRouter();
 
   const {setAutenticacao} = useContext(AuthContext)
+  //constante responsável por armazenar o usuário no AuthContextProvider
  
 
   const firebaseConfig = {
@@ -34,7 +35,7 @@ export default function Login() {
   };
   //Dados da api do Firebase
   const app = initializeApp(firebaseConfig);
-  //essa const e reponsavel por pegar os dados do usuário
+  //essa const e reponsável por pegar os dados do usuário
 
   // Esta função é responsavel por pegar os valores dos inputs, e se estiverem corretas, e se estiverem corretas, por meio do context
   //espalhar o status que ha um usuario logado na aplicação
