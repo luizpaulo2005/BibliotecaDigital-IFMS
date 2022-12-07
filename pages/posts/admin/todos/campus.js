@@ -71,6 +71,8 @@ export default function TodosCampusAdmin({ attributes, Auth }) {
   };
 
   const usuario  = Auth;
+//Aqui temos uma função que é responsável por analizar o status do usuário, se houver um usuário, A página sera renderizada normalmente
+//Se não houver um usuário será renderizada a página de Login
   const Protecaoderota = () => {
     return usuario ? (
       <div className="container-fluid g-0">

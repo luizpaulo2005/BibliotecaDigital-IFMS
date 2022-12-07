@@ -51,7 +51,7 @@ export default function TodosDiscentes({ attributes, Auth }) {
 
 
   const consultaGeral = consulta.toLowerCase();
-  // Aqui é coloco todos os caracteres em minusculos para que fiquei mais facil de procurar
+  // Aqui é colocado todos os caracteres em minusculos para que fiquei mais facil de procurar
   const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
   // aqui é definido as celulas
   const startIndex = paginasRecorrentes * itensporPagina;
@@ -59,7 +59,7 @@ export default function TodosDiscentes({ attributes, Auth }) {
   const endIndex = startIndex + itensporPagina;
   //Aqui é somado para definir quantas páginas serão dependendo do valor de itens selecionados por página
   const discentesfiltrados = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
-  //Aqui eu aplico o filtro, e com o slide eu divido os itens.
+  //Aqui eu aplico o filtro, e com o slice eu divido os itens.
 
   useEffect(() => {
     setPaginasRecorrentes(0);

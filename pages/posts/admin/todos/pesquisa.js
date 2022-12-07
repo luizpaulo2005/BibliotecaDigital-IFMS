@@ -35,6 +35,9 @@ export const getServerSideProps = async (context) => {
 export default function TodasPesquisasAdmin({ attributes, Auth }) {
 
   const usuario  = Auth
+
+//Aqui temos uma função que é responsável por analizar o status do usuário, se houver um usuário, A página sera renderizada normalmente
+//Se não houver um usuário será renderizada a página de Login
   const Protecaoderota = () => {
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
