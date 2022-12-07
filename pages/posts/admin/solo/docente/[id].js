@@ -2,9 +2,13 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import HDPagAdmin from "../../../../../components/header/pagadmin";
+import { parseCookies } from 'nookies';
+import Login from "../../login/login";
 
 
 export const getServerSideProps = async (context) => {
+  const cookies = parseCookies(context)
+  //constante reponsável por armazenar os cookies
   const id = context.query.id;
   const response = await axios.get(
     process.env.URL_API + `/docente/${id}/pesquisas`
@@ -13,11 +17,20 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       attributes,
+      Auth: cookies.usuario || null
+      //Se houver cookies vai ser passado o valor para o Auth, se não, vai ser dado como nulo, e não tera um usuário disponível
     },
   };
 };
+ //está função é responsável por pegar os cookies se houver, para que a páginaAdmin fique disponível para uso
 
-export default function SoloDocenteAdmin({ attributes }) {
+export default function SoloDocenteAdmin({ attributes, Auth }) {
+  const usuario = Auth
+//Aqui temos uma função que é responsável por analizar o status do usuário, se houver um usuário, A página sera renderizada normalmente
+//Se não houver um usuário será renderizada a página de Login
+  const Protecaoderota = ({children})=>{
+    return usuario ? children : <Login></Login>
+  }
   const handleDelete = async (e) => {
     e.preventDefault();
     const { id } = e.target;
@@ -34,7 +47,8 @@ export default function SoloDocenteAdmin({ attributes }) {
   };
 
   return (
-    <div className="container-fluid g-0">
+    <Protecaoderota>
+      <div className="container-fluid g-0">
       <Head>
         <title>{attributes.nome}</title>
       </Head>
@@ -77,5 +91,6 @@ export default function SoloDocenteAdmin({ attributes }) {
         </div>
       </div>
     </div>
+    </Protecaoderota>
   );
 }

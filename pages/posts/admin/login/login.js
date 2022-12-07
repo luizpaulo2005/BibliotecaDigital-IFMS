@@ -41,11 +41,11 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     const auth = getAuth();
-    //essa constante é a importação da função do firebase para pegar as credencias do usuario ao logar
+    //essa constante é a importação da função do firebase para pegar as credencias do usuário ao logar
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        //aqui eu passo a crendencial do usuario, que veio do firebase pra uma constante
+        //aqui eu passo a crendencial do usuário, que veio do firebase pra uma constante
         console.log(user);   
         setAutenticacao({type:"LOGIN", payload:user})
         //aqui eu passo pro AuthContextProvider que passa pro app o status do usuário.

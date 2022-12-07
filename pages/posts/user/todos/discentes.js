@@ -31,9 +31,8 @@ export const getServerSideProps = async (context) => {
 /* 
 Função TodosDiscentes
 A função principal é a que renderiza o conteúdo inserido nela, porém antes de se retornar algo, foi inserido um tratamento para realizar a paginação
-
-Explicar Paginação
-
+a limitação de itens por página para que não fique muito extenso e o usuário tenha a escolha baseada nos valores  de 5, 10(Valor default), 20 e 50
+disponível no select.
 Por fim a função retorna o HTML contendo a tabela que irá conter os dados trazidos da função getServerSideProps, junto à paginação
 
 */

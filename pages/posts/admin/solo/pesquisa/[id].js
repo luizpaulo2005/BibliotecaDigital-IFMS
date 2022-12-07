@@ -9,6 +9,7 @@ import { parseCookies } from 'nookies';
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
+  //constante reponsável por armazenar os cookies
   const id = context.query.id;
   const response = await axios.get(process.env.URL_API + `/pesquisa/${id}`);
   const attributes = await response.data;
@@ -16,9 +17,11 @@ export const getServerSideProps = async (context) => {
     props: {
       attributes,
       Auth: cookies.usuario || null
+      //Se houver cookies vai ser passado o valor para o Auth, se não, vai ser dado como nulo, e não tera um usuário disponível
     },
   };
 };
+//está função é responsável por pegar os cookies se houver, para que a páginaAdmin fique disponível para uso
 
 export default function SoloPesquisaAdmin({ attributes, Auth }) {
   const handleDelete = async (e) => {

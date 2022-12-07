@@ -7,6 +7,7 @@ import { parseCookies } from 'nookies';
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
+  //constante reponsável por armazenar os cookies
   const id = context.query.id;
   const response = await axios.get(
     process.env.URL_API + `/campus/${id}/cursos`
@@ -17,9 +18,11 @@ export const getServerSideProps = async (context) => {
     props: {
       attributes,
       Auth: cookies.usuario || null
+      //Se houver cookies vai ser passado o valor para o Auth, se não, vai ser dado como nulo, e não tera um usuário disponível
     },
   };
 };
+ //está função é responsável por pegar os cookies se houver, para que a páginaAdmin fique disponível para uso
 
 export default function SoloCampusAdmin({ attributes, Auth }) {
   const handleDelete = async (e) => {
@@ -38,7 +41,8 @@ export default function SoloCampusAdmin({ attributes, Auth }) {
   };
 
   const usuario = Auth
-
+//Aqui temos uma função que é responsável por analizar o status do usuário, se houver um usuário, A página sera renderizada normalmente
+//Se não houver um usuário será renderizada a página de Login
   const Protecaoderota =({children})=>{
     return usuario ? children : <Login></Login>
   }
