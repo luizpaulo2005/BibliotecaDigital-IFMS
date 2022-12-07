@@ -4,6 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import HDPagInicial from "../../../../../components/header/paginicial";
 import { parseCookies } from 'nookies';
+import HDPagAdmin from "../../../../../components/header/pagadmin";
 
 /* 
 Função getServerSideProps
@@ -38,12 +39,13 @@ Por fim a função retorna o HTML contendo a tabela que irá conter os dados tra
 */
 
 export default function SoloDiscente({ attributes, Auth }) {
+  const usuario = Auth;
   return (
     <div className="container-fluid g-0">
       <Head>
         <title>{attributes.nome}</title>
       </Head>
-      <HDPagInicial Auth={Auth} />
+      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
       <div className="container rounded mt-2 p-3 w-50 d-flex justify-content-center flex-column">
         <div className="card">
           <div className="card-header">{attributes.nome}</div>

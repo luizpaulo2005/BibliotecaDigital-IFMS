@@ -20,7 +20,7 @@ Por fim, a função retorna em um objeto a variável attributes para ser utiliza
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
-  //constante reponsável por armazenar os cookies
+  //Constante reponsável por armazenar os cookies
   const response = await axios.get(process.env.URL_API + "/campus");
   const attributes = await response.data;
   return {
@@ -31,7 +31,13 @@ export const getServerSideProps = async (context) => {
     },
   };
 };
-//está função também é responsável por pegar os cookies se houver, para que a páginaAdmin fique disponivel para uso
+//Essa função também é responsável por pegar os cookies se houver, para que a páginaAdmin fique disponivel para uso
+
+/* 
+Função TodosCampusAdmin
+A função principal é a que renderiza o conteúdo inserido nela, porém antes de se retornar algo, foi inserido um tratamento para realizar a paginação
+Por fim a função retorna o HTML contendo a tabela que irá conter os dados trazidos da função getServerSideProps, junto à paginação
+*/
 
 export default function TodosCampusAdmin({ attributes, Auth }) {
   let router = useRouter();

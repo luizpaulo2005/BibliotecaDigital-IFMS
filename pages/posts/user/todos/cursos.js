@@ -39,9 +39,10 @@ export default function TodosCursos({ attributes, Auth }) {
   const [consulta, setConsulta] = useState("");
   //Aqui é onde os dados do filtro é armazenado
   const [itensporPagina, setItensporPagina] = useState(10);
-  //Aqui é onde é colocado a quantidade de elemetos tera por pagina na paginação, por "Default", está posto por 10
+  //Aqui é onde é colocado a quantidade de elemetos tera por pagina na paginação, por "Default", a quantidade de elementos está definida como 10
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
-  //Aqui é onde o usuario pode ver quantas paginas ainda podem ser vistas, esse pedenra de quantos elementos no total tem.
+  //Aqui é onde o usuario pode ver quantas paginas ainda podem ser vistas, isso varia de acordo com a quantidade elementos no total tem.
+
 
   const keys = ["nome"];
   // aqui é onde  eu defino o atributo que o filtro ira procura quando utilizar a função "pesquisa"

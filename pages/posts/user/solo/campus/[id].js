@@ -2,7 +2,8 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import HDPagInicial from "../../../../../components/header/paginicial";
-import { parseCookies } from 'nookies';
+import { parseCookies } from "nookies";
+import HDPagAdmin from "../../../../../components/header/pagadmin";
 /* 
 Função getServerSideProps
 É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo;
@@ -13,7 +14,7 @@ Por fim, a função retorna em um objeto a variável attributes para ser utiliza
 */
 
 export const getServerSideProps = async (context) => {
-  const cookies = parseCookies(context)
+  const cookies = parseCookies(context);
   const id = context.query.id;
   const response = await axios.get(
     process.env.URL_API + `/campus/${id}/cursos`
@@ -22,7 +23,7 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       attributes,
-      Auth : cookies.usuario || null
+      Auth: cookies.usuario || null,
     },
   };
 };
@@ -36,11 +37,13 @@ Por fim a função retorna o HTML contendo a tabela que irá conter os dados tra
 */
 
 export default function SoloCampus({ attributes, Auth }) {
+  const usuario = Auth;
   return (
     <div className="container-fluid g-0">
       <Head>
         <title>{attributes.nome}</title>
       </Head>
+      {!usuario ? <HDPagInicial /> : <HDPagAdmin Auth={Auth} />}
       <HDPagInicial Auth={Auth} />
       <div className="container rounded p-3 mt-2 w-50 d-flex justify-content-center flex-column">
         <div className="card">
