@@ -8,9 +8,6 @@ import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import {setCookie} from 'nookies'
 
-
-
-
 export default function HDPagAdmin() { 
   let router = useRouter();
   const {setAutenticacao} = useContext(AuthContext)

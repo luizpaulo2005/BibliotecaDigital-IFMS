@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import HDPagInicial from "../components/header/paginicial";
 import { parseCookies } from 'nookies';
+import HDPagAdmin from "../components/header/pagadmin";
 
 
 export const getServerSideProps = async (context) => {
@@ -20,6 +21,7 @@ export const getServerSideProps = async (context) => {
 };
 
 export default function Home({ attributes, Auth }) {
+  const usuario = Auth;
   return (
     <div className="container-fluid g-0">
       <Head>
@@ -27,7 +29,8 @@ export default function Home({ attributes, Auth }) {
       </Head>
 
       <div>
-        <HDPagInicial Auth={Auth} />
+      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
+
       </div>
       <div className={styles.main}>
         <div
