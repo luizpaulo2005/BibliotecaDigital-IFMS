@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { filtro } from './../../../../components/Filter/filtro';
 import { parseCookies } from 'nookies';
+import HDPagAdmin from "../../../../components/header/pagadmin";
 
 /* 
 Função getServerSideProps
@@ -59,12 +60,14 @@ export default function TodosCursos({ attributes, Auth }) {
   const cursosfiltrados = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
   //Aqui eu aplico o filtro, e com o slice eu divido os itens.
 
+  const usuario = Auth;
+
   return (
     <div className="container-fluid g-0">
       <Head>
         <title>Lista de Cursos</title>
       </Head>
-      <HDPagInicial Auth={Auth} />
+      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
       <div className="container border rounded mt-2 p-3 w-50">
         <div className="container">
           <form className="d-flex" role="search">
