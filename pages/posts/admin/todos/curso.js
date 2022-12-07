@@ -35,7 +35,6 @@ export default function TodosCursosAdmin({ attributes,Auth }) {
 
   const Protecaoderota = () => {
     let router = useRouter();
-  let router = useRouter();
 
   const [consulta, setConsulta] = useState("");
   const [itensporPagina, setItensporPagina] = useState(10);
