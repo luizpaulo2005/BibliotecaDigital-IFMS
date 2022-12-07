@@ -83,7 +83,7 @@ export default function TodosCampus({ attributes, Auth }) {
             </tr>
           </thead>
           <tbody>
-            {campusfiltrado.map(({ id, nome, cidade, estado, email }) => (
+            {campusfiltrados.map(({ id, nome, cidade, estado, email }) => (
               <tr key={id}>
                 <td>
                   <Link href={`/posts/user/solo/campus/${id}`}>
