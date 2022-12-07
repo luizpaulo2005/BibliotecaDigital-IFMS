@@ -40,21 +40,30 @@ export default function TodasPesquisasAdmin({ attributes, Auth }) {
 //Se não houver um usuário será renderizada a página de Login
   const Protecaoderota = () => {
   const [consulta, setConsulta] = useState("");
+  //Aqui é onde os dados do filtro é armazenado
   const [itensporPagina, setItensporPagina] = useState(10);
+  //Aqui é onde é colocado a quantidade de elemetos tera por pagina na paginação, por "Default", está posto por 10
   const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
+  //Aqui é onde o usuario pode ver quantas paginas ainda podem ser vistas, esse pedenra de quantos elementos no total tem.
 
   const keys = ["titulo"];
+  // aqui é onde  eu defino o atributo que o filtro ira procura quando utilizar a função "pesquisa"
 
   const consultaGeral = consulta.toLowerCase();
+   // Aqui é colocado todos os caracteres em minusculos para que fiquei mais facil de procurar
   const paginas = Math.ceil(
     filtro(attributes, keys, consultaGeral).length / itensporPagina
   );
+  // aqui é definido as celulas
   const startIndex = paginasRecorrentes * itensporPagina;
+  //aqui é definido a quantidade de itens na pagina conforme indicado no select ou por default
   const endIndex = startIndex + itensporPagina;
+  //Aqui é somado para definir quantas páginas serão dependendo do valor de itens selecionados por página
   const pesquisasfiltradas = filtro(attributes, keys, consultaGeral).slice(
     startIndex,
     endIndex
   );
+   //Aqui eu aplico o filtro, e com o slice eu divido os itens.
 
   useEffect(() => {
     setPaginasRecorrentes(0);
