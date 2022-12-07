@@ -5,6 +5,7 @@ import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 import { filtro } from './../../../../components/Filter/filtro';
 import { parseCookies } from 'nookies';
+import HDPagAdmin from "../../../../components/header/pagadmin";
 /* 
 Função getServerSideProps
 É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo
@@ -57,12 +58,14 @@ export default function TodosDocentes({ attributes, Auth }) {
   const docentesfiltrados = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
   //Aqui eu aplico o filtro, e com o slice eu divido os itens.
 
+  const usuario = Auth;
+
   return (
     <div className="container-fluid g-0">
       <Head>
         <title>Lista de Docentes</title>
       </Head>
-      <HDPagInicial Auth={Auth} />
+      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
       <div className="container border rounded p-3 mt-2 w-50">
         <div className="container">
           <form className="d-flex" role="search">

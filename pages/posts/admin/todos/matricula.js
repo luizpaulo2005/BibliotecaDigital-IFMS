@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import HDPagAdmin from "../../../../components/header/pagadmin";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
+import { parseCookies } from "nookies";
 
 /* 
 Função getServerSideProps

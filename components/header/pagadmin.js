@@ -78,32 +78,58 @@ export default function HDPagAdmin() {
               <ul className="dropdown-menu">
                 <li>
                   <Link href="/posts/admin/todos/discente">
-                    <a className="dropdown-item">Alunos</a>
+                    <a className="dropdown-item">Alunos - Admin</a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/posts/admin/todos/campus">
-                    <a className="dropdown-item">Campus</a>
+                    <a className="dropdown-item">Campus - Admin</a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/posts/admin/todos/curso">
-                    <a className="dropdown-item">Cursos</a>
+                    <a className="dropdown-item">Cursos - Admin</a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/posts/admin/todos/matricula">
-                    <a className="dropdown-item">Matriculas</a>
+                    <a className="dropdown-item">Matriculas - Admin</a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/posts/admin/todos/pesquisa">
-                    <a className="dropdown-item">Pesquisas</a>
+                    <a className="dropdown-item">Pesquisas - Admin</a>
                   </Link>
                 </li>
                 <li>
                   <Link href="/posts/admin/todos/docente">
-                    <a className="dropdown-item">Professores</a>
+                    <a className="dropdown-item">Professores  - Admin</a>
+                  </Link>
+                </li>
+                <li><hr className="dropdown-divider"/></li>
+                <li>
+                  <Link href="/posts/user/todos/discentes">
+                    <a className="dropdown-item">Alunos - User</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/posts/user/todos/campus">
+                    <a className="dropdown-item">Campus - User</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/posts/user/todos/cursos">
+                    <a className="dropdown-item">Cursos - User</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/posts/user/todos/pesquisas">
+                    <a className="dropdown-item">Pesquisas - User</a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/posts/user/todos/docentes">
+                    <a className="dropdown-item">Professores - User</a>
                   </Link>
                 </li>
               </ul>

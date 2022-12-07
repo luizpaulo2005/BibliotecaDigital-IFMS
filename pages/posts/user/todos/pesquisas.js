@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { filtro } from './../../../../components/Filter/filtro';
 import { parseCookies } from 'nookies';
+import HDPagAdmin from "../../../../components/header/pagadmin";
 
 
 /* 
@@ -64,12 +65,14 @@ export default function TodasPesquisas({ attributes, Auth }) {
     setPaginasRecorrentes(0);
   }, [setItensporPagina]);
 
+  const usuario = Auth;
+
   return (
     <div className="container-fluid g-0">
       <Head>
         <title>Pesquisas</title>
       </Head>
-      <HDPagInicial Auth={Auth} />
+      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
       <div className="container border rounded mt-2 p-3">
         <div className="container d-flex justify-content-center">
           <form className="d-flex" role="search">
