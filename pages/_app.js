@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
     import("bootstrap/dist/js/bootstrap");
   }, []);
   return (
-    //Aqui eu espalho o status do usuário pela aplicação
+    //O AuthContextProvider é responsavél por atualizar o atatus do usuário para todas as páginas, seja quando é realizado o login ou logout.
     <AuthContextProvider>
       <Component {...pageProps} />
     </AuthContextProvider>

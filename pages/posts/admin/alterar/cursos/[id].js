@@ -9,6 +9,7 @@ import Login from './../../login/login';
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
+  //constante reponsável por armazenar os cookies
   const id = context.query.id;
   const response = await axios.get(
     process.env.URL_API + `/curso/${id}/allattributes`
@@ -17,10 +18,12 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       cursos,
-      Auth: cookies.usuario
+      Auth: cookies.usuario || null
+      //Se houver cookies vai ser passado o valor para o Auth, se não, vai ser dado como nulo, e não tera um usuário disponível
     },
   };
 };
+//está função também é responsável por pegar os cookies se houver, para que a páginaAdmin e suas páginas fiquem disponível para uso
 
 export default function AlterarCurso({ cursos, Auth }) {
   
