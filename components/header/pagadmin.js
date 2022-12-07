@@ -6,17 +6,29 @@ import {
 } from "./../AuthContext&ReducerContext/AuthFunctions";
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import {setCookie} from 'nookies'
 
-export default function HDPagAdmin() {
+
+
+
+export default function HDPagAdmin() { 
   let router = useRouter();
-  const { setAutenticacao } = useContext(AuthContext);
-  const { usuario } = useContext(AuthContext);
-  const handleLogout = (e) => {
-    const user = usuario;
-    setAutenticacao({ type: "LOGOUT", payload: user });
-    router.push("/");
-  };
+  const {setAutenticacao} = useContext(AuthContext)
+  //Aqui é definido o usuário como existente com o auth context
 
+  const usuario = useContext(AuthContext)
+
+  //Está função tem como objetivo limpar os cookies do usuário e chamar o Logout do switch para que a página de administração fique indisponível
+  const handleLogout =(e)=>{
+    const user = usuario;
+    setAutenticacao({type:"LOGOUT", payload:user})
+    //aqui é definido o Logout para remover o usuário
+    setCookie(null , "usuario" , null, {
+      maxAge: 0,
+      path: "/",       
+    })
+  }
+    //aqui é definido o cookie como nulo, para remover o cookie
   return (
     <nav className="navbar navbar-expand-lg bg-success">
       <div className="container">
@@ -100,6 +112,7 @@ export default function HDPagAdmin() {
               </ul>
             </li>
           </ul>
+
           {usuario && (
             <span class="navbar-text" role="search">
               <form class="d-flex" onSubmit={handleLogout}>
@@ -109,6 +122,7 @@ export default function HDPagAdmin() {
               </form>
             </span>
           )}
+
         </div>
       </div>
     </nav>
