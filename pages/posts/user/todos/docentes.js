@@ -1,11 +1,12 @@
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
-import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 import { filtro } from './../../../../components/Filter/filtro';
 import { parseCookies } from 'nookies';
-import HDPagAdmin from "../../../../components/header/pagadmin";
+import HeaderAdmin from "../../../../components/header_admin";
+import HeaderUser from "../../../../components/header_user";
+
 /* 
 Função getServerSideProps
 É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo
@@ -65,7 +66,7 @@ export default function TodosDocentes({ attributes, Auth }) {
       <Head>
         <title>Lista de Docentes</title>
       </Head>
-      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
+      {!usuario ? <HeaderUser/> : <HeaderAdmin Auth={Auth}/>}
       <div className="container border rounded p-3 mt-2 w-50">
         <div className="container">
           <form className="d-flex" role="search">

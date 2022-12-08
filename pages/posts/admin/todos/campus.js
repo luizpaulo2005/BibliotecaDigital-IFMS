@@ -3,13 +3,12 @@ import Head from "next/head";
 import { useState, useContext, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { useRouter } from "next/router";
-import HDPagAdmin from "../../../../components/header/pagadmin";
 import Link from "next/link";
 import Login from "../login/login";
 import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { filtro } from "../../../../components/Filter/filtro";
 import { parseCookies } from "nookies";
-
+import HeaderAdmin from "../../../../components/header_admin";
 /* 
 Função getServerSideProps
 É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo
@@ -92,7 +91,7 @@ export default function TodosCampusAdmin({ attributes, Auth }) {
       <Head>
         <title>Lista de Campus</title>
       </Head>
-      <HDPagAdmin />
+      <HeaderAdmin />
       <ToastContainer />
       <div className="container border rounded mt-2 p-3 w-50">
         <div className="container">

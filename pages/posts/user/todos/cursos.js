@@ -1,11 +1,12 @@
 import axios from "axios";
 import Head from "next/head";
-import HDPagInicial from "../../../../components/header/paginicial";
 import { useState } from "react";
 import Link from "next/link";
 import { filtro } from './../../../../components/Filter/filtro';
 import { parseCookies } from 'nookies';
-import HDPagAdmin from "../../../../components/header/pagadmin";
+import HeaderAdmin from "../../../../components/header_admin";
+import HeaderUser from "../../../../components/header_user";
+
 
 /* 
 Função getServerSideProps
@@ -67,7 +68,7 @@ export default function TodosCursos({ attributes, Auth }) {
       <Head>
         <title>Lista de Cursos</title>
       </Head>
-      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
+      {!usuario ? <HeaderUser/> : <HeaderAdmin Auth={Auth}/>}
       <div className="container border rounded mt-2 p-3 w-50">
         <div className="container">
           <form className="d-flex" role="search">

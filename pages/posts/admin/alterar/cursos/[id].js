@@ -3,9 +3,9 @@ import Head from "next/head";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
-import HDPagAdmin from "../../../../../components/header/pagadmin";
 import { parseCookies } from 'nookies';
 import Login from './../../login/login';
+import HeaderAdmin from "../../../../../components/header_admin";
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
@@ -74,7 +74,7 @@ export default function AlterarCurso({ cursos, Auth }) {
     const { nome, grade, duracao, campusId } = curso;
 
     return usuario ? ( <div>
-      <HDPagAdmin />
+      <HeaderAdmin />
       <form onSubmit={handleSubmit} className="container">
         <fieldset>
           <legend>Alterar informações de um Curso</legend>

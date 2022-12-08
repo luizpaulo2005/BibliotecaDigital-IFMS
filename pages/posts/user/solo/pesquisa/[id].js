@@ -2,9 +2,10 @@ import axios from "axios";
 import { format, parseISO } from "date-fns";
 import Head from "next/head";
 import Link from "next/link";
-import HDPagInicial from "../../../../../components/header/paginicial";
 import { parseCookies } from 'nookies';
-import HDPagAdmin from "../../../../../components/header/pagadmin";
+import HeaderUser from "../../../../../components/header_user";
+import HeaderAdmin from "../../../../../components/header_admin";
+
 /* 
 Função getServerSideProps
 É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo;
@@ -43,7 +44,7 @@ export default function SoloPesquisa({ attributes, Auth }) {
       <Head>
         <title>{attributes.titulo}</title>
       </Head>
-      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
+      {!usuario ? <HeaderUser/> : <HeaderAdmin Auth={Auth}/>}
       <div className="container rounded mt-2 p-3 w-75 d-flex justify-content-center flex-column">
         <div className="card">
           <div className="card-header">Título: {attributes.titulo}</div>

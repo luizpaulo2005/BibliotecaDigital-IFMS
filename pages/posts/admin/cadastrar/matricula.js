@@ -3,10 +3,10 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState, useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import HDPagAdmin from "../../../../components/header/pagadmin";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
 import { parseCookies } from 'nookies';
+import HeaderAdmin from "../../../../components/header_admin";
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
@@ -70,7 +70,7 @@ export default function CadastrarMatricula({ attributes, Auth }) {
  <Head>
    <title>Cadastro de Matricula</title>
  </Head>
- <HDPagAdmin />
+ <HeaderAdmin />
  <ToastContainer />
  <div className="container border rounded mt-2 p-3">
    <form onSubmit={handleSubmit}>

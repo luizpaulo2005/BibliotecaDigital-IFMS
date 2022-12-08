@@ -2,9 +2,9 @@ import axios from "axios";
 import { format, parseISO } from "date-fns";
 import Head from "next/head";
 import Link from "next/link";
-import HDPagAdmin from "../../../../../components/header/pagadmin";
 import { parseCookies } from 'nookies';
 import Login from './../../login/login';
+import HeaderAdmin from "../../../../../components/header_admin";
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
@@ -58,7 +58,7 @@ export default function SoloDiscenteAdmin({ attributes, Auth }) {
       <Head>
         <title>{attributes.nome}</title>
       </Head>
-      <HDPagAdmin />
+      <HeaderAdmin />
       <div className="container rounded mt-2 p-3">
         <div className="card">
           <div className="card-header">{attributes.nome}</div>

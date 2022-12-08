@@ -1,31 +1,27 @@
 import Link from "next/link";
-import {
-  AuthContextProvider,
-  AuthContext,
-  AuthReducer,
-} from "./../AuthContext&ReducerContext/AuthFunctions";
+import { AuthContextProvider, AuthContext, AuthReducer } from "./AuthContext&ReducerContext/AuthFunctions";
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-import {setCookie} from 'nookies'
+import { setCookie } from "nookies";
 
-export default function HDPagAdmin() { 
+export default function HeaderAdmin() {
   let router = useRouter();
-  const {setAutenticacao} = useContext(AuthContext)
+  const { setAutenticacao } = useContext(AuthContext);
   //Aqui é definido o usuário como existente com o auth context
 
-  const usuario = useContext(AuthContext)
+  const usuario = useContext(AuthContext);
 
   //Está função tem como objetivo limpar os cookies do usuário e chamar o Logout do switch para que a página de administração fique indisponível
-  const handleLogout =(e)=>{
+  const handleLogout = (e) => {
     const user = usuario;
-    setAutenticacao({type:"LOGOUT", payload:user})
+    setAutenticacao({ type: "LOGOUT", payload: user });
     //aqui é definido o Logout para remover o usuário
-    setCookie(null , "usuario" , null, {
+    setCookie(null, "usuario", null, {
       maxAge: 0,
-      path: "/",       
-    })
-  }
-    //aqui é definido o cookie como nulo, para remover o cookie
+      path: "/",
+    });
+  };
+  //aqui é definido o cookie como nulo, para remover o cookie
   return (
     <nav className="navbar navbar-expand-lg bg-success">
       <div className="container">
@@ -103,10 +99,12 @@ export default function HDPagAdmin() {
                 </li>
                 <li>
                   <Link href="/posts/admin/todos/docente">
-                    <a className="dropdown-item">Professores  - Admin</a>
+                    <a className="dropdown-item">Professores - Admin</a>
                   </Link>
                 </li>
-                <li><hr className="dropdown-divider"/></li>
+                <li>
+                  <hr className="dropdown-divider" />
+                </li>
                 <li>
                   <Link href="/posts/user/todos/discentes">
                     <a className="dropdown-item">Alunos - User</a>
@@ -145,7 +143,6 @@ export default function HDPagAdmin() {
               </form>
             </span>
           )}
-
         </div>
       </div>
     </nav>

@@ -1,11 +1,10 @@
-import HDPagAdmin from "../../../components/header/pagadmin";
 import Link from "next/link";
 import Head from "next/head";
 import { useContext, useState } from "react";
 import Login from "./login/login";
 import { AuthContext } from "../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { setCookie, parseCookies } from "nookies";
-
+import HeaderAdmin from "../../../components/header_admin";
 
 export async function getServerSideProps (context){
   const cookies = parseCookies(context)
@@ -44,7 +43,7 @@ export default function PaginaAdmin(props) {
         <Head>
           <title>Página Administrativa</title>
         </Head>
-        <HDPagAdmin />
+        <HeaderAdmin />
         <div className="container">
           <h4 className="center mt-3">
             Bem-Vindo a Administração! Aqui você pode alterar, cadastrar e

@@ -3,12 +3,12 @@ import Head from "next/head";
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
-import HDPagAdmin from "../../../../components/header/pagadmin";
 import Link from "next/link";
 import Login from "../login/login";
 import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { filtro } from "../../../../components/Filter/filtro";
 import { parseCookies } from "nookies";
+import HeaderAdmin from "../../../../components/header_admin";
 
 /* 
 Função getServerSideProps
@@ -88,7 +88,7 @@ export default function TodosCursosAdmin({ attributes,Auth }) {
       <Head>
         <title>Lista de Cursos</title>
       </Head>
-      <HDPagAdmin />
+      <HeaderAdmin />
       <ToastContainer />
       <div className="container border rounded mt-2 p-3 w-50">
         <div className="container">

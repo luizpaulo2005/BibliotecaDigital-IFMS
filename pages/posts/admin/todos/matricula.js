@@ -4,10 +4,10 @@ import { format, parseISO } from "date-fns";
 import Head from "next/head";
 import Link from "next/link";
 import { ToastContainer } from "react-toastify";
-import HDPagAdmin from "../../../../components/header/pagadmin";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
 import { parseCookies } from "nookies";
+import HeaderAdmin from "../../../../components/header_admin";
 
 /* 
 Função getServerSideProps
@@ -63,7 +63,7 @@ export default function TodasMatriculasAdmin({ attributes, Auth }) {
       <Head>
         <title>Lista de Matriculas</title>
       </Head>
-      <HDPagAdmin />
+      <HeaderAdmin />
       <ToastContainer />
       <div className="container border rounded p-3 mt-2 w-75">
         <table className="table">

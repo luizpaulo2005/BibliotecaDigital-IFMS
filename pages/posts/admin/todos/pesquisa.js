@@ -2,12 +2,12 @@ import Head from "next/head";
 import axios from "axios";
 import { format, parseISO } from "date-fns";
 import { useState, useEffect, useContext } from "react";
-import HDPagAdmin from "../../../../components/header/pagadmin";
 import Link from "next/link";
 import Login from "../login/login";
 import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { filtro } from "../../../../components/Filter/filtro";
 import { parseCookies } from 'nookies';
+import HeaderAdmin from "../../../../components/header_admin";
 
 /* 
 Função getServerSideProps
@@ -74,7 +74,7 @@ export default function TodasPesquisasAdmin({ attributes, Auth }) {
       <Head>
         <title>Pesquisas</title>
       </Head>
-      <HDPagAdmin />
+      <HeaderAdmin />
       <div className="container border rounded mt-2 p-3 w-75">
         <div className="container d-flex justify-content-center">
           <form className="d-flex" role="search">

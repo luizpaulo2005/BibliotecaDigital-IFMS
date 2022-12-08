@@ -1,9 +1,9 @@
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
-import HDPagAdmin from "../../../../../components/header/pagadmin";
 import Login from "../../login/login";
 import { parseCookies } from 'nookies';
+import HeaderAdmin from "../../../../../components/header_admin";
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
@@ -55,7 +55,7 @@ export default function SoloCampusAdmin({ attributes, Auth }) {
       <Head>
         <title>{attributes.nome}</title>
       </Head>
-      <HDPagAdmin />
+      <HeaderAdmin />
       <div className="container rounded p-3 mt-2">
         <div className="card">
           <div className="card-header">Nome: {attributes.nome}</div>

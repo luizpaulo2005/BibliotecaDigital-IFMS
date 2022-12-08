@@ -2,9 +2,10 @@ import axios from "axios";
 import { format, parseISO } from "date-fns";
 import Head from "next/head";
 import Link from "next/link";
-import HDPagInicial from "../../../../../components/header/paginicial";
 import { parseCookies } from 'nookies';
-import HDPagAdmin from "../../../../../components/header/pagadmin";
+import HeaderUser from "../../../../../components/header_user";
+import HeaderAdmin from "../../../../../components/header_admin";
+
 
 /* 
 Função getServerSideProps
@@ -45,7 +46,7 @@ export default function SoloDiscente({ attributes, Auth }) {
       <Head>
         <title>{attributes.nome}</title>
       </Head>
-      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
+      {!usuario ? <HeaderUser/> : <HeaderAdmin Auth={Auth}/>}
       <div className="container rounded mt-2 p-3 w-50 d-flex justify-content-center flex-column">
         <div className="card">
           <div className="card-header">{attributes.nome}</div>

@@ -1,9 +1,9 @@
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
-import HDPagInicial from "../../../../../components/header/paginicial";
 import { parseCookies } from "nookies";
-import HDPagAdmin from "../../../../../components/header/pagadmin";
+import HeaderAdmin from "../../../../../components/header_admin";
+import HeaderUser from "../../../../../components/header_user";
 /* 
 Função getServerSideProps
 É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo;
@@ -43,8 +43,7 @@ export default function SoloCampus({ attributes, Auth }) {
       <Head>
         <title>{attributes.nome}</title>
       </Head>
-      {!usuario ? <HDPagInicial /> : <HDPagAdmin Auth={Auth} />}
-      <HDPagInicial Auth={Auth} />
+      {!usuario ? <HeaderUser /> : <HeaderAdmin Auth={Auth} />}
       <div className="container rounded p-3 mt-2 w-50 d-flex justify-content-center flex-column">
         <div className="card">
           <div className="card-header">Nome: {attributes.nome}</div>

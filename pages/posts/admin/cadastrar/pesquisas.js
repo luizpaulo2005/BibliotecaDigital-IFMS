@@ -1,13 +1,13 @@
 import axios from "axios";
 import Head from "next/head";
 import { useState, useContext } from "react";
-import HDPagAdmin from "../../../../components/header/pagadmin";
 import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/router";
 import { toast, ToastContainer } from "react-toastify";
 import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
 import { parseCookies } from 'nookies';
+import HeaderAdmin from "../../../../components/header_admin";
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
@@ -119,7 +119,7 @@ export default function CadastrarPesquisa({ attributes, attributes1, Auth}) {
     <Head>
       <title>Cadastro de Pesquisas</title>
     </Head>
-    <HDPagAdmin />
+    <HeaderAdmin />
     <ToastContainer />
     <div className="container">
       <form onSubmit={handleSubmit}>

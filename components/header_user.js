@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { AuthContext, AuthContextProvider } from "../AuthContext&ReducerContext/AuthFunctions";
+import { AuthContext, AuthContextProvider } from "./AuthContext&ReducerContext/AuthFunctions";
 import {setCookie} from 'nookies'
 import { useContext } from "react";
 import { useRouter } from 'next/router';
-import HDPagAdmin from "./pagadmin";
 
-export default function HDPagInicial({Auth}) {
+export default function HeaderUser({Auth}) {
   const router = useRouter()
   const usuario = Auth
   const {setAutenticacao} = useContext(AuthContext)

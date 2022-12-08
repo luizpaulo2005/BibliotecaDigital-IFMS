@@ -3,9 +3,9 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
-import HDPagInicial from "../components/header/paginicial";
+import HeaderUser from "../components/header_user";
 import { parseCookies } from 'nookies';
-import HDPagAdmin from "../components/header/pagadmin";
+import HeaderAdmin from "../components/header_admin";
 
 
 export const getServerSideProps = async (context) => {
@@ -29,7 +29,7 @@ export default function Home({ attributes, Auth }) {
       </Head>
 
       <div>
-      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
+      {!usuario ? <HeaderUser/> : <HeaderAdmin Auth={Auth}/>}
 
       </div>
       <div className={styles.main}>

@@ -3,9 +3,9 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import HDPagAdmin from "../../../../../components/header/pagadmin";
 import { parseCookies } from "nookies";
 import Login from "../../login/login";
+import HeaderAdmin from "../../../../../components/header_admin";
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
@@ -72,7 +72,7 @@ export default function AlterarCampus({ campi, Auth }) {
     <Head>
       <title>Cadastrar Campus</title>
     </Head>
-    <HDPagAdmin />
+    <HeaderAdmin />
     <ToastContainer />
     <div className="container border rounded mt-2 p-3">
       <form onSubmit={handleSubmit}>

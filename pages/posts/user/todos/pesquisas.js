@@ -1,12 +1,13 @@
 import Head from "next/head";
 import axios from "axios";
-import HDPagInicial from "../../../../components/header/paginicial";
 import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { filtro } from './../../../../components/Filter/filtro';
 import { parseCookies } from 'nookies';
-import HDPagAdmin from "../../../../components/header/pagadmin";
+import HeaderAdmin from "../../../../components/header_admin";
+import HeaderUser from "../../../../components/header_user";
+
 
 
 /* 
@@ -72,7 +73,7 @@ export default function TodasPesquisas({ attributes, Auth }) {
       <Head>
         <title>Pesquisas</title>
       </Head>
-      {!usuario ? <HDPagInicial/> : <HDPagAdmin Auth={Auth}/>}
+      {!usuario ? <HeaderUser/> : <HeaderAdmin Auth={Auth}/>}
       <div className="container border rounded mt-2 p-3">
         <div className="container d-flex justify-content-center">
           <form className="d-flex" role="search">

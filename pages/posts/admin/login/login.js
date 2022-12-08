@@ -4,12 +4,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import { initializeApp } from "firebase/app";
 import Head from "next/head";
-import HDPagInicial from "../../../../components/header/paginicial";
+import HeaderUser from "../../../../components/header_user";
 import { AuthContext, AuthReducer } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { setCookie } from "nookies";
-
-
-
 
 export default function Login() {
   const [error, setError] = useState(false);
@@ -72,7 +69,7 @@ export default function Login() {
       <Head>
         <title>Login Administrativo</title>
       </Head>
-      <HDPagInicial />
+      <HeaderUser />
 
       <form onSubmit={handleLogin} className="container mt-2">
         <fieldset className="border rounded p-3 mt-2">
