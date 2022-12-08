@@ -116,9 +116,11 @@ export default function TodasPesquisasAdmin({ attributes, Auth }) {
                       </a>
                     </td>
                     <td className="d-flex justify-content-end">
-                      <button className="btn btn-secondary btn-sm">
+                    <Link href={`/posts/admin/alterar/pesquisa/${id}`}>
+                      <button className="btn btn-sm btn-secondary me-1">
                         Alterar
                       </button>
+                    </Link>
                       <button className="btn btn-danger btn-sm ms-1">
                         Apagar
                       </button>
