@@ -24,6 +24,7 @@ export const getServerSideProps=(context)=>{
 export default function CadastrarDocente({Auth}) {
  
   const usuario = Auth
+  // essa constante é resposanvel por armazenar os status do usuário
 
 //Aqui temos uma função que é responsável por analizar o status do usuário, se houver um usuário, A página sera renderizada normalmente
 //Se não houver um usuário será renderizada a página de Login
