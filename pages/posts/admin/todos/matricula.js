@@ -22,6 +22,7 @@ export const getServerSideProps = async (context) => {
   //constante reponsável por armazenar os cookies
   const response = await axios.get(process.env.URL_API + "/matricula");
   const attributes = await response.data;
+  console.log(attributes)
   return {
     props: {
       attributes,
@@ -78,8 +79,8 @@ export default function TodasMatriculasAdmin({ attributes, Auth }) {
                 <tr key={id}>
                   <th scope="row">{id}</th>
                   <td>{format(parseISO(data_inicio), "dd/MM/yyyy")}</td>
-                  <Link href={`/posts/admin/solo/discente/${discentes.id}`}>
-                    <td>{discentes.nome}</td>
+                  <Link href={`/posts/admin/solo/discente/${discentes[0].id}`}>
+                    <td>{discentes[0].nome}</td>
                   </Link>
                   <td className="d-flex justify-content-end">
                     <Link href={`/posts/admin/alterar/matricula/${id}`}>
