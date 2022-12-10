@@ -28,7 +28,7 @@ export default function HeaderAdmin() {
         <Link href="/">
           <a className="navbar-brand">
             <span className="titleheader">
-              Biblioteca Digital de Pesquisas - IFMS
+              Biblioteca Digital - IFMS
             </span>
           </a>
         </Link>

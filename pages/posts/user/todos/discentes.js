@@ -8,8 +8,6 @@ import { parseCookies } from 'nookies';
 import HeaderAdmin from "../../../../components/header_admin";
 import HeaderUser from "../../../../components/header_user";
 
-
-
 /* 
 Função getServerSideProps
 É a função que realiza o fetch(busca), dos dados na api, convertendo-os em dados que podem ser utilizados por outros componentes dentro do arquivo
