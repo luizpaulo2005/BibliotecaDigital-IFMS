@@ -135,8 +135,8 @@ export default function HeaderAdmin() {
           </ul>
 
           {usuario && (
-            <span class="navbar-text" role="search">
-              <form class="d-flex" onSubmit={handleLogout}>
+            <span className="navbar-text" role="search">
+              <form className="d-flex" onSubmit={handleLogout}>
                 <button className="form-control me-2 btn-outline-light">
                   Logout
                 </button>

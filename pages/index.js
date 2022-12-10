@@ -31,16 +31,16 @@ export default function Home({ attributes, Auth }) {
       <div>{!usuario ? <HeaderUser /> : <HeaderAdmin Auth={Auth} />}</div>
       <div className="d-flex justify-content-center flex-wrap p-3">
         {attributes.map(({ id, titulo, discente }) => (
-          <div class="card m-1" key={id}>
-            <div class="card-body">
+          <div className="card m-1" key={id}>
+            <div className="card-body">
               <Link href={`/posts/user/solo/pesquisa/${id}`}>
-                <h5 class="card-title">{titulo}</h5>
+                <h5 className="card-title">{titulo}</h5>
               </Link>
               <Link href={`/posts/user/solo/discente/${discente.id}`}>
-                <p class="card-text">{discente.nome}</p>
+                <p className="card-text">{discente.nome}</p>
               </Link>
               <Link href={`/posts/user/solo/pesquisa/${id}`}>
-                <span class="btn btn-primary">Ver Mais</span>
+                <span className="btn btn-primary">Ver Mais</span>
               </Link>
             </div>
           </div>
