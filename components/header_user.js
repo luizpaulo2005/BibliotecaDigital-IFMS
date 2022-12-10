@@ -93,9 +93,9 @@ export default function HeaderUser({Auth}) {
             </li>
           </ul>
           <Link href="/posts/admin/paginaAdmin">
-            <button className="btn btn-outline-success" type="submit">
-              <div className="white">Administração</div>
-            </button>
+            <span className="btn btn-outline-light">
+              Administração
+            </span>
           </Link>
           {usuario&&(<form onSubmit={handleLogout}><button type="submit">Logout</button></form>) }
         </div>
