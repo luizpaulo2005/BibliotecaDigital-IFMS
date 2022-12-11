@@ -8,6 +8,8 @@ import Login from "../login/login";
 import {AuthContext} from "../../../../components/AuthContext&ReducerContext/AuthFunctions"
 import { parseCookies } from "nookies";
 import HeaderAdmin from "../../../../components/header_admin";
+import { filtro } from "../../../../components/Filter/filtro";
+import {useState, useEffect} from 'react'
 
 /* 
 Função getServerSideProps
@@ -58,6 +60,36 @@ export default function TodasMatriculasAdmin({ attributes, Auth }) {
 //Aqui temos uma função que é responsável por analizar o status do usuário, se houver um usuário, A página sera renderizada normalmente
 //Se não houver um usuário será renderizada a página de Login
   const Protecaoderota = () => {
+    const [consulta, setConsulta] = useState("");
+  //Aqui é onde os dados do filtro é armazenado
+  const [itensporPagina, setItensporPagina] = useState(10);
+  //Aqui é onde é colocado a quantidade de elemetos tera por pagina na paginação, por "Default", está posto por 10
+  const [paginasRecorrentes, setPaginasRecorrentes] = useState(0);
+  //Aqui é onde o usuario pode ver quantas paginas ainda podem ser vistas, esse pedenra de quantos elementos no total tem.
+
+  const keys = ["id"];
+  // aqui é onde  eu defino o atributo que o filtro ira procura quando utilizar a função "pesquisa"
+
+
+const consultaGeral = consulta.toLowerCase();
+   // Aqui é colocado todos os caracteres em minusculos para que fiquei mais facil de procurar
+  const paginas = Math.ceil(
+    filtro(attributes, keys, consultaGeral).length / itensporPagina
+  );
+  // aqui é definido as celulas
+  const startIndex = paginasRecorrentes * itensporPagina;
+  //aqui é definido a quantidade de itens na pagina conforme indicado no select ou por default
+  const endIndex = startIndex + itensporPagina;
+  //Aqui é somado para definir quantas páginas serão dependendo do valor de itens selecionados por página
+  const matriculasfiltradas = filtro(attributes, keys, consultaGeral).slice(
+    startIndex,
+    endIndex
+  );
+
+  useEffect(() => {
+    setPaginasRecorrentes(0);
+  }, [setItensporPagina]);
+
     return usuario ? (
       <div className="container-fluid g-0">
       <Head>
@@ -66,6 +98,17 @@ export default function TodasMatriculasAdmin({ attributes, Auth }) {
       <HeaderAdmin />
       <ToastContainer />
       <div className="container border rounded p-3 mt-2 w-75">
+      <div className="container d-flex justify-content-center">
+          <form className="d-flex" role="search">
+            <input
+              className="form-control filtro"
+              type="search"
+              placeholder="Pesquisar"
+              aria-label="Search"
+              onChange={(e) => setConsulta(e.target.value)}
+            />
+          </form>
+        </div>
         <table className="table">
           <thead>
             <tr>
@@ -76,7 +119,7 @@ export default function TodasMatriculasAdmin({ attributes, Auth }) {
             </tr>
           </thead>
             <tbody>
-              {attributes.map(({ id, data_inicio, discentes }) => (
+              {matriculasfiltradas.map(({ id, data_inicio, discentes }) => (
                 <tr key={id}>
                   <th scope="row">{id}</th>
                   <td>{format(parseISO(data_inicio), "dd/MM/yyyy")}</td>
@@ -89,7 +132,7 @@ export default function TodasMatriculasAdmin({ attributes, Auth }) {
                         Alterar
                       </button>
                     </Link>
-                    <button
+                    <button 
                       className="btn btn-sm btn-danger"
                       onClick={handleDelete}
                       id={id}
@@ -101,6 +144,37 @@ export default function TodasMatriculasAdmin({ attributes, Auth }) {
               ))}
             </tbody>
         </table>
+        <center>
+          <div>
+            {Array.from(Array(paginas), (pesquisasfiltradas, index) => {
+              return (
+                <button
+                  type="button"
+                  className="btn btn-outline-dark"
+                  key={index}
+                  value={index}
+                  onClick={(e) => setPaginasRecorrentes(Number(e.target.value))}
+                >
+                  {index + 1}
+                </button>
+              );
+            })}
+          </div>
+        </center>
+        <center>
+          <form>
+            <span>Trabalhos por página: </span>
+
+            <select onChange={(e) => setItensporPagina(Number(e.target.value))}>
+              <option value={5}>5</option>
+              <option selected value={10}>
+                10
+              </option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+            </select>
+          </form>
+        </center>
       </div>
     </div>
     ) : (
