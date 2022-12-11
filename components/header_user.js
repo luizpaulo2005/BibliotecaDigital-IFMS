@@ -1,34 +1,34 @@
 import Link from "next/link";
-import { AuthContext, AuthContextProvider } from "./AuthContext&ReducerContext/AuthFunctions";
-import {setCookie} from 'nookies'
+import {
+  AuthContext,
+  AuthContextProvider,
+} from "./AuthContext&ReducerContext/AuthFunctions";
+import { setCookie } from "nookies";
 import { useContext } from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
-export default function HeaderUser({Auth}) {
-  const router = useRouter()
-  const usuario = Auth
-  const {setAutenticacao} = useContext(AuthContext)
-  const handleLogout =(e)=>{
+export default function HeaderUser({ Auth }) {
+  const router = useRouter();
+  const usuario = Auth;
+  const { setAutenticacao } = useContext(AuthContext);
+  const handleLogout = (e) => {
     const user = usuario;
-    setAutenticacao({type:"LOGOUT", payload:user})
+    setAutenticacao({ type: "LOGOUT", payload: user });
     //aqui eu defino o Logout
-    setCookie(null , "usuario" , null, {
+    setCookie(null, "usuario", null, {
       maxAge: 0,
-      path: "/",       
-    })
+      path: "/",
+    });
     //aqui eu defino o cookie como nulo
     router.push("/");
-  }
-
+  };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-success">
+    <nav className="navbar navbar-expand-lg bg-success w-100">
       <div className="container">
         <Link href="/">
           <a className="navbar-brand">
-            <span className="titleheader">
-              Biblioteca Digital - IFMS
-            </span>
+            <span className="titleheader">Biblioteca Digital - IFMS</span>
           </a>
         </Link>
         <button
@@ -93,11 +93,13 @@ export default function HeaderUser({Auth}) {
             </li>
           </ul>
           <Link href="/posts/admin/paginaAdmin">
-            <span className="btn btn-outline-light">
-              Administração
-            </span>
+            <span className="btn btn-outline-light">Administração</span>
           </Link>
-          {usuario&&(<form onSubmit={handleLogout}><button type="submit">Logout</button></form>) }
+          {usuario && (
+            <form onSubmit={handleLogout}>
+              <button type="submit">Logout</button>
+            </form>
+          )}
         </div>
       </div>
     </nav>

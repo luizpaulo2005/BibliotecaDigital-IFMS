@@ -3,12 +3,10 @@ import axios from "axios";
 import { format, parseISO } from "date-fns";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { filtro } from './../../../../components/Filter/filtro';
-import { parseCookies } from 'nookies';
+import { filtro } from "./../../../../components/Filter/filtro";
+import { parseCookies } from "nookies";
 import HeaderAdmin from "../../../../components/header_admin";
 import HeaderUser from "../../../../components/header_user";
-
-
 
 /* 
 Função getServerSideProps
@@ -19,13 +17,13 @@ Por fim, a função retorna em um objeto a variável attributes para ser utiliza
 */
 
 export const getServerSideProps = async (context) => {
-  const cookies = parseCookies(context)
+  const cookies = parseCookies(context);
   const response = await axios.get(process.env.URL_API + "/pesquisa");
   const attributes = await response.data;
   return {
     props: {
       attributes,
-      Auth : cookies.usuario || null
+      Auth: cookies.usuario || null,
     },
   };
 };
@@ -50,16 +48,20 @@ export default function TodasPesquisas({ attributes, Auth }) {
   const keys = ["titulo"];
   // aqui é onde  eu defino o atributo que o filtro ira procura quando utilizar a função "pesquisa"
 
-
   const consultaGeral = consulta.toLowerCase();
   // Aqui é colocado todos os caracteres em minusculos para que fiquei mais facil de procurar
-  const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
+  const paginas = Math.ceil(
+    filtro(attributes, keys, consultaGeral).length / itensporPagina
+  );
   // aqui é definido as celulas
   const startIndex = paginasRecorrentes * itensporPagina;
   //aqui é definido a quantidade de itens na pagina conforme indicado no select ou por default
   const endIndex = startIndex + itensporPagina;
   //Aqui é somado para definir quantas páginas serão dependendo do valor de itens selecionados por página
-  const pesquisasfiltradas = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
+  const pesquisasfiltradas = filtro(attributes, keys, consultaGeral).slice(
+    startIndex,
+    endIndex
+  );
   //Aqui eu aplico o filtro, e com o slice eu divido os itens.
 
   useEffect(() => {
@@ -73,19 +75,17 @@ export default function TodasPesquisas({ attributes, Auth }) {
       <Head>
         <title>Pesquisas</title>
       </Head>
-      {!usuario ? <HeaderUser/> : <HeaderAdmin Auth={Auth}/>}
-      <div className="container border rounded mt-2 p-3">
-        <div className="container d-flex justify-content-center">
-          <form className="d-flex" role="search">
-            <input
-              className="form-control filtro"
-              type="search"
-              placeholder="Pesquisar"
-              aria-label="Search"
-              onChange={(e) => setConsulta(e.target.value)}
-            />
-          </form>
-        </div>
+      {!usuario ? <HeaderUser /> : <HeaderAdmin Auth={Auth} />}
+      <div className="container border rounded mt-2 p-3 col-lg-8 col-md-8 col-sm-12 d-flex justify-content-center flex-column">
+        <center>
+          <input
+            className="form-control filtro"
+            type="search"
+            placeholder="Pesquisar"
+            aria-label="Search"
+            onChange={(e) => setConsulta(e.target.value)}
+          />
+        </center>
         <table className="table">
           <thead>
             <tr>

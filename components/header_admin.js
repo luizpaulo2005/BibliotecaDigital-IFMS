@@ -1,5 +1,9 @@
 import Link from "next/link";
-import { AuthContextProvider, AuthContext, AuthReducer } from "./AuthContext&ReducerContext/AuthFunctions";
+import {
+  AuthContextProvider,
+  AuthContext,
+  AuthReducer,
+} from "./AuthContext&ReducerContext/AuthFunctions";
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import { setCookie } from "nookies";
@@ -23,13 +27,11 @@ export default function HeaderAdmin() {
   };
   //aqui é definido o cookie como nulo, para remover o cookie
   return (
-    <nav className="navbar navbar-expand-lg bg-success">
+    <nav className="navbar navbar-expand-lg bg-success w-100">
       <div className="container">
         <Link href="/">
           <a className="navbar-brand">
-            <span className="titleheader">
-              Biblioteca Digital - IFMS
-            </span>
+            <span className="titleheader">Biblioteca Digital - IFMS</span>
           </a>
         </Link>
         <button

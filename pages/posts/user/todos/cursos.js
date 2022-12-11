@@ -69,9 +69,7 @@ export default function TodosCursos({ attributes, Auth }) {
         <title>Lista de Cursos</title>
       </Head>
       {!usuario ? <HeaderUser/> : <HeaderAdmin Auth={Auth}/>}
-      <div className="container border rounded mt-2 p-3 w-50">
-        <div className="container">
-          <form className="d-flex" role="search">
+      <div className="container border rounded mt-2 p-3 col-lg-8 col-md-8 col-sm-12 d-flex justify-content-center flex-column">
             <input
               className="form-control filtro"
               type="search"
@@ -79,8 +77,6 @@ export default function TodosCursos({ attributes, Auth }) {
               aria-label="Search"
               onChange={(e) => setConsulta(e.target.value)}
             />
-          </form>
-        </div>
         <table className="table">
           <thead>
             <tr>

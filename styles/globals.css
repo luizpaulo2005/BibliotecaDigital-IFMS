@@ -11,27 +11,28 @@ body {
   text-decoration: none;
 }
 
-.filtro{
-  width: 700px !important;
+.filtro {
+  max-width: 700px !important;
 }
 
-.error{
+.error {
   color: red;
 }
 
-.white{color: whitesmoke;}
-.verde {color: green;}
+.white {
+  color: whitesmoke;
+}
+.verde {
+  color: green;
+}
 * {
   box-sizing: border-box;
 }
 
-.titleheader{
+.titleheader {
   font-size: 30px;
-  font-weight:bold;
+  font-weight: bold;
   color: whitesmoke;
-}
-.carrossel{
-  width: 800px;
 }
 
 .links {

@@ -138,6 +138,7 @@ console.log(attributes2.id)
               type="text"
               onChange={handleInputChange}
               value={pesquisa.titulo}
+              placeholder={attributes2.titulo}
               className="form-control"
               aria-label="Titulo"
               aria-describedby="basic-addon1"
@@ -151,6 +152,7 @@ console.log(attributes2.id)
               type="text"
               onChange={handleInputChange}
               value={pesquisa.discenteId}
+              placeholder={attributes2.discenteId}
               className="form-control"
             />
             <datalist id="listdisc">
@@ -167,6 +169,7 @@ console.log(attributes2.id)
               id="docenteId"
               onChange={handleInputChange}
               value={pesquisa.docenteId}
+              placeholder={attributes2.docenteId}
               className="form-control"
               list="listdoc"
               type="text"
@@ -188,6 +191,7 @@ console.log(attributes2.id)
               type="date"
               onChange={handleInputChange}
               value={pesquisa.data_apresentacao}
+              defaultValue={attributes2.data_apresentacao}
               className="form-control"
               aria-label="data"
               aria-describedby="basic-addon1"
@@ -200,13 +204,14 @@ console.log(attributes2.id)
               id="tipo"
               onChange={handleInputChange}
               value={pesquisa.tipo}
+              placeholder={attributes2.tipo}
             >
               <option selected disabled>
                 Selecione o tipo de pesquisa
               </option>
               <option value="Artigo">Artigo</option>
-              <option>Monografia</option>
-              <option>Registro de Software</option>
+              <option value="Monografia">Monografia</option>
+              <option value="Registro de Software">Registro de Software</option>
             </select>
           </div>
           <div className="input-group mb-3">
@@ -218,6 +223,7 @@ console.log(attributes2.id)
               type="text"
               onChange={handleInputChange}
               value={pesquisa.resumo}
+              placeholder={attributes2.resumo}
               className="form-control"
               aria-label="Resumo"
               aria-describedby="basic-addon1"
@@ -232,6 +238,7 @@ console.log(attributes2.id)
               type="text"
               onChange={handleInputChange}
               value={pesquisa.palavras_chave}
+              placeholder={attributes2.palavras_chave}
               className="form-control"
               aria-label="pchave"
               aria-describedby="basic-addon1"

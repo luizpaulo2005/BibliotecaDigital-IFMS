@@ -67,7 +67,7 @@ export default function TodosDocentes({ attributes, Auth }) {
         <title>Lista de Docentes</title>
       </Head>
       {!usuario ? <HeaderUser/> : <HeaderAdmin Auth={Auth}/>}
-      <div className="container border rounded p-3 mt-2 w-50">
+      <div className="container border rounded p-3 mt-2 col-lg-8 col-md-8 col-sm-12 d-flex justify-content-center flex-column">
         <div className="container">
           <form className="d-flex" role="search">
             <input

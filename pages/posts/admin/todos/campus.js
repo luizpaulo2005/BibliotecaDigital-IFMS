@@ -18,15 +18,15 @@ Por fim, a função retorna em um objeto a variável attributes para ser utiliza
 */
 
 export const getServerSideProps = async (context) => {
-  const cookies = parseCookies(context)
+  const cookies = parseCookies(context);
   //Constante reponsável por armazenar os cookies
   const response = await axios.get(process.env.URL_API + "/campus");
   const attributes = await response.data;
   return {
     props: {
       attributes,
-      Auth:cookies.usuario || null
-        //Se houver cookies vai ser passado o valor para o Auth, se não, vai ser dado como nulo, e não tera um usuário disponível
+      Auth: cookies.usuario || null,
+      //Se houver cookies vai ser passado o valor para o Auth, se não, vai ser dado como nulo, e não tera um usuário disponível
     },
   };
 };
@@ -51,16 +51,20 @@ export default function TodosCampusAdmin({ attributes, Auth }) {
   const keys = ["nome"];
   // aqui é onde  eu defino o atributo que o filtro ira procura quando utilizar a função "pesquisa"
 
-
   const consultaGeral = consulta.toLowerCase();
   // Aqui é colocado todos os caracteres em minusculos para que fiquei mais facil de procurar
-  const paginas = Math.ceil(filtro(attributes, keys, consultaGeral).length / itensporPagina);
+  const paginas = Math.ceil(
+    filtro(attributes, keys, consultaGeral).length / itensporPagina
+  );
   // aqui é definido as celulas
   const startIndex = paginasRecorrentes * itensporPagina;
   //aqui é definido a quantidade de itens na pagina conforme indicado no select ou por default
   const endIndex = startIndex + itensporPagina;
   //Aqui é somado para definir quantas páginas serão dependendo do valor de itens selecionados por página
-  const campusfiltrados = filtro(attributes, keys, consultaGeral).slice(startIndex, endIndex);
+  const campusfiltrados = filtro(attributes, keys, consultaGeral).slice(
+    startIndex,
+    endIndex
+  );
   //Aqui eu aplico o filtro, e com o slice eu divido os itens.
 
   const handleDelete = async (e) => {
@@ -80,22 +84,21 @@ export default function TodosCampusAdmin({ attributes, Auth }) {
     }
   };
 
-  const usuario  = Auth;
-// essa constante é resposanvel por armazenar os status do usuário
+  const usuario = Auth;
+  // essa constante é resposanvel por armazenar os status do usuário
 
-//Aqui temos uma função que é responsável por analizar o status do usuário, se houver um usuário, A página sera renderizada normalmente
-//Se não houver um usuário será renderizada a página de Login
+  //Aqui temos uma função que é responsável por analizar o status do usuário, se houver um usuário, A página sera renderizada normalmente
+  //Se não houver um usuário será renderizada a página de Login
   const Protecaoderota = () => {
     return usuario ? (
       <div className="container-fluid g-0">
-      <Head>
-        <title>Lista de Campus</title>
-      </Head>
-      <HeaderAdmin />
-      <ToastContainer />
-      <div className="container border rounded mt-2 p-3 w-50">
-        <div className="container">
-          <form className="d-flex" role="search">
+        <Head>
+          <title>Lista de Campus</title>
+        </Head>
+        <HeaderAdmin />
+        <ToastContainer />
+        <div className="container d-flex justify-content-center flex-column border rounded mt-2 p-3 col-lg-8 col-md-8 col-sm-12">
+          <center>
             <input
               className="form-control filtro"
               type="search"
@@ -103,25 +106,28 @@ export default function TodosCampusAdmin({ attributes, Auth }) {
               aria-label="Search"
               onChange={(e) => setConsulta(e.target.value)}
             />
-          </form>
-        </div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th className="d-flex justify-content-end">Ações</th>
-            </tr>
-          </thead>
-          
+          </center>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Cidade</th>
+                <th className="d-flex justify-content-end">Ações</th>
+              </tr>
+            </thead>
+
             <tbody>
-              {campusfiltrados.map(({ id, nome }) => (
+              {campusfiltrados.map(({ id, nome, cidade }) => (
                 <tr key={id}>
                   <th scope="row">{id}</th>
                   <td>
                     <Link href={`/posts/admin/solo/campus/${id}`}>
                       <a className="list-group-item">{nome}</a>
                     </Link>
+                  </td>
+                  <td>
+                    {cidade}
                   </td>
                   <td className="d-flex justify-content-end">
                     <Link href={`/posts/admin/alterar/campus/${id}`}>
@@ -140,42 +146,45 @@ export default function TodosCampusAdmin({ attributes, Auth }) {
                 </tr>
               ))}
             </tbody>
-         
-        </table>
+          </table>
 
-        <center>
-          <div>
-            {Array.from(Array(paginas), (campusfiltrado, index) => {
-              return (
-                <button
-                  type="button"
-                  className="btn btn-outline-dark"
-                  key={index}
-                  value={index}
-                  onClick={(e) => setPaginasRecorrentes(Number(e.target.value))}
-                >
-                  {index + 1}
-                </button>
-              );
-            })}
-          </div>
-        </center>
-        <center>
-          <form>
-            <span>Campi por página: </span>
+          <center>
+            <div>
+              {Array.from(Array(paginas), (campusfiltrado, index) => {
+                return (
+                  <button
+                    type="button"
+                    className="btn btn-outline-dark"
+                    key={index}
+                    value={index}
+                    onClick={(e) =>
+                      setPaginasRecorrentes(Number(e.target.value))
+                    }
+                  >
+                    {index + 1}
+                  </button>
+                );
+              })}
+            </div>
+          </center>
+          <center>
+            <form>
+              <span>Campi por página: </span>
 
-            <select onChange={(e) => setItensporPagina(Number(e.target.value))}>
-              <option value={5}>5</option>
-              <option selected value={10}>
-                10
-              </option>
-              <option value={20}>20</option>
-              <option value={50}>50</option>
-            </select>
-          </form>
-        </center>
+              <select
+                onChange={(e) => setItensporPagina(Number(e.target.value))}
+              >
+                <option value={5}>5</option>
+                <option selected value={10}>
+                  10
+                </option>
+                <option value={20}>20</option>
+                <option value={50}>50</option>
+              </select>
+            </form>
+          </center>
+        </div>
       </div>
-    </div>
     ) : (
       <Login></Login>
     );
@@ -184,7 +193,5 @@ export default function TodosCampusAdmin({ attributes, Auth }) {
   useEffect(() => {
     setPaginasRecorrentes(0);
   }, [setItensporPagina]);
-  return (
-   <Protecaoderota></Protecaoderota>
-  );
+  return <Protecaoderota></Protecaoderota>;
 }
