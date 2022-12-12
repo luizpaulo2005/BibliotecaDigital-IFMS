@@ -1,11 +1,23 @@
-## Biblioteca Digital de Trabalhos de Conclusão de Curso Aprovados do IFMS
+# Biblioteca Digital de Trabalhos de Conclusão de Curso Aprovados do IFMS
 
 Este é o FrontEnd da Biblioteca Digital de TCCs desenvolvida para o IFMS
 
-> Observações: 
+> Como Usar:
 
+1. Clonar a aplicação do GitHub;
+2. *Criar um arquivo ```.env``` e inserir as informações necessárias contidas no arquivo ```.env.example```;
+3. Abrir o terminal e executar o comando ```npm i```;
+4. Executar o comando ```npm run dev```, e assim sua aplicação irá iniciar;
+
+> Observações:
+
+- No Passo 2, algumas das informação são do firebase, então você precisará ter um banco no Firebase do Google antes de iniciar o projeto, tutorial abaixo;
 - Essa aplicação é uma Progressive Web App, ou seja, pode ser instalada a partir de um navegador compatível;
 - Mesmo sendo uma PWA, essa aplicação requer conexão com a internet;
+
+> Tutorial do Firebase:
+
+- Link do Youtube;
 
 > Este projeto foi desenvolvido por:
 
@@ -22,7 +34,7 @@ Este é o FrontEnd da Biblioteca Digital de TCCs desenvolvida para o IFMS
 
 > Técnico em Informática - INFO 6 - 2022
 
-## Documentação 
+## Documentação
 
 > Diretórios
 
