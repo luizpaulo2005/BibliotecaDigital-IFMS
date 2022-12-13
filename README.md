@@ -42,3 +42,4 @@ Este é o FrontEnd da Biblioteca Digital de TCCs desenvolvida para o IFMS
 - [user/todos](pages/posts/user/todos/readme.md)
 - [admin/solo](pages/posts/admin/solo/readme.md)
 - [admin/todos](pages/posts/admin/todos/readme.md)
+- [admin/alterar](pages/posts/admin/alterar/readme.md)
