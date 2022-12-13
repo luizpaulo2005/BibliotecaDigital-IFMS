@@ -139,7 +139,7 @@ export default function CadastrarPesquisa({ attributes, attributes1, Auth}) {
               aria-describedby="basic-addon1"
             />
           </div>
-          <div className="input-group mb-3">
+          <div className="input-group mb-1">
             <label className="input-group-text">Alunos</label>
             <input
               id="discenteId"
@@ -157,6 +157,7 @@ export default function CadastrarPesquisa({ attributes, attributes1, Auth}) {
               ))}
             </datalist>
           </div>
+          <div id="emailHelp" className="form-text mb-2">Antes de cadastrar uma pesquisa, certificar que os alunos estejam cadastrados préviamente.</div>
           <div className="input-group mb-3">
             <label className="input-group-text">Orientador</label>
             <input
