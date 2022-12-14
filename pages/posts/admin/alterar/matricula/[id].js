@@ -139,7 +139,7 @@ export default function AlterarMatricula({ attributes, attributes1, Auth }) {
                   ))}
                 </datalist>
               </div>
-              <button className="btn btn-success">Cadastrar</button>
+              <button className="btn btn-success">Alterar</button>
             </fieldset>
           </form>
         </div>
