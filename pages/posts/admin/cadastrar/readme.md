@@ -1,4 +1,4 @@
-# Documentação do diretório admin/alterar
+# Documentação do diretório admin/cadastrar
 
 Esse diretório contém as páginas de cadastro de ```campus```, ```curso```, ```discente```, ```docente```, ```matrícula``` e ```pesquisa```.
 
