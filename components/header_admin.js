@@ -59,7 +59,7 @@ export default function HeaderAdmin() {
             <li className="nav-item">
               <Link href="/posts/admin/paginaAdmin">
                 <a className="nav-link active">
-                  <span className="white">Painel</span>
+                  <span className="white">Painel Administrativo</span>
                 </a>
               </Link>
             </li>
