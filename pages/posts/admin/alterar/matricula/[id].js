@@ -1,33 +1,31 @@
 import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState, useContext } from "react";
-import { toast, ToastContainer } from "react-toastify";
-import Login from "../login/login";
-import { AuthContext } from "../../../../components/AuthContext&ReducerContext/AuthFunctions";
 import { parseCookies } from "nookies";
-import HeaderAdmin from "../../../../components/header_admin";
+import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import HeaderAdmin from "../../../../../components/header_admin";
+import Login from "../../login/login";
 
 export const getServerSideProps = async (context) => {
+  const id = context.query.id;
   const cookies = parseCookies(context);
-  //constante reponsável por armazenar os cookies
   const response = await axios.get(process.env.URL_API + "/curso");
+  const response1 = await axios.get(process.env.URL_API + `/matricula/${id}`);
   const attributes = await response.data;
+  const attributes1 = await response1.data;
   return {
     props: {
       attributes,
+      attributes1,
       Auth: cookies.usuario || null,
-      //Se houver cookies vai ser passado o valor para o Auth, se não, vai ser dado como nulo e não terá um usuário disponível
     },
   };
 };
-//está função é responsável por pegar os cookies se houver, para que a páginaAdmin fique disponivel para uso
 
-export default function CadastrarMatricula({ attributes, Auth }) {
+export default function AlterarMatricula({ attributes, attributes1, Auth }) {
   const usuario = Auth;
 
-  //Aqui temos uma função que é responsável por analizar o status do usuário, se houver um usuário, A página sera renderizada normalmente
-  //Se não houver um usuário será renderizada a página de Login
   const Protecaoderota = () => {
     const [matricula, setMatricula] = useState({
       id: "",
@@ -38,7 +36,7 @@ export default function CadastrarMatricula({ attributes, Auth }) {
     let router = useRouter();
 
     const handleSubmit = async (e) => {
-      e.preventDefault();
+      e.preventDefault;
       const emptyFieldCheck = Object.values(matricula).some(
         (element) => element === ""
       );
@@ -46,20 +44,20 @@ export default function CadastrarMatricula({ attributes, Auth }) {
         toast.error("Há algum campo vazio");
         return;
       }
-
       const data = {
         ...matricula,
       };
-
-      const response = await axios.post(
-        process.env.URL_API + "/matricula",
+      const id = matricula.id;
+      const response = await axios.put(
+        "https://databasebibliotecadigital.undertak3r.repl.co" +
+          `/matricula/${id}`,
         data
       );
 
       if (!response.statusText === "OK") {
-        toast.error("Erro ao cadastrar a matrícula");
+        toast.error("Erro ao alterar a matrícula");
       } else {
-        toast.success("Matrícula adicionada com sucesso");
+        toast.success("Matrícula alterada com sucesso");
         router.push("/posts/admin/todos/matricula");
       }
     };
@@ -69,17 +67,18 @@ export default function CadastrarMatricula({ attributes, Auth }) {
     };
 
     const { id, data_inicio, cursoId } = matricula;
+
     return usuario ? (
       <div className="container-fluid g-0">
         <Head>
-          <title>Cadastro de Matricula</title>
+          <title>Alterar {attributes1.id}</title>
         </Head>
         <HeaderAdmin />
         <ToastContainer />
         <div className="container border rounded mt-2 p-3">
           <form onSubmit={handleSubmit}>
             <fieldset>
-              <legend>Cadastro de Matricula</legend>
+              <legend>Alterar informações de uma Matricula</legend>
               <div className="input-group mb-3">
                 <span className="input-group-text" id="basic-addon1">
                   Número da Matricula
@@ -90,6 +89,7 @@ export default function CadastrarMatricula({ attributes, Auth }) {
                   className="form-control"
                   onChange={handleInputChange}
                   value={matricula.id}
+                  placeholder={attributes1.id}
                   aria-label="Username"
                   aria-describedby="basic-addon1"
                 />
@@ -104,6 +104,7 @@ export default function CadastrarMatricula({ attributes, Auth }) {
                   className="form-control"
                   onChange={handleInputChange}
                   value={matricula.data_inicio}
+                  placeholder={attributes1.data_inicio}
                   aria-label="Username"
                   aria-describedby="basic-addon1"
                 />
@@ -114,11 +115,11 @@ export default function CadastrarMatricula({ attributes, Auth }) {
                 </span>
 
                 {/* <select id="cursoId" className="form-control" onChange={handleInputChange} value={matricula.cursoId}>
-               <option selected disabled>Selecione o curso da matrícula</option>
-               {attributes.map(({id, nome})=> (
-                   <option key={id} value={id}>{nome}</option>
-               ))}
-               </select> */}
+                 <option selected disabled>Selecione o curso da matrícula</option>
+                 {attributes.map(({id, nome})=> (
+                     <option key={id} value={id}>{nome}</option>
+                 ))}
+                 </select> */}
 
                 <input
                   list="cursos"
@@ -127,6 +128,7 @@ export default function CadastrarMatricula({ attributes, Auth }) {
                   className="form-control"
                   onChange={handleInputChange}
                   value={matricula.cursoId}
+                  placeholder={attributes1.cursoId}
                 />
 
                 <datalist id="cursos">

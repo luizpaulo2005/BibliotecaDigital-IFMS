@@ -143,7 +143,7 @@ export default function TodasMatriculasAdmin({ attributes, Auth }) {
           </table>
           <center>
             <div>
-              {Array.from(Array(paginas), (pesquisasfiltradas, index) => {
+              {Array.from(Array(paginas), (matriculasfiltradas, index) => {
                 return (
                   <button
                     type="button"
