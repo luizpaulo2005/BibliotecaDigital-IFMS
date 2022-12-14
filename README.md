@@ -9,6 +9,8 @@ Este é o FrontEnd da Biblioteca Digital de TCCs desenvolvida para o IFMS
 3. Abrir o terminal e executar o comando ```npm i```;
 4. Executar o comando ```npm run dev```, e assim sua aplicação irá iniciar;
 
+- [Youtube](https://youtu.be/JSdDd5S2SlY)
+
 > Observações:
 
 - No Passo 2, algumas das informação são do firebase, então você precisará ter um banco no Firebase do Google antes de iniciar o projeto, tutorial abaixo;
@@ -17,7 +19,7 @@ Este é o FrontEnd da Biblioteca Digital de TCCs desenvolvida para o IFMS
 
 > Tutorial do Firebase:
 
-- Link do Youtube;
+- [Youtube]()
 
 > Este projeto foi desenvolvido por:
 
