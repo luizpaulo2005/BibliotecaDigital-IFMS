@@ -56,8 +56,15 @@ Após isso vá em adicionar projeto
 De o nome ao projeto, e crie-o
 Com o projeto criado, entre nele e vá em como na imagem.
 ![image](https://user-images.githubusercontent.com/86124609/207732692-a8b3b3e0-5ce3-46eb-af5c-1e48b1b7f0db.png)
-De um nome e prossiga, esse será seu banco de dados.
+
+De um nome e prossiga, esse será seu banco de dados, adicione-o no .env
 ![image](https://user-images.githubusercontent.com/86124609/207732841-a08b1f5e-00af-4d87-8745-fbae03f62dee.png)
+Ná página inícial do projeto, vá em criação e depois em authentication, e vá em email e senha e ative-o
+![image](https://user-images.githubusercontent.com/86124609/207733206-18cdef63-03bb-4ae5-a85d-ddb827d2a3b5.png)
+Em users, adicione seu usuário e pronto, a configuração do firebase está completa
+![image](https://user-images.githubusercontent.com/86124609/207733306-2a4d7ed2-1c20-44be-b802-59c3b2ccd00e.png)
+
+
 
 
 
