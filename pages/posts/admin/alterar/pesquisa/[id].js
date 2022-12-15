@@ -14,9 +14,15 @@ export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const cookies = parseCookies(context);
   //constante reponsável por armazenar os cookies
-  const response = await axios.get(process.env.URL_API + "/discente");
-  const response1 = await axios.get(process.env.URL_API + "/docente");
-  const response2 = await axios.get(process.env.URL_API + `/pesquisa/${id}`);
+  const response = await axios.get(
+    process.env.NEXT_PUBLIC_URL_API + "/discente"
+  );
+  const response1 = await axios.get(
+    process.env.NEXT_PUBLIC_URL_API + "/docente"
+  );
+  const response2 = await axios.get(
+    process.env.NEXT_PUBLIC_URL_API + `/pesquisa/${id}`
+  );
   const attributes = await response.data;
   const attributes1 = await response1.data;
   const attributes2 = await response2.data;
@@ -72,9 +78,7 @@ export default function AlterarPesquisa({
         ...pesquisa,
       };
       const id = attributes2.id;
-      const url =
-        "https://databasebibliotecadigital.undertak3r.repl.co" +
-        `/pesquisa/${id}`;
+      const url = process.env.NEXT_PUBLIC_URL_API + `/pesquisa/${id}`;
 
       formData.append("titulo", data.titulo);
       formData.append("tipo", data.tipo);

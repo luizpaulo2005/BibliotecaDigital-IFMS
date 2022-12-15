@@ -10,7 +10,7 @@ export const getServerSideProps = async (context) => {
   //constante reponsável por armazenar os cookies
   const id = context.query.id;
   const response = await axios.get(
-    process.env.URL_API + `/docente/${id}/pesquisas`
+    process.env.NEXT_PUBLIC_URL_API + `/docente/${id}/pesquisas`
   );
   const attributes = await response.data;
   return {
@@ -38,7 +38,7 @@ export default function SoloDocenteAdmin({ attributes, Auth }) {
     const data = {
       id: Number(id),
     };
-    const response = await axios.delete(process.env.URL_API + `/docente/${id}`);
+    const response = await axios.delete(process.env.NEXT_PUBLIC_URL_API + `/docente/${id}`);
     if (!response.statusText === "OK") {
       toast.error("Erro ao excluir o professor");
     } else {

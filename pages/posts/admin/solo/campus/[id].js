@@ -10,7 +10,7 @@ export const getServerSideProps = async (context) => {
   //constante reponsável por armazenar os cookies
   const id = context.query.id;
   const response = await axios.get(
-    process.env.URL_API + `/campus/${id}/cursos`
+    process.env.NEXT_PUBLIC_URL_API + `/campus/${id}/cursos`
   );
   const attributes = response.data;
   console.log(attributes);
@@ -31,7 +31,7 @@ export default function SoloCampusAdmin({ attributes, Auth }) {
     const data = {
       id: Number(id),
     };
-    const response = await axios.delete(process.env.URL_API + `/campus/${id}`);
+    const response = await axios.delete(process.env.NEXT_PUBLIC_URL_API + `/campus/${id}`);
     if (!response.statusText === "OK") {
       toast.error("Erro ao excluir o campus");
     } else {

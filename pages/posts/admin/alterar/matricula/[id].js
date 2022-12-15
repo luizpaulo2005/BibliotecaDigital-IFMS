@@ -10,8 +10,10 @@ import Login from "../../login/login";
 export const getServerSideProps = async (context) => {
   const id = context.query.id;
   const cookies = parseCookies(context);
-  const response = await axios.get(process.env.URL_API + "/curso");
-  const response1 = await axios.get(process.env.URL_API + `/matricula/${id}`);
+  const response = await axios.get(process.env.NEXT_PUBLIC_URL_API + "/curso");
+  const response1 = await axios.get(
+    process.env.NEXT_PUBLIC_URL_API + `/matricula/${id}`
+  );
   const attributes = await response.data;
   const attributes1 = await response1.data;
   return {
@@ -49,8 +51,7 @@ export default function AlterarMatricula({ attributes, attributes1, Auth }) {
       };
       const id = matricula.id;
       const response = await axios.put(
-        "https://databasebibliotecadigital.undertak3r.repl.co" +
-          `/matricula/${id}`,
+        process.env.NEXT_PUBLIC_URL_API + `/matricula/${id}`,
         data
       );
 

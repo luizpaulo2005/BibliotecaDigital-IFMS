@@ -19,7 +19,22 @@ Este é o FrontEnd da Biblioteca Digital de TCCs desenvolvida para o IFMS
 
 > Tutorial do Firebase:
 
-- [Youtube]()
+> Criar e Adicionar o seu banco Firebase
+
+Entre no https://firebase.google.com e entre na sua conta e vá em começar
+![image](https://user-images.githubusercontent.com/86124609/207731761-5860b709-0585-47a0-8de6-0cae2c16d87a.png)
+Após isso vá em adicionar projeto
+![image](https://user-images.githubusercontent.com/86124609/207731854-e52d3530-5d88-43a1-88f4-8359b82bd058.png)
+De o nome ao projeto, e crie-o
+Com o projeto criado, entre nele e vá em como na imagem.
+![image](https://user-images.githubusercontent.com/86124609/207732692-a8b3b3e0-5ce3-46eb-af5c-1e48b1b7f0db.png)
+
+De um nome e prossiga, esse será seu banco de dados, adicione-o no .env
+![image](https://user-images.githubusercontent.com/86124609/207732841-a08b1f5e-00af-4d87-8745-fbae03f62dee.png)
+Ná página inícial do projeto, vá em criação e depois em authentication, e vá em email e senha e ative-o
+![image](https://user-images.githubusercontent.com/86124609/207733206-18cdef63-03bb-4ae5-a85d-ddb827d2a3b5.png)
+Em users, adicione seu usuário e pronto, a configuração do firebase está completa
+![image](https://user-images.githubusercontent.com/86124609/207733306-2a4d7ed2-1c20-44be-b802-59c3b2ccd00e.png)
 
 > Este projeto foi desenvolvido por:
 
@@ -47,22 +62,6 @@ Este é o FrontEnd da Biblioteca Digital de TCCs desenvolvida para o IFMS
 - [admin/alterar](pages/posts/admin/alterar/readme.md)
 - [admin/cadastrar](pages/posts/admin/cadastrar/readme.md)
 
-> Criar e Adicionar o seu banco Firebase
-
-Entre no https://firebase.google.com e entre na sua conta e vá em começar
-![image](https://user-images.githubusercontent.com/86124609/207731761-5860b709-0585-47a0-8de6-0cae2c16d87a.png)
-Após isso vá em adicionar projeto
-![image](https://user-images.githubusercontent.com/86124609/207731854-e52d3530-5d88-43a1-88f4-8359b82bd058.png)
-De o nome ao projeto, e crie-o
-Com o projeto criado, entre nele e vá em como na imagem.
-![image](https://user-images.githubusercontent.com/86124609/207732692-a8b3b3e0-5ce3-46eb-af5c-1e48b1b7f0db.png)
-
-De um nome e prossiga, esse será seu banco de dados, adicione-o no .env
-![image](https://user-images.githubusercontent.com/86124609/207732841-a08b1f5e-00af-4d87-8745-fbae03f62dee.png)
-Ná página inícial do projeto, vá em criação e depois em authentication, e vá em email e senha e ative-o
-![image](https://user-images.githubusercontent.com/86124609/207733206-18cdef63-03bb-4ae5-a85d-ddb827d2a3b5.png)
-Em users, adicione seu usuário e pronto, a configuração do firebase está completa
-![image](https://user-images.githubusercontent.com/86124609/207733306-2a4d7ed2-1c20-44be-b802-59c3b2ccd00e.png)
 
 
 

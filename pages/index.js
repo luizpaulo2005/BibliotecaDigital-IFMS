@@ -10,7 +10,7 @@ import { useEffect, useLayoutEffect } from "react";
 
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context);
-  const response = await axios.get(process.env.URL_API + "/pesquisa");
+  const response = await axios.get(process.env.NEXT_PUBLIC_URL_API + "/pesquisa");
   const attributes = await response.data;
   return {
     props: {

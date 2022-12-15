@@ -21,7 +21,7 @@ Por fim, a função retorna em um objeto a variável attributes para ser utiliza
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context);
   //constante reponsável por armazenar os cookies
-  const response = await axios.get(process.env.URL_API + "/curso");
+  const response = await axios.get(process.env.NEXT_PUBLIC_URL_API + "/curso");
   const attributes = await response.data;
   return {
     props: {
