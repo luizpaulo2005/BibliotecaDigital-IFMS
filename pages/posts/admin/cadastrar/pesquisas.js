@@ -12,8 +12,8 @@ import HeaderAdmin from "../../../../components/header_admin";
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context);
   //constante reponsável por armazenar os cookies
-  const response = await axios.get(process.env.URL_API + "/discente");
-  const response1 = await axios.get(process.env.URL_API + "/docente");
+  const response = await axios.get(process.env.NEXT_PUBLIC_URL_API + "/discente");
+  const response1 = await axios.get(process.env.NEXT_PUBLIC_URL_API + "/docente");
   const attributes = await response.data;
   const attributes1 = await response1.data;
 

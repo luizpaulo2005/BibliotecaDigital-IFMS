@@ -18,7 +18,7 @@ export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
   const id = context.query.id;
   const response = await axios.get(
-    process.env.URL_API + `/curso/${id}/allattributes`
+    process.env.NEXT_PUBLIC_URL_API + `/curso/${id}/allattributes`
   );
   const attributes = await response.data;
   return {

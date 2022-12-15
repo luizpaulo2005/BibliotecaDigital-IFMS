@@ -53,7 +53,7 @@ export default function CadastrarDocente({Auth}) {
         ...docente,
       };
   
-      const response = await axios.post(process.env.URL_API + "/docente", data);
+      const response = await axios.post(process.env.NEXT_PUBLIC_URL_API + "/docente", data);
   
       if (!response.statusText === "OK") {
         toast.error("Erro ao cadastrar o professor");

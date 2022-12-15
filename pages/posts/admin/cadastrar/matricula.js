@@ -11,7 +11,7 @@ import HeaderAdmin from "../../../../components/header_admin";
 export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context);
   //constante reponsável por armazenar os cookies
-  const response = await axios.get(process.env.URL_API + "/curso");
+  const response = await axios.get(process.env.NEXT_PUBLIC_URL_API + "/curso");
   const attributes = await response.data;
   return {
     props: {
@@ -52,7 +52,7 @@ export default function CadastrarMatricula({ attributes, Auth }) {
       };
 
       const response = await axios.post(
-        process.env.URL_API + "/matricula",
+        process.env.NEXT_PUBLIC_URL_API + "/matricula",
         data
       );
 

@@ -13,9 +13,11 @@ export const getServerSideProps = async (context) => {
   //constante reponsável por armazenar os cookies
   const id = context.query.id;
   const response = await axios.get(
-    process.env.URL_API + `/curso/${id}/allattributes`
+    process.env.NEXT_PUBLIC_URL_API + `/curso/${id}/allattributes`
   );
-  const response1 = await axios.get(process.env.URL_API + "/campus");
+  const response1 = await axios.get(
+    process.env.NEXT_PUBLIC_URL_API + "/campus"
+  );
   const attributes = await response.data;
   const attributes1 = await response1.data;
   return {
@@ -57,7 +59,7 @@ export default function AlterarCurso({ attributes, attributes1, Auth }) {
       };
       const id = attributes.id;
       const response = await axios.put(
-        "https://databasebibliotecadigital.undertak3r.repl.co" + `/curso/${id}`,
+        process.env.NEXT_PUBLIC_URL_API + `/curso/${id}`,
         data
       );
 

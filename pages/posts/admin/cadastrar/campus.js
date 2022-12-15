@@ -52,7 +52,7 @@ export default function CadastrarCampus({Auth}) {
         ...campus,
       };
   
-      const response = await axios.post(process.env.URL_API + "/campus", data);
+      const response = await axios.post(process.env.NEXT_PUBLIC_URL_API + "/campus", data);
   
       if (!response.statusText === "OK") {
         toast.error("Erro ao cadastrar o campus");

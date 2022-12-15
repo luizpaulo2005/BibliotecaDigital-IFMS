@@ -9,7 +9,7 @@ export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context)
   //constante reponsável por armazenar os cookies
   const id = context.query.id;
-  const response = await axios.get(process.env.URL_API + `/curso/${id}`);
+  const response = await axios.get(process.env.NEXT_PUBLIC_URL_API + `/curso/${id}`);
   const attributes = await response.data;
   return {
     props: {
@@ -37,7 +37,7 @@ export default function SoloCursoAdmin({ attributes, Auth }) {
     const data = {
       id: Number(id),
     };
-    const response = await axios.delete(process.env.URL_API + `/curso/${id}`);
+    const response = await axios.delete(process.env.NEXT_PUBLIC_URL_API + `/curso/${id}`);
     if (!response.statusText === "OK") {
       toast.error("Erro ao excluir o curso");
     } else {

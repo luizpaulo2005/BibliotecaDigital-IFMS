@@ -12,8 +12,12 @@ export const getServerSideProps = async (context) => {
   const cookies = parseCookies(context);
   //constante reponsável por armazenar os cookies
   const id = context.query.id;
-  const response = await axios.get(process.env.URL_API + `/discente/${id}`);
-  const response1 = await axios.get(process.env.URL_API + "/matricula");
+  const response = await axios.get(
+    process.env.NEXT_PUBLIC_URL_API + `/discente/${id}`
+  );
+  const response1 = await axios.get(
+    process.env.NEXT_PUBLIC_URL_API + "/matricula"
+  );
   const attributes = await response.data;
   const attributes1 = await response1.data;
   return {
@@ -56,8 +60,7 @@ export default function AlterarDiscente({ attributes, attributes1, Auth }) {
       };
       const id = attributes.id;
       const response = await axios.put(
-        "https://databasebibliotecadigital.undertak3r.repl.co" +
-          `/discente/${id}`,
+        process.env.NEXT_PUBLIC_URL_API + `/discente/${id}`,
         data
       );
 

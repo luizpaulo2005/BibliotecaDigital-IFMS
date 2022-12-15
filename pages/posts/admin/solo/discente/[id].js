@@ -11,7 +11,7 @@ export const getServerSideProps = async (context) => {
   //constante reponsável por armazenar os cookies
   const id = context.query.id;
   const response = await axios.get(
-    process.env.URL_API + `/discente/${id}/pesquisas`
+    process.env.NEXT_PUBLIC_URL_API + `/discente/${id}/pesquisas`
   );
   const attributes = await response.data;
   return {
@@ -42,7 +42,7 @@ export default function SoloDiscenteAdmin({ attributes, Auth }) {
       id: Number(id),
     };
     const response = await axios.delete(
-      process.env.URL_API + `/discente/${id}`
+      process.env.NEXT_PUBLIC_URL_API + `/discente/${id}`
     );
     if (!response.statusText === "OK") {
       toast.error("Erro ao excluir o aluno");
