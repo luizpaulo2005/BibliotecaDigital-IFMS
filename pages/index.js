@@ -22,7 +22,7 @@ export const getServerSideProps = async (context) => {
 
 export default function Home({ attributes, Auth }) {
   const usuario = Auth;
-  const pesquisas = attributes.slice(10)
+  const pesquisas = attributes.slice(0,10)
   return (
     <div className="container-fluid g-0">
       <Head>
