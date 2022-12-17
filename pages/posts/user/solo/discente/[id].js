@@ -57,7 +57,6 @@ export default function SoloDiscente({ attributes, Auth }) {
               Data de Nascimento:{" "}
               {format(parseISO(attributes.data_nascimento), "dd/MM/yyyy")}
             </p>
-            <p className="card-text">CPF: {attributes.cpf}</p>
             <Link href="/posts/user/todos/discentes">
               <a className="btn btn-sm btn-secondary">Página Anterior</a>
             </Link>

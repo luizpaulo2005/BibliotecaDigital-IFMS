@@ -39,3 +39,7 @@ body {
   text-decoration: none;
   color: dark;
 }
+
+.card_index {
+  width: 300px;
+}

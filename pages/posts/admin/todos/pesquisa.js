@@ -87,7 +87,7 @@ export default function TodasPesquisasAdmin({ attributes, Auth }) {
           <table className="table">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>Código</th>
                 <th>Titulo</th>
                 <th>PDF</th>
                 <th className="d-flex justify-content-end">Ações</th>
