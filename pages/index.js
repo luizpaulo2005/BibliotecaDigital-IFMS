@@ -22,6 +22,7 @@ export const getServerSideProps = async (context) => {
 
 export default function Home({ attributes, Auth }) {
   const usuario = Auth;
+  const pesquisas = attributes.slice(0,10)
   return (
     <div className="container-fluid g-0">
       <Head>
@@ -30,8 +31,13 @@ export default function Home({ attributes, Auth }) {
 
       <div>{!usuario ? <HeaderUser /> : <HeaderAdmin Auth={Auth} />}</div>
       <div className="d-flex justify-content-center flex-wrap p-3">
+<<<<<<< HEAD
         {attributes.map(({ id, titulo, discente }) => (
           <div className="card m-1 card_index" key={id}>
+=======
+        {pesquisas.map(({ id, titulo, discente }) => (
+          <div className="card m-1" key={id}>
+>>>>>>> 44415adf1f49cd68eded141f1b0cea7dec8e1504
             <div className="card-body">
               <Link href={`/posts/user/solo/pesquisa/${id}`}>
                 <h5 className="card-title">{titulo}</h5>
